@@ -104,7 +104,13 @@ THE SOFTWARE.
 
 @angular/material/icon
 
+@angular/material/paginator
+
 @angular/material/select
+
+@angular/material/table
+
+@angular/material/tooltip
 
 @angular/platform-browser
 MIT
