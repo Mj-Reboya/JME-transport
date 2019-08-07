@@ -6,7 +6,7 @@
     "jmet-forms": {
       "projectType": "application",
       "schematics": {},
-      "root": "./resources/ts",
+      "root": "",
       "sourceRoot": "./resources/ts/src",
       "prefix": "app",
       "architect": {

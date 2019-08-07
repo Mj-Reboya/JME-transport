@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonInfoComponent } from './person-info.component';
+import { AngularMaterialModules } from '../../modules/angular-material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('PersonInfoComponent', () => {
   let component: PersonInfoComponent;
@@ -8,7 +11,13 @@ describe('PersonInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PersonInfoComponent]
+      declarations: [PersonInfoComponent],
+      imports: [
+        BrowserAnimationsModule,
+        AngularMaterialModules,
+        FormsModule,
+        ReactiveFormsModule
+      ]
     }).compileComponents();
   }));
 
