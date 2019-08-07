@@ -1,0 +1,35 @@
+<div class="ui ten wide column grid forms-container">
+  <div class="row">
+    <app-delivery-info></app-delivery-info>
+  </div>
+  <div class="row">
+    <app-person-info
+      [title]="'Sender Information'"
+      #senderInfo
+    ></app-person-info>
+  </div>
+  <div class="row">
+    <app-person-info
+      [title]="'Payor Information'"
+      [hasSameAsButton]="true"
+      (sameAsSenderClicked)="fillPayorInfo($event)"
+      #payorInfo
+    ></app-person-info>
+  </div>
+  <div class="row">
+    <app-person-info
+      [title]="'Reciever Information'"
+      #recieverInfo
+    ></app-person-info>
+  </div>
+  <div class="row">
+    <div class="right aligned right floated column">
+      <button mat-stroked-button class="button-spacing" color="primary">
+        Cancel
+      </button>
+      <button mat-raised-button class="button-spacing" color="primary">
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

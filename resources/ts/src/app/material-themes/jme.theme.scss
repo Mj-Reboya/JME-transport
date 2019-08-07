@@ -1,0 +1,72 @@
+.header-col{
+    background-color: #760f29;    
+}
+
+.full-width{
+  width: 100% !important;
+}
+
+.button-min{
+  height: 20px;
+}
+
+.white{
+  color: white !important;
+}
+
+.jme-col{
+  color: #760f29;    
+}
+
+.rouded-all{
+  border-radius: 25px !important;
+}
+.rounded-top{
+  border-radius: 25px 25px 0px 0px !important;
+  box-shadow: 0px 3px 4px 1px rgba(0,0,0,.2) !important;
+}
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$jme-color: (
+    50: #760f29,
+    100: #760f29,
+    200: #760f29,
+    300: #760f29,
+    400: #760f29,
+    500: #760f29,
+    600: #760f29,
+    700: #760f29,
+    800: #760f29,
+    900: #760f29,
+    A100: #760f29,
+    A200: #760f29,
+    A400: #760f29,
+    A700: #760f29,
+    contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$jme-theme-primary: mat-palette($jme-color, 50); 
+$jme-theme-accent: mat-palette($jme-color, 50); 
+$jme-theme-warn : mat-palette($mat-pink);
+
+$jme-theme: mat-light-theme($jme-theme-primary, $jme-theme-accent, $jme-theme-warn);
+
+@include angular-material-theme($jme-theme);
+

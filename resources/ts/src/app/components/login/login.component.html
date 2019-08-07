@@ -1,0 +1,52 @@
+<form
+  class="ui centered grid"
+  style="margin: 0 auto"
+  (submit)="login()"
+  #userLogin
+>
+  <mat-card class="rouded-all" style="padding-top: 0px">
+    <mat-card-header class="ui centered grid header-col rounded-top">
+      <mat-card-title>
+        <!-- <div class="ui huge header white">JME</div> -->
+        <img
+          class="ui centered image"
+          src="../../../assets/jme-logo-header.png"
+        />
+      </mat-card-title>
+      <mat-card-subtitle>
+        <header class="ui huge header white">
+          Account Login
+        </header>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="ui fluid centered grid">
+      <div class="row">
+        <mat-form-field class="centered seven wide column center aligned">
+          <mat-icon color="primary" matPrefix>account_box&nbsp;</mat-icon>
+          <input matInput placeholder="Username" />
+          <mat-icon color="primary" matSuffix></mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="centered seven wide column center aligned">
+          <mat-icon color="primary" matPrefix>lock&nbsp;</mat-icon>
+          <input matInput placeholder="Password" />
+          <mat-icon color="primary" matSuffix></mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="ui grid full-width">
+      <div class="right floated three wide column">
+        <button
+          type="submit"
+          style="float: right"
+          mat-raised-button
+          color="primary"
+        >
+          Login
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,77 @@
+<div class="ui centered grid" style="margin: 0 auto">
+  <mat-card class="rouded-all" style="padding-top: 0px">
+    <mat-card-header class="ui left aligned grid header-col rounded-top">
+      <div class="ui grid full-width" style="margin: 0 auto">
+        <div class="row">
+          <div
+            class="left floated left aligned eight wide column middle aligned content"
+          >
+            <div class="ui small header white">
+              DELIVERY INFORMATION
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="ui fluid centered grid">
+      <div class="doubling five column row">
+        <mat-form-field class="column">
+          <input matInput type="number" placeholder="Quantity" />
+        </mat-form-field>
+        <mat-form-field class="column">
+          <input matInput type="number" placeholder="Weight" />
+          <div class="tiny sub header jme-col" matSuffix>&nbsp;Kgs</div>
+        </mat-form-field>
+        <mat-form-field class="column">
+          <input matInput type="number" placeholder="Length" />
+          <div class="tiny sub header jme-col" matSuffix>&nbsp;cm</div>
+        </mat-form-field>
+        <mat-form-field class="column ">
+          <input matInput type="number" placeholder="Width" />
+          <div class="jme-col" matSuffix>&nbsp;cm</div>
+        </mat-form-field>
+        <mat-form-field class="column">
+          <input matInput type="number" placeholder="Depth" />
+          <div class="tiny sub header jme-col" matSuffix>&nbsp;cm</div>
+        </mat-form-field>
+      </div>
+      <div class="stackable equal width row">
+        <mat-form-field class="column">
+          <mat-label>Service Type</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let service of serviceTypes" [value]="service">
+              {{ service }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="column">
+          <mat-label>Item Type</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let item of itemTypes" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="column">
+          <mat-label>Pallet</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let pallet of pallets" [value]="pallet">
+              {{ pallet }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="equal width row">
+        <mat-form-field class="column">
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="2"
+            cdkAutosizeMaxRows="10"
+            placeholder="Instructions"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

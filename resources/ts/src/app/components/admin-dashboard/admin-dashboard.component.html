@@ -1,0 +1,101 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="ui secondary menu">
+    <img
+      style="height: 100%"
+      class="ui image"
+      src="../../../assets/jme-logo-header.png"
+    />
+    <div class="right menu">
+      <a class="ui item">
+        <button mat-flat-button color="primary">Logout</button>
+      </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="ui centered grid dashboard-container" style="text-align: left">
+  <div class="row">
+    <div class="column">
+      <table mat-table [dataSource]="dataSource" style="width: 100%">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>
+            <div class="ui medium header">
+              Name
+              <div class="sub header">
+                Company
+              </div>
+            </div>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <div class="ui small header">
+              {{ row.name }}
+              <div class="sub header">
+                {{ row.company }}
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="suburd">
+          <th mat-header-cell *matHeaderCellDef>
+            <div class="ui medium header">
+              Suburd
+            </div>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.suburd }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>
+            <div class="ui medium header">
+              State
+            </div>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.state }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>
+            <div class="ui medium header centered">
+              Phone
+            </div>
+          </th>
+          <td mat-cell *matCellDef="let row" class="content-center">
+            {{ row.phone }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="hasAccount">
+          <th mat-header-cell *matHeaderCellDef>
+            <div class="ui medium header centered">
+              Account
+            </div>
+          </th>
+
+          <td mat-cell *matCellDef="let row" class="content-center">
+            <ng-container *ngIf="row.hasAccount; else update">
+              <button color="primary" mat-stroked-button>
+                Update
+              </button>
+            </ng-container>
+            <ng-template #update>
+              <button mat-raised-button color="primary">
+                Create
+              </button>
+            </ng-template>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
+</div>
