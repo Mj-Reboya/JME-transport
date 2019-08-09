@@ -3,7 +3,168 @@
   class="ui centered grid"
   style="margin: 0 auto"
 >
-  <mat-card class="rouded-all" style="padding-top: 0px">
+  <div class="row">
+    <div
+      class="ui fluid stackable two column grid full-width"
+      style="margin: 0 auto"
+    >
+      <div class="row header-col" style="margin-bottom: 10px">
+        <div
+          class="left floated middle aligned left aligned column content"
+          style="padding-top: 0px !important; padding-bottom: 0px !important"
+        >
+          <div class="ui small header white">
+            {{ title | uppercase }} Information
+          </div>
+        </div>
+        <div
+          class="column"
+          *ngIf="hasSameAsButton"
+          style="padding: 0px !important"
+        >
+          <mat-checkbox
+            [formControl]="sameAsSender"
+            (ngModelChange)="sameAsSenderChanged($event)"
+            class="ui right floated small header white"
+          >
+            Same as Sender
+          </mat-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui fluid centered stackable grid">
+    <div class="row low-padding">
+      <mat-form-field class="five wide column low-padding">
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['bookingDate']"
+          [matDatepicker]="picker"
+          placeholder="Booking Date"
+          color="primary"
+          formControlName="bookingDate"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon color="primary">
+            date_range
+          </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="personInfoGroup.controls['bookingDate'].hasError('required')"
+        >
+          Booking Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="eleven wide column low-padding">
+        <input
+          matInput
+          #name
+          [formControl]="personInfoGroup.controls['name']"
+          placeholder="{{ title | titlecase }} Name"
+          [value]="personInfoGroup.controls['name'].value | titlecase"
+          required
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['name'].hasError('required')"
+        >
+          {{ title | titlecase }} Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="equal width row low-padding">
+      <mat-form-field class="column low-padding">
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['company']"
+          placeholder="Company"
+          required
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['company'].hasError('required')"
+        >
+          Company is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="equal width row low-padding">
+      <mat-form-field class="column low-padding">
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['streetAddress']"
+          placeholder="Street Address"
+          [value]="personInfoGroup.controls['streetAddress'].value | titlecase"
+          required
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['streetAddress'].hasError('required')"
+        >
+          Street Address is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="equal width row low-padding">
+      <mat-form-field class="column low-padding">
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['suburd']"
+          [value]="personInfoGroup.controls['suburd'].value | titlecase"
+          placeholder="Suburb"
+          required
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['suburd'].hasError('required')"
+        >
+          Suburb Address is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="column low-padding">
+        <mat-label>State</mat-label>
+        <mat-select [formControl]="personInfoGroup.controls['state']">
+          <mat-option *ngFor="let state of states" [value]="state">
+            {{ state }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="personInfoGroup.controls['state'].hasError('required')"
+        >
+          State is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="equal width row low-padding">
+      <mat-form-field class="column low-padding">
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['postalCode']"
+          type="number"
+          placeholder="Post code"
+        />
+      </mat-form-field>
+      <mat-form-field class="column low-padding">
+        <div class="sub header jme-col" matPrefix>+61&nbsp;</div>
+        <input
+          appAvoidPasteForNonNumeric
+          matInput
+          type="tel"
+          maxlength="10"
+          placeholder="Phone"
+          [formControl]="personInfoGroup.controls['phone']"
+          (keypress)="numOnly($event)"
+          required
+          #inputPhone
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['phone'].hasError('required')"
+        >
+          Phone is <strong>required</strong>
+        </mat-error>
+        <mat-hint align="end">{{ inputPhone.value.length }} / 10</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- <mat-card class="rouded-all" style="padding-top: 0px">
     <mat-card-header class="ui left aligned grid header-col rounded-top">
       <div
         class="ui stackable two column grid full-width"
@@ -15,7 +176,7 @@
             style="padding-top: 0px !important; padding-bottom: 0px !important"
           >
             <div class="ui small header white">
-              {{ title | uppercase }}
+              {{ title | uppercase }} Information
             </div>
           </div>
           <div
@@ -35,101 +196,6 @@
       </div>
     </mat-card-header>
     <mat-card-content class="ui fluid centered stackable grid">
-      <div class="row">
-        <mat-form-field class="five wide column">
-          <input
-            matInput
-            [formControl]="personInfoGroup.controls['bookingDate']"
-            [matDatepicker]="picker"
-            placeholder="Booking Date"
-            color="primary"
-            formControlName="bookingDate"
-            required
-          />
-          <mat-datepicker-toggle matSuffix [for]="picker">
-            <mat-icon matDatepickerToggleIcon color="primary">
-              date_range
-            </mat-icon>
-          </mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field class="eleven wide column">
-          <input
-            matInput
-            #name
-            [formControl]="personInfoGroup.controls['name']"
-            placeholder="Name"
-            [value]="personInfoGroup.controls['name'].value | titlecase"
-            required
-          />
-        </mat-form-field>
-      </div>
-      <div class="equal width row">
-        <mat-form-field class="column">
-          <input
-            matInput
-            [formControl]="personInfoGroup.controls['company']"
-            placeholder="Company"
-          />
-        </mat-form-field>
-      </div>
-      <div class="equal width row">
-        <mat-form-field class="column">
-          <input
-            matInput
-            [formControl]="personInfoGroup.controls['streetAddress']"
-            placeholder="Street Address"
-            [value]="
-              personInfoGroup.controls['streetAddress'].value | titlecase
-            "
-            required
-          />
-        </mat-form-field>
-      </div>
-      <div class="equal width row">
-        <mat-form-field class="column">
-          <input
-            matInput
-            [formControl]="personInfoGroup.controls['suburd']"
-            [value]="personInfoGroup.controls['suburd'].value | titlecase"
-            placeholder="Suburb"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="column">
-          <mat-label>State</mat-label>
-          <mat-select [formControl]="personInfoGroup.controls['state']">
-            <mat-option *ngFor="let state of states" [value]="state">
-              {{ state }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="doubling two column row">
-        <mat-form-field class="column">
-          <input
-            matInput
-            [formControl]="personInfoGroup.controls['postalCode']"
-            type="number"
-            placeholder="Postal code"
-          />
-        </mat-form-field>
-        <mat-form-field class="column">
-          <div class="sub header jme-col" matPrefix>+61&nbsp;</div>
-          <input
-            appAvoidPasteForNonNumeric
-            matInput
-            type="tel"
-            maxlength="10"
-            placeholder="Phone"
-            [formControl]="personInfoGroup.controls['phone']"
-            (keypress)="numOnly($event)"
-            required
-            #inputPhone
-          />
-          <mat-hint align="end">{{ inputPhone.value.length }} / 10</mat-hint>
-        </mat-form-field>
-      </div>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
 </form>

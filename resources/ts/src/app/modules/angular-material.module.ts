@@ -11,6 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const ANGULAR_MATERIAL_MODULES = [
   MatButtonModule,
@@ -23,7 +24,8 @@ const ANGULAR_MATERIAL_MODULES = [
   MatNativeDateModule,
   MatTableModule,
   MatPaginatorModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatStepperModule
 ];
 
 @NgModule({

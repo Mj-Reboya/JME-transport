@@ -8,12 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "el-build": "npm run el-build-task && npm run el-copy-htaccess && npm run el-copy-additional && npm run el-copy-remove-replace",
-    "el-build-task": "ng build --prod --output-hashing=all jmet-forms",
-    "el-copy-htaccess": "cp -Rv ./resources/ts/additional-scripts/.htaccess ./public/",
-    "el-copy-additional": "cp -Rv ./resources/ts/additional-scripts/. ./public/",
-    "el-copy-remove-replace": "rm -rf ./resources/views/app.blade.php && mv ./angular-build/index.html ./resources/views/app.blade.php",
-    "el-run-mix": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "el-build": "npm run el-build-task && npm run el-run-mix",
+    "el-build-task": "ng build --prod --output-hashing=none jmet-forms",
+    "el-run-mix": "node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +40,7 @@
     "@types/node": "~8.9.4",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "codelyzer": "^5.0.0",
+    "cross-env": "^5.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -50,11 +48,11 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "laravel-mix": "^4.0.7",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3",
-    "laravel-mix": "^4.0.7",
-    "cross-env": "^5.1"
+    "vue-template-compiler": "^2.6.10"
   }
 }

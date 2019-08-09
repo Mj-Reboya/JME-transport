@@ -15,9 +15,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvoidPasteForNonNumericDirective } from './directives/avoidCopyPaste';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { DeliveryTableComponent } from './components/delivery-table/delivery-table.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'sign-up', component: SignUpComponent },
   { path: 'orderForm', component: OrderFormComponent },
   { path: 'admin', component: AdminDashboardComponent },
   // always put this on the end of the route
@@ -33,7 +35,8 @@ const APP_ROUTES: Routes = [
     PersonInfoComponent,
     AvoidPasteForNonNumericDirective,
     AdminDashboardComponent,
-    DeliveryTableComponent
+    DeliveryTableComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

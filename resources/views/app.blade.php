@@ -16,8 +16,8 @@
       rel="stylesheet"
     />
     <link href="assets/semantic.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.48bbb76b35c04ec30ae2.css"></head>
+  <link rel="stylesheet" href="styles.css"></head>
   <body>
     <app-root></app-root>
-  <script src="runtime-es2015.703a23e48ad83c851e49.js" type="module"></script><script src="polyfills-es2015.4822865028b09a4e48a0.js" type="module"></script><script src="runtime-es5.465c2333d355155ec5f3.js" nomodule></script><script src="polyfills-es5.b709a461ff8b6cbccec8.js" nomodule></script><script src="main-es2015.f7099f9c28d800e2e614.js" type="module"></script><script src="main-es5.290cd35dee79ac608b5f.js" nomodule></script></body>
+  <script src="runtime-es2015.js" type="module"></script><script src="polyfills-es2015.js" type="module"></script><script src="runtime-es5.js" nomodule></script><script src="polyfills-es5.js" nomodule></script><script src="main-es2015.js" type="module"></script><script src="main-es5.js" nomodule></script></body>
 </html>

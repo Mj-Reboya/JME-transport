@@ -1,35 +1,100 @@
-<div class="ui ten wide column grid forms-container">
-  <div class="row">
-    <app-delivery-info></app-delivery-info>
+<mat-horizontal-stepper [linear]="true" labelPosition="bottom">
+  <div class="ui ten wide column grid">
+    <mat-step
+      [stepControl]="senderInfo.personInfoGroup"
+      label="Sender Information"
+    >
+      <app-person-info [title]="'Sender'" #senderInfo></app-person-info>
+      <div class="right aligned right floated column">
+        <button
+          mat-raised-button
+          class="button-spacing"
+          color="primary"
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step
+      [stepControl]="payorInfo.personInfoGroup"
+      label="Payor Information"
+    >
+      <app-person-info
+        [title]="'Payor'"
+        [hasSameAsButton]="true"
+        (sameAsSenderClicked)="fillPayorInfo($event)"
+        #payorInfo
+      ></app-person-info>
+      <div class="right aligned right floated column">
+        <button
+          mat-stroked-button
+          class="button-spacing"
+          color="primary"
+          matStepperPrevious
+        >
+          Previous
+        </button>
+        <button
+          mat-raised-button
+          class="button-spacing"
+          color="primary"
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step
+      [stepControl]="recieverInfo.personInfoGroup"
+      label="Reciever Information"
+    >
+      <app-person-info [title]="'Reciever'" #recieverInfo></app-person-info>
+      <div class="right aligned right floated column">
+        <button
+          mat-stroked-button
+          class="button-spacing"
+          color="primary"
+          matStepperPrevious
+        >
+          Previous
+        </button>
+        <button
+          mat-raised-button
+          class="button-spacing"
+          color="primary"
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step label="Item Description">
+      <app-delivery-info></app-delivery-info>
+      <div class="right aligned right floated column">
+        <button
+          mat-stroked-button
+          class="button-spacing"
+          color="primary"
+          matStepperPrevious
+        >
+          Previous
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step label="Review and Submit" state="reviewSubmit">
+      <div class="right aligned right floated column">
+        <button mat-stroked-button class="button-spacing" color="primary">
+          Cancel
+        </button>
+        <button mat-raised-button class="button-spacing" color="primary">
+          Submit
+        </button>
+      </div>
+    </mat-step>
   </div>
-  <div class="row">
-    <app-person-info
-      [title]="'Sender Information'"
-      #senderInfo
-    ></app-person-info>
-  </div>
-  <div class="row">
-    <app-person-info
-      [title]="'Payor Information'"
-      [hasSameAsButton]="true"
-      (sameAsSenderClicked)="fillPayorInfo($event)"
-      #payorInfo
-    ></app-person-info>
-  </div>
-  <div class="row">
-    <app-person-info
-      [title]="'Reciever Information'"
-      #recieverInfo
-    ></app-person-info>
-  </div>
-  <div class="row">
-    <div class="right aligned right floated column">
-      <button mat-stroked-button class="button-spacing" color="primary">
-        Cancel
-      </button>
-      <button mat-raised-button class="button-spacing" color="primary">
-        Submit
-      </button>
-    </div>
-  </div>
-</div>
+</mat-horizontal-stepper>
