@@ -1,7 +1,6 @@
 <form
   class="ui centered grid"
   style="margin: 0 auto"
-  (submit)="signUp()"
   [formGroup]="newAccountInfo"
   #newAccount
 >
@@ -33,28 +32,41 @@
           </div>
           <div class="ui grid stackable" style="margin: 0px; max-width: 400px;">
             <div class="row equal width grid low-padding">
-              <mat-form-field class="column">
+              <mat-form-field appearance="outline" class="column">
+                <mat-label>Lastname</mat-label>
                 <input matInput placeholder="Lastname" />
               </mat-form-field>
-              <mat-form-field class="column">
+              <mat-form-field appearance="outline" class="column">
+                <mat-label>Middlename</mat-label>
                 <input matInput placeholder="Middlename" />
               </mat-form-field>
             </div>
             <div class="row low-padding">
-              <mat-form-field class="column">
+              <mat-form-field appearance="outline" class="column">
+                <mat-label>Company</mat-label>
                 <input matInput placeholder="Company" />
               </mat-form-field>
             </div>
             <div class="row low-padding">
-              <mat-form-field class="column">
+              <mat-form-field appearance="outline" class="column">
+                <mat-label>Email</mat-label>
                 <input matInput placeholder="Email" />
               </mat-form-field>
             </div>
             <div class="row low-padding">
               <div class="middle aligned column">
+                <div style="float: left">
+                  <button
+                    [routerLink]="['/login']"
+                    mat-stroked-button
+                    color="primary"
+                  >
+                    Return to Login
+                  </button>
+                </div>
                 <div style="float: right">
                   <button matStepperNext mat-raised-button color="primary">
-                    Continue
+                    Next
                     <mat-icon>navigate_next</mat-icon>
                   </button>
                 </div>
@@ -70,12 +82,14 @@
           </div>
           <div class="ui grid stackable" style="margin: 0px; max-width: 400px;">
             <div class="row low-padding">
-              <mat-form-field class="column">
+              <mat-form-field appearance="outline" class="column">
+                <mat-label>Username</mat-label>
                 <input matInput placeholder="Username" />
               </mat-form-field>
             </div>
             <div class="row equal width grid low-padding">
-              <mat-form-field class="column">
+              <mat-form-field appearance="outline" class="column">
+                <mat-label>Password</mat-label>
                 <input
                   matInput
                   type="{{ showPass ? '' : 'password' }}"
@@ -83,7 +97,8 @@
                   [formControl]="newAccountInfo.controls['password']"
                 />
               </mat-form-field>
-              <mat-form-field class="column">
+              <mat-form-field appearance="outline" class="column">
+                <mat-label>Re-Type Password</mat-label>
                 <input
                   matInput
                   type="{{ showPass ? '' : 'password' }}"
@@ -124,7 +139,7 @@
                 </div>
                 <div style="float: right">
                   <button matStepperNext mat-raised-button color="primary">
-                    Continue
+                    Next
                     <mat-icon>navigate_next</mat-icon>
                   </button>
                 </div>
