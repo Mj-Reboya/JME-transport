@@ -16,6 +16,7 @@ import { AvoidPasteForNonNumericDirective } from './directives/avoidCopyPaste';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { DeliveryTableComponent } from './components/delivery-table/delivery-table.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { TransactionSummaryComponent } from './components/transaction-summary/transaction-summary.component';
 
 const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,7 +37,8 @@ const APP_ROUTES: Routes = [
     AvoidPasteForNonNumericDirective,
     AdminDashboardComponent,
     DeliveryTableComponent,
-    SignUpComponent
+    SignUpComponent,
+    TransactionSummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -56,19 +58,19 @@ export class AppModule {
     private location: Location,
     private router: Router
   ) {
-    const appComponentElement = createCustomElement(AppComponent, { injector });
-    customElements.define('app-root', appComponentElement);
-    // on every route change tell router to navigate to defined route
-    this.location.subscribe(data => {
-      console.log('Data subscribe', data);
-      this.router.navigateByUrl(data.url);
-    });
-    // using this router outlet is loaded normaly on init
-    this.router.navigateByUrl(this.location.path(true));
-    // event subscribe to detect route change inside angular
-    this.router.events.subscribe(data => {
-      // console.log(data);
-    });
+    // const appComponentElement = createCustomElement(AppComponent, { injector });
+    // customElements.define('app-root', appComponentElement);
+    // // on every route change tell router to navigate to defined route
+    // this.location.subscribe(data => {
+    //   console.log('Data subscribe', data);
+    //   this.router.navigateByUrl(data.url);
+    // });
+    // // using this router outlet is loaded normaly on init
+    // this.router.navigateByUrl(this.location.path(true));
+    // // event subscribe to detect route change inside angular
+    // this.router.events.subscribe(data => {
+    //   // console.log(data);
+    // });
   }
   ngDoBootstrap() {}
 }

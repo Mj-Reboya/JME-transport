@@ -1,0 +1,111 @@
+<div *ngIf="transactionSummary as summary" style="all: unset !important;">
+  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+    <div fxFlexAlign="center">
+      <!-- Icon here -->
+    </div>
+    <!-- Summary here -->
+    <div
+      fxLayout="row"
+      fxFlexAlign="stretch"
+      fxLayout.sm="column"
+      fxLayoutGap="2em"
+      fxLayoutAlign="space-around start"
+    >
+      <div>
+        <h3>
+          Sender Information
+        </h3>
+        <span>
+          <div>Name: {{ summary.sender.name }}</div>
+          <div>Booking Date: {{ summary.sender.bookingDate | date }}</div>
+          <div>Company: {{ summary.sender.company }}</div>
+          <div>Street Address: {{ summary.sender.streetAddress }}</div>
+          <div>Suburd: {{ summary.sender.suburd }}</div>
+          <div>State: {{ summary.sender.state }}</div>
+          <div>Postal Code: {{ summary.sender.postalCode }}</div>
+          <div>Phone: {{ summary.sender.phone }}</div>
+        </span>
+      </div>
+
+      <div>
+        <h3>
+          Payor Information
+        </h3>
+        <span>
+          <div>Name: {{ summary.payor.name }}</div>
+          <div>Booking Date: {{ summary.payor.bookingDate | date }}</div>
+          <div>Company: {{ summary.payor.company }}</div>
+          <div>Street Address: {{ summary.payor.streetAddress }}</div>
+          <div>Suburd: {{ summary.payor.suburd }}</div>
+          <div>State: {{ summary.payor.state }}</div>
+          <div>Postal Code: {{ summary.payor.postalCode }}</div>
+          <div>Phone: {{ summary.payor.phone }}</div>
+        </span>
+      </div>
+
+      <div>
+        <h3>
+          Reciever Information
+        </h3>
+        <span>
+          <div>Name: {{ summary.reciever.name }}</div>
+          <div>Booking Date: {{ summary.reciever.bookingDate | date }}</div>
+          <div>Company: {{ summary.reciever.company }}</div>
+          <div>Street Address: {{ summary.reciever.streetAddress }}</div>
+          <div>Suburd: {{ summary.reciever.suburd }}</div>
+          <div>State: {{ summary.reciever.state }}</div>
+          <div>Postal Code: {{ summary.reciever.postalCode }}</div>
+          <div>Phone: {{ summary.reciever.phone }}</div>
+        </span>
+      </div>
+
+      <div>
+        <h3>
+          Delivery Information
+        </h3>
+        <span>
+          <div>Parcel Type: {{ summary.delivery.parcelType }}</div>
+          <div *ngIf="summary.delivery.specialInstruction.lenght > 0">
+            Special Instructions: {{ summary.delivery.specialInstruction }}
+          </div>
+          <div>
+            Pickup: {{ summary.delivery.pickUpOption }}
+            {{ summary.delivery.pickUpDate | date }}
+          </div>
+          <div>Ready At: {{ summary.delivery.pickUpReadyAt }}</div>
+          <div>Closing Time: {{ summary.delivery.closingTime }}</div>
+        </span>
+      </div>
+    </div>
+    <div fxFlexFill fxLayoutAlign="space-around start">
+      <mat-list>
+        <mat-divider></mat-divider>
+        <h3 mat-header>
+          Items:
+        </h3>
+
+        <div mat-subheader>
+          <div>
+            Description
+            <div>Commodity</div>
+            <div>Items / Total Weight</div>
+            <div>Lenght / Width / Height / Cubic</div>
+          </div>
+        </div>
+
+        <mat-list-item *ngFor="let item of summary.delivery.deliveryItems">
+          <h4 mat-line>{{ item.description }}</h4>
+          <p mat-line>{{ item.commodity }}</p>
+          <p mat-line>{{ item.items }} / {{ item.totalWeight }} kg</p>
+          <p mat-line>
+            {{ item.length }} cm / {{ item.width }} cm / {{ item.height }} cm /
+            {{ (item.height * item.width * item.length) / 100 }} m<sup>3</sup>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div fxFlexAlign="center">
+      <!-- actions here -->
+    </div>
+  </div>
+</div>

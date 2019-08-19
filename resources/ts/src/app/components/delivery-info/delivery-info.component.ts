@@ -5,10 +5,10 @@ import {
   FormBuilder,
   AbstractControl
 } from '@angular/forms';
-import { IDeliveryItem } from '../delivery-table/delivery-table.component';
 import { RouterLink, Route, Router } from '@angular/router';
 import { MatInput } from '@angular/material/input';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
+import { IDeliveryItem } from 'src/app/types/TransactionSummary';
 
 @Component({
   selector: 'app-delivery-info',

@@ -13,6 +13,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 const ANGULAR_MATERIAL_MODULES = [
   MatButtonModule,
@@ -27,7 +30,10 @@ const ANGULAR_MATERIAL_MODULES = [
   MatPaginatorModule,
   MatToolbarModule,
   MatStepperModule,
-  NgxMaterialTimepickerModule
+  MatDividerModule,
+  MatListModule,
+  NgxMaterialTimepickerModule,
+  FlexLayoutModule
 ];
 
 @NgModule({

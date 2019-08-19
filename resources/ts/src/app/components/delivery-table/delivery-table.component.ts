@@ -1,14 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
-export interface IDeliveryItem {
-  description: string;
-  commodity: string;
-  items: number;
-  totalWeight: number;
-  length: number;
-  width: number;
-  height: number;
-}
+import { IDeliveryItem } from 'src/app/types/TransactionSummary';
 
 @Component({
   selector: 'app-delivery-table',
