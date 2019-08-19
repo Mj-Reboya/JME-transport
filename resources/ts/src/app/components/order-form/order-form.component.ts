@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PersonInfoComponent } from '../person-info/person-info.component';
+import { DeliveryInfoComponent } from '../delivery-info/delivery-info.component';
 
 @Component({
   selector: 'app-order-form',
@@ -12,6 +13,12 @@ export class OrderFormComponent implements OnInit {
 
   @ViewChild('payorInfo', { static: true })
   payorInfo: PersonInfoComponent;
+
+  @ViewChild('recieverInfo', { static: true })
+  recieverInfo: PersonInfoComponent;
+
+  @ViewChild('deliveryInfo', { static: true })
+  deliveryInfo: DeliveryInfoComponent;
 
   constructor() {}
 
@@ -29,5 +36,12 @@ export class OrderFormComponent implements OnInit {
         }
       }
     }
+  }
+
+  reviewAndSubmit() {
+    console.log('this.senderInfo', this.senderInfo.personInfoGroup);
+    console.log('this.payorInfo', this.payorInfo.personInfoGroup);
+    console.log('this.recieverInfo', this.recieverInfo.personInfoGroup);
+    console.log('this.deliveryInfo', this.deliveryInfo.deliveryInfoGroup);
   }
 }

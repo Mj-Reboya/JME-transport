@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+export interface IDeliveryItem {
+  description: string;
+  commodity: string;
+  items: number;
+  totalWeight: number;
+  length: number;
+  width: number;
+  height: number;
+}
 
 @Component({
   selector: 'app-delivery-table',
@@ -6,10 +16,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delivery-table.component.scss']
 })
 export class DeliveryTableComponent implements OnInit {
+  @Input()
+  deliveryItems: IDeliveryItem[] = [];
 
-  constructor() { }
+  @Output()
+  itemSelected = new EventEmitter<{ item: IDeliveryItem; index: number }>();
 
-  ngOnInit() {
+  @Output()
+  itemDeleted = new EventEmitter<{ item: IDeliveryItem; index: number }>();
+
+  constructor() {}
+
+  ngOnInit() {}
+
+  itemUpdateClicked(item: IDeliveryItem, index: number) {
+    console.log('this.itemSelected.emit(item);', item);
+    this.itemSelected.emit({ item, index });
   }
 
+  itemDeleteClicked(item: IDeliveryItem, index: number) {
+    this.itemDeleted.emit({ item, index });
+  }
 }

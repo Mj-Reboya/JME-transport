@@ -17,23 +17,19 @@
             {{ title | uppercase }} Information
           </div>
         </div>
-        <div
-          class="column"
-          *ngIf="hasSameAsButton"
-          style="padding: 0px !important"
-        >
-          <mat-checkbox
-            [formControl]="sameAsSender"
-            (ngModelChange)="sameAsSenderChanged($event)"
-            class="ui right floated small header white"
-          >
-            Same as Sender
-          </mat-checkbox>
-        </div>
       </div>
     </div>
   </div>
   <div class="ui fluid centered stackable grid">
+    <div class="row column" *ngIf="hasSameAsButton">
+      <mat-checkbox
+        [formControl]="sameAsSender"
+        (ngModelChange)="sameAsSenderChanged($event)"
+        class="ui right floated large header"
+      >
+        Same as Sender
+      </mat-checkbox>
+    </div>
     <div class="row low-padding">
       <mat-form-field appearance="outline" class="five wide column low-padding">
         <mat-label>Booking Date</mat-label>

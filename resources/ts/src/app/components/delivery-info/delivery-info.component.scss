@@ -1,3 +1,27 @@
 ::ng-deep .mat-form-field-wrapper{
     width:100% !important;
 }
+
+:host .non-semantic{
+    padding: 0px !important;
+    border: 0px !important;
+    box-shadow: 0px !important;
+    color: inherit !important;
+}
+
+:host ::ng-deep .ui .form input{
+    padding: 0px !important;
+    text-align: center !important;
+    border: unset;
+    background: unset;
+    color: unset;
+}
+
+
+.timepicker-dial__control .timepicker-dial__item .timepicker-dial__item_active {
+    padding: 0px !important;
+}
+
+:host ::ng-deep .time-picker-toggle button svg{
+    fill: #760f29 !important;
+}

@@ -10,14 +10,408 @@
             class="left floated left aligned eight wide column middle aligned content"
           >
             <div class="ui small header white">
-              DELIVERY INFORMATION
+              ITEM Description
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="fluid row"></div>
+  <div class="fluid row">
+    <div class="ui stackable grid">
+      <div class="row">
+        <form [formGroup]="deliveryItemForm" class="ui form" name="itemForm">
+          <div class="field">
+            <div class="two fields">
+              <mat-form-field
+                appearance="outline"
+                class="twelve wide field low-padding"
+              >
+                <mat-label>Description</mat-label>
+                <input
+                  matInput
+                  [formControl]="deliveryItemForm.controls['description']"
+                  [value]="deliveryItemForm.controls['description'].value"
+                  placeholder="Description"
+                  class="non-semantic"
+                  style="text-align: unset !important;"
+                  #descriptionField
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    deliveryItemForm.controls['description'].hasError(
+                      'required'
+                    )
+                  "
+                >
+                  Description is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field
+                appearance="outline"
+                class="four wide field low-padding"
+              >
+                <mat-label>Commodity</mat-label>
+                <mat-select
+                  [formControl]="deliveryItemForm.controls['commodity']"
+                >
+                  <mat-option
+                    *ngFor="let commodity of commodities"
+                    [value]="commodity"
+                  >
+                    {{ commodity }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    deliveryItemForm.controls['commodity'].hasError('required')
+                  "
+                >
+                  Commodity is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="five equal width fields">
+              <mat-form-field appearance="outline" class="field low-padding">
+                <mat-label>Items</mat-label>
+                <input
+                  matInput
+                  [formControl]="deliveryItemForm.controls['items']"
+                  [value]="deliveryItemForm.controls['items'].value"
+                  placeholder="Items"
+                  class="non-semantic"
+                  style="text-align: unset !important;"
+                  type="number"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    deliveryItemForm.controls['items'].hasError('required')
+                  "
+                >
+                  Items is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="field low-padding">
+                <mat-label>Total Weight</mat-label>
+                <input
+                  matInput
+                  [formControl]="deliveryItemForm.controls['totalWeight']"
+                  [value]="deliveryItemForm.controls['totalWeight'].value"
+                  placeholder="Total Weight"
+                  class="non-semantic"
+                  style="text-align: unset !important;"
+                  type="number"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    deliveryItemForm.controls['totalWeight'].hasError(
+                      'required'
+                    )
+                  "
+                >
+                  Total Weight is <strong>required</strong>
+                </mat-error>
+                <div class="sub header jme-col" matSuffix style="top: 0px">
+                  Kg
+                </div>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="field low-padding">
+                <mat-label>Length</mat-label>
+                <input
+                  matInput
+                  [formControl]="deliveryItemForm.controls['length']"
+                  [value]="deliveryItemForm.controls['length'].value"
+                  placeholder="Length"
+                  class="non-semantic"
+                  style="text-align: unset !important;"
+                  type="number"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    deliveryItemForm.controls['length'].hasError('required')
+                  "
+                >
+                  Length is <strong>required</strong>
+                </mat-error>
+                <div class="sub header jme-col" matSuffix style="top: 0px">
+                  cm
+                </div>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="field low-padding">
+                <mat-label>Width</mat-label>
+                <input
+                  matInput
+                  [formControl]="deliveryItemForm.controls['width']"
+                  [value]="deliveryItemForm.controls['width'].value"
+                  placeholder="Width"
+                  class="non-semantic"
+                  style="text-align: unset !important;"
+                  type="number"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    deliveryItemForm.controls['width'].hasError('required')
+                  "
+                >
+                  Width is <strong>required</strong>
+                </mat-error>
+                <div class="sub header jme-col" matSuffix style="top: 0px">
+                  cm
+                </div>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="field low-padding">
+                <mat-label>Height</mat-label>
+                <input
+                  matInput
+                  [formControl]="deliveryItemForm.controls['height']"
+                  [value]="deliveryItemForm.controls['height'].value"
+                  placeholder="Height"
+                  class="non-semantic"
+                  style="text-align: unset !important;"
+                  type="number"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    deliveryItemForm.controls['height'].hasError('required')
+                  "
+                >
+                  Height is <strong>required</strong>
+                </mat-error>
+                <div class="sub header jme-col" matSuffix style="top: 0px">
+                  cm
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <button (click)="addItem()" mat-raised-button color="primary">
+            {{ toUpdateIndex !== undefined ? 'Update' : 'Add Item' }}
+          </button>
+          &nbsp;&nbsp;
+          <button
+            *ngIf="toUpdateIndex !== undefined"
+            (click)="deleteToEdit()"
+            mat-stroked-button
+            color="primary"
+          >
+            Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="ui horizontal divider">Item List</div>
+  <div class="center algined column row">
+    <ng-container *ngIf="deliveryItems.length === 0; else hasItems">
+      <div class="ui huge disabled header" ngif>
+        <div class="content">Currently No Items on the List</div>
+      </div>
+    </ng-container>
+    <ng-template #hasItems>
+      <div style="justify-content: left">
+        <app-delivery-table
+          (itemSelected)="selectUpdateItem($event)"
+          (itemDeleted)="deleteItem($event)"
+          [deliveryItems]="deliveryItems"
+        ></app-delivery-table>
+      </div>
+    </ng-template>
+  </div>
+  <div class="ui horizontal divider">Pick Up Details</div>
+  <div class="fluid row">
+    <form [formGroup]="deliveryItemForm" class="ui form" name="itemForm">
+      <div class="fields">
+        <mat-form-field
+          appearance="outline"
+          class="full-width field low-padding"
+        >
+          <mat-label>Parcel Type</mat-label>
+          <mat-select [formControl]="deliveryInfoGroup.controls['parcelType']">
+            <mat-option *ngFor="let type of parcelType" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div
+        class="fields"
+        *ngIf="
+          deliveryInfoGroup.controls['parcelType'].value === 'Dangerous Goods'
+        "
+      >
+        <mat-form-field
+          appearance="outline"
+          class="full-width field low-padding"
+        >
+          <mat-label>Special Instructions</mat-label>
+          <textarea
+            matInput
+            [formControl]="deliveryInfoGroup.controls['specialInstruction']"
+            [value]="deliveryInfoGroup.controls['specialInstruction'].value"
+            placeholder="Special Instructions"
+            class="non-semantic"
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+          ></textarea>
+          <mat-error
+            *ngIf="
+              deliveryInfoGroup.controls['specialInstruction'].hasError(
+                'required'
+              )
+            "
+          >
+            Special Instructions is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="two fields">
+        <mat-form-field
+          appearance="outline"
+          class="four wide field low-padding"
+        >
+          <mat-label>Option</mat-label>
+          <mat-select
+            [formControl]="deliveryInfoGroup.controls['pickUpOption']"
+          >
+            <mat-option
+              *ngFor="let option of pickupOptionType"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              deliveryInfoGroup.controls['pickUpOption'].hasError('required')
+            "
+          >
+            Pickup Option is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          class="twelve wide field low-padding"
+        >
+          <mat-label>Pickup Date</mat-label>
+          <input
+            matInput
+            [formControl]="deliveryInfoGroup.controls['pickUpDate']"
+            [matDatepicker]="pickupDate"
+            placeholder="Pickup Date"
+            color="primary"
+            class="non-semantic"
+            style="text-align: unset !important;"
+            required
+          />
+          <mat-datepicker-toggle matSuffix [for]="pickupDate">
+            <mat-icon matDatepickerToggleIcon color="primary">
+              date_range
+            </mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #pickupDate></mat-datepicker>
+          <mat-error
+            *ngIf="
+              deliveryInfoGroup.controls['pickUpDate'].hasError('required')
+            "
+          >
+            Pickup Date is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="two fields">
+        <mat-form-field appearance="outline" class="field low-padding">
+          <mat-label>Ready At</mat-label>
+          <input
+            matInput
+            placeholder="Ready At"
+            class="non-semantic"
+            style="text-align: unset !important;"
+            [ngxTimepicker]="readyAt"
+            [formControl]="deliveryInfoGroup.controls['pickUpReadyAt']"
+            readonly
+            required
+          />
+          <ngx-material-timepicker-toggle
+            class="time-picker-toggle"
+            matSuffix
+            [for]="readyAt"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              style="fill: #760f29"
+            >
+              <path
+                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+              />
+            </svg>
+          </ngx-material-timepicker-toggle>
+
+          <ngx-material-timepicker
+            [ngxMaterialTimepickerTheme]="pickerStyle"
+            #readyAt
+          ></ngx-material-timepicker>
+          <mat-error
+            *ngIf="
+              deliveryInfoGroup.controls['pickUpReadyAt'].hasError('required')
+            "
+          >
+            Ready At is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="field low-padding">
+          <mat-label>Closing Time</mat-label>
+          <input
+            matInput
+            placeholder="Closing Time"
+            class="non-semantic"
+            style="text-align: unset !important;"
+            [ngxTimepicker]="pickerClosingTime"
+            [formControl]="deliveryInfoGroup.controls['closingTime']"
+            readonly
+            required
+          />
+          <ngx-material-timepicker-toggle
+            class="time-picker-toggle"
+            matSuffix
+            [for]="pickerClosingTime"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              style="fill: #760f29"
+            >
+              <path
+                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+              />
+            </svg>
+          </ngx-material-timepicker-toggle>
+          <ngx-material-timepicker
+            [ngxMaterialTimepickerTheme]="pickerStyle"
+            #pickerClosingTime
+          ></ngx-material-timepicker>
+          <mat-error
+            *ngIf="
+              deliveryInfoGroup.controls['closingTime'].hasError('required')
+            "
+          >
+            Closing Time is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
   <!-- <mat-card class="rouded-all" style="padding-top: 0px">
     <mat-card-header> </mat-card-header>
     <mat-card-content> </mat-card-content>

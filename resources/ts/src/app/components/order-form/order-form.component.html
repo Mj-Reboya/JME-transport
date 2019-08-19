@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="false" labelPosition="bottom">
+<mat-horizontal-stepper [linear]="true" labelPosition="bottom">
   <div class="ui ten wide column grid">
     <mat-step
       [stepControl]="senderInfo.personInfoGroup"
@@ -72,8 +72,11 @@
       </div>
     </mat-step>
 
-    <mat-step label="Item Description">
-      <app-delivery-info></app-delivery-info>
+    <mat-step
+      label="Item Description"
+      [stepControl]="deliveryInfo.deliveryInfoGroup"
+    >
+      <app-delivery-info #deliveryInfo></app-delivery-info>
       <div class="right aligned right floated column">
         <button
           mat-stroked-button
@@ -83,15 +86,33 @@
         >
           Previous
         </button>
+        <button
+          mat-raised-button
+          class="button-spacing"
+          color="primary"
+          matStepperNext
+        >
+          Next
+        </button>
       </div>
     </mat-step>
 
     <mat-step label="Review and Submit" state="reviewSubmit">
       <div class="right aligned right floated column">
-        <button mat-stroked-button class="button-spacing" color="primary">
-          Cancel
+        <button
+          mat-stroked-button
+          class="button-spacing"
+          color="primary"
+          matStepperPrevious
+        >
+          Previous
         </button>
-        <button mat-raised-button class="button-spacing" color="primary">
+        <button
+          mat-raised-button
+          class="button-spacing"
+          color="primary"
+          (click)="reviewAndSubmit()"
+        >
           Submit
         </button>
       </div>

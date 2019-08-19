@@ -1,1 +1,40 @@
-<p>delivery-table works!</p>
+<div class="ui middle aligned divided list" style="text-align: left">
+  <div class="item small-top-bot-margin">
+    <div class="content">
+      <div class="header">
+        Description
+        <div class="sub header">Commodity</div>
+      </div>
+      <div>Items / Total Weight</div>
+      <div>Lenght / Width / Height / Cubic</div>
+    </div>
+  </div>
+  <div
+    class="item small-top-bot-margin"
+    *ngFor="let item of deliveryItems; let i = index"
+  >
+    <div class="right floated content">
+      <button mat-icon-button (click)="itemUpdateClicked(item, i)">
+        <mat-icon color="primary">
+          edit
+        </mat-icon>
+      </button>
+      <button mat-icon-button (click)="itemDeleteClicked(item, i)">
+        <mat-icon [fontSet]="'material-icons-outlined'" color="accent">
+          delete
+        </mat-icon>
+      </button>
+    </div>
+    <div class="content">
+      <div class="header">
+        {{ item.description }}
+      </div>
+      <div class="sub header">{{ item.commodity }}</div>
+      <div>{{ item.items }} / {{ item.totalWeight }} kg</div>
+      <div>
+        {{ item.length }} cm / {{ item.width }} cm / {{ item.height }} cm /
+        {{ (item.length * item.height * item.width) / 100 }} m<sup>3</sup>
+      </div>
+    </div>
+  </div>
+</div>

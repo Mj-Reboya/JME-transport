@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatStepperModule } from '@angular/material/stepper';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 const ANGULAR_MATERIAL_MODULES = [
   MatButtonModule,
@@ -25,7 +26,8 @@ const ANGULAR_MATERIAL_MODULES = [
   MatTableModule,
   MatPaginatorModule,
   MatToolbarModule,
-  MatStepperModule
+  MatStepperModule,
+  NgxMaterialTimepickerModule
 ];
 
 @NgModule({

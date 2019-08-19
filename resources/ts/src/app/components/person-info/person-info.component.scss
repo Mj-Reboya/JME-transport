@@ -6,3 +6,11 @@
     top: 2em !important;
 }
   
+:host .mat-checkbox-inner-container {
+    height: 70px!important;
+    width: 70px!important;
+}
+:host .mat-checkbox .mat-checkbox-frame {
+    border-color: white !important;
+}
+
