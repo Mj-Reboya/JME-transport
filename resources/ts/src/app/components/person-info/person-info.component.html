@@ -1,5 +1,244 @@
 <form
   [formGroup]="personInfoGroup"
+  fxLayout="column"
+  fxLayoutAlign="space-around stretch"
+  fxLayoutGap="1em"
+>
+  <div
+    fxFlex="90%"
+    class="header-col"
+    fxFlexAlign="start"
+    fxFlexFill
+    [ngStyle]="{ 'padding-top': '10px', 'padding-bottom': '10px' }"
+  >
+    <div class="ui medium header white" style="text-align: left">
+      {{ title | uppercase }} Information
+    </div>
+  </div>
+  <div [ngStyle]="{ width: '100%', 'text-align': 'center' }">
+    <mat-checkbox
+      fxFlex="100%"
+      fxFlexAlign="center"
+      fxFlexFill
+      *ngIf="hasSameAsButton"
+      [formControl]="sameAsSender"
+      (ngModelChange)="sameAsSenderChanged($event)"
+      class="ui right floated large header"
+    >
+      Same as Sender
+    </mat-checkbox>
+    <div></div>
+  </div>
+  <div fxFlex="90%" fxFlexAlign="center" fxFlexFill>
+    <div
+      fxLayout="row"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="1em"
+    >
+      <mat-form-field
+        fxFlex="30%"
+        fxFlexFill
+        fxFlexAlign="start"
+        appearance="outline"
+      >
+        <mat-label>Booking Date</mat-label>
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['bookingDate']"
+          [matDatepicker]="picker"
+          placeholder="Booking Date"
+          color="primary"
+          formControlName="bookingDate"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon color="primary">
+            date_range
+          </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="personInfoGroup.controls['bookingDate'].hasError('required')"
+        >
+          Booking Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        fxFlex="70%"
+        fxFlex.lt-sm="100%"
+        fxFlexAlign="start"
+        fxFlexFill
+        appearance="outline"
+      >
+        <mat-label>{{ title | titlecase }} Name</mat-label>
+        <input
+          matInput
+          #name
+          [formControl]="personInfoGroup.controls['name']"
+          placeholder="{{ title | titlecase }} Name"
+          [value]="personInfoGroup.controls['name'].value | titlecase"
+          required
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['name'].hasError('required')"
+        >
+          {{ title | titlecase }} Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <div></div>
+    </div>
+  </div>
+  <div fxFlex="90%" fxFlexAlign="center" fxFlexFill>
+    <div
+      fxLayout="row"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="1em"
+    >
+      <mat-form-field fxFlexFill fxFlexAlign="start" appearance="outline">
+        <mat-label>Company</mat-label>
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['company']"
+          placeholder="Company"
+          required
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['company'].hasError('required')"
+        >
+          Company is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxFlex="90%" fxFlexAlign="center" fxFlexFill>
+    <div
+      fxLayout="row"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="1em"
+    >
+      <mat-form-field fxFlexFill fxFlexAlign="start" appearance="outline">
+        <mat-label>Street Address</mat-label>
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['streetAddress']"
+          placeholder="Street Address"
+          [value]="personInfoGroup.controls['streetAddress'].value | titlecase"
+          required
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['streetAddress'].hasError('required')"
+        >
+          Street Address is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxFlex="90%" fxFlexAlign="center" fxFlexFill>
+    <div
+      fxLayout="row"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="1em"
+    >
+      <mat-form-field
+        fxFlex="50%"
+        fxFlexFill
+        fxFlexAlign="start"
+        appearance="outline"
+      >
+        <mat-label>Suburb</mat-label>
+        <input
+          matInput
+          [formControl]="personInfoGroup.controls['suburd']"
+          [value]="personInfoGroup.controls['suburd'].value | titlecase"
+          placeholder="Suburb"
+          required
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['suburd'].hasError('required')"
+        >
+          Suburb Address is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        fxFlex="50%"
+        fxFlexFill
+        fxFlexAlign="start"
+        appearance="outline"
+      >
+        <mat-label>State</mat-label>
+        <mat-select [formControl]="personInfoGroup.controls['state']">
+          <mat-option *ngFor="let state of states" [value]="state">
+            {{ state }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="personInfoGroup.controls['state'].hasError('required')"
+        >
+          State is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxFlex="90%" fxFlexAlign="center" fxFlexFill>
+    <div
+      fxLayout="row"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="1em"
+    >
+      <mat-form-field
+        fxFlexFill
+        fxFlex="50%"
+        fxFlexAlign="start"
+        appearance="outline"
+      >
+        <mat-label>Post code</mat-label>
+        <input
+          appAvoidPasteForNonNumeric
+          matInput
+          [formControl]="personInfoGroup.controls['postalCode']"
+          type="number"
+          placeholder="Post code"
+        />
+      </mat-form-field>
+      <mat-form-field
+        fxFlexFill
+        fxFlex="50%"
+        fxFlexAlign="start"
+        appearance="outline"
+      >
+        <mat-label>Phone</mat-label>
+        <div class="sub header jme-col" matPrefix style="top: 0px">
+          +61&nbsp;
+        </div>
+        <input
+          appAvoidPasteForNonNumeric
+          matInput
+          type="tel"
+          maxlength="10"
+          placeholder="Phone"
+          [formControl]="personInfoGroup.controls['phone']"
+          (keypress)="numOnly($event)"
+          required
+          #inputPhone
+        />
+        <mat-error
+          *ngIf="personInfoGroup.controls['phone'].hasError('required')"
+        >
+          Phone is <strong>required</strong>
+        </mat-error>
+        <mat-hint align="end">{{ inputPhone.value.length }} / 10</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<!-- <form
+  [formGroup]="personInfoGroup"
   class="ui centered grid"
   style="margin: 0 auto"
 >
@@ -173,38 +412,4 @@
       </mat-form-field>
     </div>
   </div>
-  <!-- <mat-card class="rouded-all" style="padding-top: 0px">
-    <mat-card-header class="ui left aligned grid header-col rounded-top">
-      <div
-        class="ui stackable two column grid full-width"
-        style="margin: 0 auto"
-      >
-        <div class="row">
-          <div
-            class="left floated middle aligned left aligned column content"
-            style="padding-top: 0px !important; padding-bottom: 0px !important"
-          >
-            <div class="ui small header white">
-              {{ title | uppercase }} Information
-            </div>
-          </div>
-          <div
-            class="column"
-            *ngIf="hasSameAsButton"
-            style="padding: 0px !important"
-          >
-            <mat-checkbox
-              [formControl]="sameAsSender"
-              (ngModelChange)="sameAsSenderChanged($event)"
-              class="ui right floated small header white"
-            >
-              Same as Sender
-            </mat-checkbox>
-          </div>
-        </div>
-      </div>
-    </mat-card-header>
-    <mat-card-content class="ui fluid centered stackable grid">
-    </mat-card-content>
-  </mat-card> -->
-</form>
+</form> -->

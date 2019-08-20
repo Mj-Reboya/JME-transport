@@ -1,120 +1,152 @@
-<mat-horizontal-stepper
-  (selectionChange)="stepperChange($event)"
-  [linear]="true"
-  labelPosition="bottom"
->
-  <div>
-    <mat-step
-      [stepControl]="senderInfo.personInfoGroup"
-      label="Sender Information"
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="0px">
+  <div
+    fxFlex="10%"
+    fxFlexFill
+    fxHide
+    fxShow.lt-sm
+    [ngStyle]="{ 'text-align': 'center' }"
+  >
+    <div
+      class="header-col white"
+      style="text-align: center; padding: 0 24px 0 24px;"
     >
-      <app-person-info [title]="'Sender'" #senderInfo></app-person-info>
-      <div class="right aligned right floated column">
-        <button
-          mat-raised-button
-          class="button-spacing"
-          color="primary"
-          matStepperNext
-        >
-          Next
-        </button>
+      <div>
+        <h1>
+          Step {{ formStepper.selectedIndex + 1 }} out of
+          {{ formStepper._steps.length }}
+        </h1>
       </div>
-    </mat-step>
-
-    <mat-step
-      [stepControl]="payorInfo.personInfoGroup"
-      label="Payor Information"
-    >
-      <app-person-info
-        [title]="'Payor'"
-        [hasSameAsButton]="true"
-        (sameAsSenderClicked)="fillPayorInfo($event)"
-        #payorInfo
-      ></app-person-info>
-      <div class="right aligned right floated column">
-        <button
-          mat-stroked-button
-          class="button-spacing"
-          color="primary"
-          matStepperPrevious
-        >
-          Previous
-        </button>
-        <button
-          mat-raised-button
-          class="button-spacing"
-          color="primary"
-          matStepperNext
-        >
-          Next
-        </button>
-      </div>
-    </mat-step>
-
-    <mat-step
-      [stepControl]="recieverInfo.personInfoGroup"
-      label="Receiver Information"
-    >
-      <app-person-info [title]="'Receiver'" #recieverInfo></app-person-info>
-      <div class="right aligned right floated column">
-        <button
-          mat-stroked-button
-          class="button-spacing"
-          color="primary"
-          matStepperPrevious
-        >
-          Previous
-        </button>
-        <button
-          mat-raised-button
-          class="button-spacing"
-          color="primary"
-          matStepperNext
-        >
-          Next
-        </button>
-      </div>
-    </mat-step>
-
-    <mat-step
-      label="Item Description"
-      [stepControl]="deliveryInfo.deliveryInfoGroup"
-    >
-      <app-delivery-info #deliveryInfo></app-delivery-info>
-      <div class="right aligned right floated column">
-        <button
-          mat-stroked-button
-          class="button-spacing"
-          color="primary"
-          matStepperPrevious
-        >
-          Previous
-        </button>
-        <button
-          mat-raised-button
-          class="button-spacing"
-          color="primary"
-          matStepperNext
-        >
-          Next
-        </button>
-      </div>
-    </mat-step>
-
-    <mat-step label="Download Forms" state="downloadForms">
-      <div fxLayoutAlign="start start" fxLayout="column">
-        <div
-          fxLayout="row"
-          fxLayoutAlign="start stretch"
-          style="text-align: left !important;"
-          fxFlexFill
-        >
-          <app-transaction-summary
-            fxFlexFill
-            [transactionSummary]="transactionSummary"
-          ></app-transaction-summary>
-        </div>
-      </div>
-    </mat-step>
+    </div>
   </div>
-</mat-horizontal-stepper>
+  <div fxFlexFill>
+    <mat-horizontal-stepper
+      #formStepper
+      (selectionChange)="stepperChange($event)"
+      [linear]="false"
+      labelPosition="bottom"
+    >
+      <mat-step
+        [stepControl]="senderInfo.personInfoGroup"
+        label="Sender Information"
+      >
+        <app-person-info [title]="'Sender'" #senderInfo></app-person-info>
+        <div [ngStyle]="{ 'text-align': 'center' }">
+          <button
+            mat-raised-button
+            class="button-spacing"
+            color="primary"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="payorInfo.personInfoGroup"
+        label="Payor Information"
+      >
+        <app-person-info
+          [title]="'Payor'"
+          [hasSameAsButton]="true"
+          (sameAsSenderClicked)="fillPayorInfo($event)"
+          #payorInfo
+        ></app-person-info>
+        <div [ngStyle]="{ 'text-align': 'center' }">
+          <button
+            mat-stroked-button
+            class="button-spacing"
+            color="primary"
+            matStepperPrevious
+          >
+            Previous
+          </button>
+          <button
+            mat-raised-button
+            class="button-spacing"
+            color="primary"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="recieverInfo.personInfoGroup"
+        label="Receiver Information"
+      >
+        <app-person-info [title]="'Receiver'" #recieverInfo></app-person-info>
+        <div [ngStyle]="{ 'text-align': 'center' }">
+          <button
+            mat-stroked-button
+            class="button-spacing"
+            color="primary"
+            matStepperPrevious
+          >
+            Previous
+          </button>
+          <button
+            mat-raised-button
+            class="button-spacing"
+            color="primary"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step
+        label="Item Description"
+        [stepControl]="deliveryInfo.deliveryInfoGroup"
+      >
+        <app-delivery-info #deliveryInfo></app-delivery-info>
+        <div [ngStyle]="{ 'text-align': 'center' }">
+          <button
+            mat-stroked-button
+            class="button-spacing"
+            color="primary"
+            matStepperPrevious
+          >
+            Previous
+          </button>
+          <button
+            mat-raised-button
+            class="button-spacing"
+            color="primary"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step label="Download Forms" state="downloadForms">
+        <div fxLayoutAlign="start start" fxLayout="column">
+          <div
+            fxLayout="row"
+            fxLayoutAlign="start stretch"
+            style="text-align: left !important;"
+            fxFlexFill
+          >
+            <app-transaction-summary
+              fxFlexFill
+              [transactionSummary]="transactionSummary"
+            ></app-transaction-summary>
+          </div>
+        </div>
+        <div [ngStyle]="{ 'text-align': 'center' }">
+          <button
+            mat-stroked-button
+            class="button-spacing"
+            color="primary"
+            matStepperPrevious
+          >
+            Previous
+          </button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>
