@@ -193,6 +193,25 @@
         </div>
       </mat-form-field>
     </div>
+    <div
+      fxLayout="row"
+      fxLayout.lt-sm="column"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="1em"
+      [ngStyle]="{ 'text-align': 'center' }"
+    >
+      <button (click)="addItem()" mat-raised-button color="primary">
+        {{ toUpdateIndex !== undefined ? 'Update' : 'Add Item' }}
+      </button>
+      <button
+        *ngIf="toUpdateIndex !== undefined"
+        (click)="deleteToEdit()"
+        mat-stroked-button
+        color="primary"
+      >
+        Delete
+      </button>
+    </div>
   </form>
   <div fxFlex="100%" fxFlexFill>
     <div class="ui horizontal divider">Item List</div>
@@ -394,6 +413,7 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div
         fxLayout="row"
         fxLayout.lt-sm="column"
