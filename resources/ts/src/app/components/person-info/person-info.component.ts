@@ -36,9 +36,9 @@ export class PersonInfoComponent implements OnInit {
     bookingDate: [new Date(), Validators.required],
     company: ['', Validators.required],
     streetAddress: ['', Validators.required],
-    suburd: [''],
-    state: [''],
-    postalCode: [''],
+    suburd: ['', Validators.required],
+    state: ['', Validators.required],
+    postalCode: ['', Validators.required],
     phone: ['', Validators.required]
   });
 

@@ -141,6 +141,7 @@
       <mat-form-field appearance="outline" class="column low-padding">
         <mat-label>Post code</mat-label>
         <input
+          appAvoidPasteForNonNumeric
           matInput
           [formControl]="personInfoGroup.controls['postalCode']"
           type="number"
