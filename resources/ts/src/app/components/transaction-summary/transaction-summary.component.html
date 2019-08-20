@@ -33,10 +33,18 @@
     <!-- Thank you message -->
     <span style="text-align: center">
       <h1>Thank you for using JME Online Terminal</h1>
-      <div style="font-size: medium">
-        Please wait for your file to download. If the file doesn't download
-        within 2 minutes please click the resubmit button below.
-      </div>
+      <ng-container *ngIf="this.transactionSummary; else reviewTemplate">
+        <div style="font-size: medium">
+          Please wait for your file to download. If the file doesn't download
+          within 2 minutes please click the resubmit button below.
+        </div>
+      </ng-container>
+      <ng-template #reviewTemplate>
+        <div style="font-size: medium">
+          The Transaction is not Completed. please review the contents before
+          submitting it.
+        </div>
+      </ng-template>
     </span>
   </div>
   <div fxFlex="50%" fxFlexAlign="center">
@@ -52,9 +60,14 @@
           [mode]="'indeterminate'"
         ></mat-progress-spinner>
       </div>
+
       <div fxFlexAlign="center">
         <!-- Resubmit button -->
-        <button mat-raised-button color="primary">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!this.transactionSummary"
+        >
           Resubmit
           <mat-icon>send</mat-icon>
         </button>

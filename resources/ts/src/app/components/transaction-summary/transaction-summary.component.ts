@@ -13,5 +13,9 @@ export class TransactionSummaryComponent implements OnInit {
   downloadReady = false;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.transactionSummary) {
+      this.downloadReady = false;
+    }
+  }
 }
