@@ -10,6 +10,7 @@ export class TransactionSummaryComponent implements OnInit {
   @Input()
   transactionSummary: ITransactionSummary;
 
+  downloadReady = false;
   constructor() {}
 
   ngOnInit() {}

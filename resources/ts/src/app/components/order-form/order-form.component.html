@@ -1,9 +1,9 @@
 <mat-horizontal-stepper
   (selectionChange)="stepperChange($event)"
-  [linear]="true"
+  [linear]="false"
   labelPosition="bottom"
 >
-  <div class="ui ten wide column grid">
+  <div>
     <mat-step
       [stepControl]="senderInfo.personInfoGroup"
       label="Sender Information"
@@ -101,7 +101,7 @@
       </div>
     </mat-step>
 
-    <mat-step label="Review and Submit" state="reviewSubmit">
+    <mat-step label="Download Forms" state="downloadForms">
       <div fxLayoutAlign="start start" fxLayout="column">
         <div
           fxLayout="row"
@@ -113,24 +113,6 @@
             fxFlexFill
             [transactionSummary]="transactionSummary"
           ></app-transaction-summary>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="center" fxFlexFill>
-          <div fxFlexAlign="center">
-            <button
-              mat-stroked-button
-              class="button-spacing"
-              color="primary"
-              matStepperPrevious
-            >
-              Previous
-            </button>
-          </div>
-          <div fxFlexAlign="center">
-            <button mat-raised-button class="button-spacing" color="primary">
-              Submit
-            </button>
-          </div>
         </div>
       </div>
     </mat-step>

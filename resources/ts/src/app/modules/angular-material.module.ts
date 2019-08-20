@@ -16,6 +16,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const ANGULAR_MATERIAL_MODULES = [
   MatButtonModule,
@@ -32,6 +33,7 @@ const ANGULAR_MATERIAL_MODULES = [
   MatStepperModule,
   MatDividerModule,
   MatListModule,
+  MatProgressSpinnerModule,
   NgxMaterialTimepickerModule,
   FlexLayoutModule
 ];
