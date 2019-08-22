@@ -15,8 +15,6 @@ class CustomerController extends Controller
   public function index(Request $request)
   {
     //
-    $values = Customer::all();
-    return response()->json($values);
   }
 
   /**
