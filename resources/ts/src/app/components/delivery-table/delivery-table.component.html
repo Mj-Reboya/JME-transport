@@ -33,7 +33,9 @@
       <div>{{ item.items }} / {{ item.totalWeight }} kg</div>
       <div>
         {{ item.length }} cm / {{ item.width }} cm / {{ item.height }} cm /
-        {{ (item.length * item.height * item.width) / 100 }} m<sup>3</sup>
+        {{ (item.length * item.height * item.width) / pow(100, 3) }} m<sup
+          >3</sup
+        >
       </div>
     </div>
   </div>

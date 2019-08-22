@@ -16,6 +16,8 @@ export class DeliveryTableComponent implements OnInit {
   @Output()
   itemDeleted = new EventEmitter<{ item: IDeliveryItem; index: number }>();
 
+  public pow = Math.pow;
+
   constructor() {}
 
   ngOnInit() {}
