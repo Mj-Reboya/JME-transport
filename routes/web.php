@@ -13,5 +13,9 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
+
+Route::redirect('/login', '/#/login');
+Route::redirect('/sign-up', '/#/sign-up');
+Route::redirect('/orderForm', '/#/orderForm');
