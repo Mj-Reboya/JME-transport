@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PersonInfoComponent } from '../person-info/person-info.component';
 import { DeliveryInfoComponent } from '../delivery-info/delivery-info.component';
 import { ITransactionSummary } from 'src/app/types/TransactionSummary';
+import { TrasactionApiService } from 'src/app/service/trasaction-api.service';
 
 @Component({
   selector: 'app-order-form',
@@ -23,7 +24,12 @@ export class OrderFormComponent implements OnInit {
 
   transactionSummary: ITransactionSummary;
 
-  constructor() {}
+  disableReturn = false;
+  disableResubmit = false;
+
+  transactionFetching = true;
+
+  constructor(private trasactionApiService: TrasactionApiService) {}
 
   ngOnInit() {}
 
@@ -43,7 +49,7 @@ export class OrderFormComponent implements OnInit {
 
   stepperChange(event) {
     console.log('stepperChange', event);
-    if (event.selectedIndex) {
+    if (event.selectedIndex && event.selectedIndex === 4) {
       this.reviewAndSubmit();
     }
   }
@@ -67,7 +73,7 @@ export class OrderFormComponent implements OnInit {
         streetAddress: sender.get('streetAddress').value,
         suburd: sender.get('suburd').value,
         state: sender.get('state').value,
-        postalCode: Number(sender.get('postalCode').value),
+        postCode: Number(sender.get('postalCode').value),
         phone: Number(sender.get('phone').value)
       },
       payor: {
@@ -77,17 +83,17 @@ export class OrderFormComponent implements OnInit {
         streetAddress: payor.get('streetAddress').value,
         suburd: payor.get('suburd').value,
         state: payor.get('state').value,
-        postalCode: Number(payor.get('postalCode').value),
+        postCode: Number(payor.get('postalCode').value),
         phone: Number(payor.get('phone').value)
       },
-      reciever: {
+      receiver: {
         name: reciever.get('name').value,
         bookingDate: new Date(reciever.get('bookingDate').value),
         company: reciever.get('company').value,
         streetAddress: reciever.get('streetAddress').value,
         suburd: reciever.get('suburd').value,
         state: reciever.get('state').value,
-        postalCode: Number(reciever.get('postalCode').value),
+        postCode: Number(reciever.get('postalCode').value),
         phone: Number(reciever.get('phone').value)
       },
       delivery: {
@@ -100,5 +106,27 @@ export class OrderFormComponent implements OnInit {
         deliveryItems: delivery.get('deliveryItems').value
       }
     };
+
+    console.log('this.transactionSummary', this.transactionSummary);
+
+    this.disableReturn = true;
+    this.transactionFetching = true;
+    this.disableResubmit = true;
+
+    this.trasactionApiService
+      .postTransaction(this.transactionSummary)
+      .subscribe(
+        response => {
+          console.log('transaction post response', response);
+          this.disableResubmit = true;
+        },
+        error => {
+          this.disableReturn = false;
+          this.disableResubmit = false;
+        },
+        () => {
+          this.transactionFetching = false;
+        }
+      );
   }
 }

@@ -10,12 +10,17 @@ export class TransactionSummaryComponent implements OnInit {
   @Input()
   transactionSummary: ITransactionSummary;
 
-  downloadReady = false;
+  @Input()
+  transactionFetching = true;
+
+  @Input()
+  disableResubmit = false;
+
   constructor() {}
 
-  ngOnInit() {
-    if (!this.transactionSummary) {
-      this.downloadReady = false;
-    }
+  ngOnInit() {}
+
+  reloadApp() {
+    window.location.reload();
   }
 }

@@ -8,7 +8,7 @@ class Sender extends Model
 {
   //
   protected $fillable = [
-    'name', 'company', 'street_address', 'suburb', 'state', 'post_code', 'phone_number'
+    'name', 'booking_date', 'company', 'street_address', 'suburd', 'state', 'post_code', 'phone_number', 'transaction_id'
   ];
 
   public function transaction()

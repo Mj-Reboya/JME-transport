@@ -1,5 +1,5 @@
 .header-col{
-    background-color: #760f29;    
+    background-color: #760f29;
 }
 
 .full-width{
@@ -15,7 +15,7 @@
 }
 
 .jme-col{
-  color: #760f29;    
+  color: #760f29;
 }
 
 .rouded-all{
@@ -74,8 +74,8 @@ $jme-color: (
   )
 );
 
-$jme-theme-primary: mat-palette($jme-color, 50); 
-$jme-theme-accent: mat-palette($jme-color, 50); 
+$jme-theme-primary: mat-palette($jme-color, 50);
+$jme-theme-accent: mat-palette($jme-color, 50);
 $jme-theme-warn : mat-palette($mat-pink);
 
 $jme-theme: mat-light-theme($jme-theme-primary, $jme-theme-accent, $jme-theme-warn);

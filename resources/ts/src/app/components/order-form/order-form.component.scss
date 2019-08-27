@@ -5,6 +5,10 @@
 //     padding-right: 30px;
 //     background: white;
 // }
+:host ::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+
 .button-spacing{
     margin-left: 10px;
 }

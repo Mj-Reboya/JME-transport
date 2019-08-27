@@ -15,8 +15,17 @@ class CreateSendersTable extends Migration
   {
     Schema::create('senders', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->bigInteger('customers_id')->unsigned()->index()->nullable();
-      $table->foreign('customers_id')->references('id')->on('customers');
+      $table->date('booking_date');
+      $table->string('name');
+      $table->string('company');
+      $table->string('street_address');
+      $table->string('suburd');
+      $table->string('state');
+      $table->integer('post_code');
+      $table->bigInteger('phone_number');
+      // $table->morphs('transaction');
+      $table->bigInteger('transaction_id')->unsigned()->index()->nullable();
+      $table->foreign('transaction_id')->references('id')->on('transactions');
       $table->timestamps();
     });
   }

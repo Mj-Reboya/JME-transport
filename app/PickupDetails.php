@@ -9,7 +9,7 @@ class PickupDetails extends Model
 {
   //
   protected $fillable = [
-    'parcel_type', 'option', 'pickup_date', 'ready_at', 'closing_time', 'special_instruction'
+    'parcel_type', 'option', 'pickup_date', 'ready_at', 'closing_time', 'special_instruction', 'transaction_id'
   ];
 
   public function items()

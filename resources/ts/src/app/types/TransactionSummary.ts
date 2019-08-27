@@ -1,7 +1,7 @@
 export interface ITransactionSummary {
   sender: IPersonInformation;
   payor: IPersonInformation;
-  reciever: IPersonInformation;
+  receiver: IPersonInformation;
   delivery: IDeliveryInformation;
 }
 
@@ -12,7 +12,7 @@ export interface IPersonInformation {
   streetAddress: string;
   suburd: string;
   state: string;
-  postalCode: number;
+  postCode: number;
   phone: number;
 }
 export interface IDeliveryInformation {

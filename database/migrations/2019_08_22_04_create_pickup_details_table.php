@@ -17,11 +17,13 @@ class CreatePickupDetailsTable extends Migration
     Schema::create('pickup_details', function (Blueprint $table) {
       $table->bigIncrements('id');
       $table->string('parcel_type');
-      $table->string('special_instruction');
+      $table->string('special_instruction')->nullable();
       $table->string('option');
       $table->date('pickup_date');
       $table->time('ready_at');
       $table->time('closing_time');
+      $table->bigInteger('transaction_id')->unsigned()->index()->nullable();
+      $table->foreign('transaction_id')->references('id')->on('transactions');
       $table->timestamps();
     });
   }

@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
   //
-  protected $fillable = [
-    'sender', 'payor', 'receiver', 'pickup_details'
-  ];
+  protected $fillable = ['transaction_hash', 'sender_id', 'payor_id', 'receiver_id', 'pickup_details_id'];
+
 
   public function sender()
   {

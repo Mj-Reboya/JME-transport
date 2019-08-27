@@ -8,7 +8,7 @@ class Items extends Model
 {
   //
   protected $fillable = [
-    'description', 'commodity', 'items', 'total_weight', 'length', 'width', 'height'
+    'description', 'commodity', 'items', 'total_weight', 'length', 'width', 'height', 'pickup_details_id'
   ];
 
   public function pickupDetails()

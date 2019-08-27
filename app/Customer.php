@@ -8,6 +8,11 @@ class Customer extends Model
 {
   //
   protected $fillable = [
-    'name', 'company', 'street_address', 'suburb', 'state', 'post_code', 'phone_number'
+    'name', 'booking_date', 'company', 'street_address', 'suburd', 'state', 'post_code', 'phone_number', 'details_id'
   ];
+
+  public function details()
+  {
+    return $this->morphTo();
+  }
 }

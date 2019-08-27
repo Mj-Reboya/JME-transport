@@ -17,6 +17,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { DeliveryTableComponent } from './components/delivery-table/delivery-table.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { TransactionSummaryComponent } from './components/transaction-summary/transaction-summary.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -43,6 +44,7 @@ const APP_ROUTES: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AngularMaterialModules,
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     FormsModule,
