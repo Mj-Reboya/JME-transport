@@ -38,7 +38,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     'driver' => 'mysql',
     'username' => env('DB_USERNAME', 'root'),
     // enclose password with double quote since it have an illegal character
-    'password' =>  env('DB_PASSWORD', '""'),
+    'password' =>  '"' . env('DB_PASSWORD', '') . '"',
     'host' => env('DB_HOST', '127.0.0.1'),
     'database' =>  env('DB_DATABASE', 'jme'),
     'port' => env('DB_PORT', '3306'),
