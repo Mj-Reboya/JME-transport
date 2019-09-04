@@ -52,26 +52,33 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   $input =  __DIR__ . '/../app/Reports/proof-of-delivery.jasper';
   $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp/') . uniqid('jme_') . $transaction_id;
 
-  $options['db_connection'] = $db_conf;
-  $options['params'] = $params;
-  $jasper = new PHPJasper;
-  // $jasper->process(
+  // $out = $jasper->process(
   //   $input,
   //   $output,
   //   $options
-  // )->execute();
-  $out = $jasper->process(
-    $input,
-    $output,
-    $options
-  )->output();
-  var_dump($out);
-  return response()->json([
-    'message' => $out
-  ]);
-  // return response()->download($output . '.pdf', 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
-  //   'code' => 400
-  // ])->deleteFileAfterSend(true);
+  // )->output();
+  // var_dump($out);
+  // return response()->json([
+  //   'message' => $out
+  // ]);
+  try {
+    $options['db_connection'] = $db_conf;
+    $options['params'] = $params;
+    $jasper = new PHPJasper;
+    $jasper->process(
+      $input,
+      $output,
+      $options
+    )->execute();
+
+    return response()->download($output . '.pdf', 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
+      'code' => 400
+    ])->deleteFileAfterSend(true);
+  } catch (\Throwable $th) {
+    return response()->json([
+      'message' => 'server error'
+    ]);
+  }
 });
 
 
