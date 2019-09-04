@@ -61,25 +61,18 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   // return response()->json([
   //   'message' => $out
   // ]);
-  try {
-    $options['db_connection'] = $db_conf;
-    $options['params'] = $params;
-    $jasper = new PHPJasper;
-    $jasper->process(
-      $input,
-      $output,
-      $options
-    )->execute();
+  $options['db_connection'] = $db_conf;
+  $options['params'] = $params;
+  $jasper = new PHPJasper;
+  $jasper->process(
+    $input,
+    $output,
+    $options
+  )->execute();
 
-    return response()->download($output . '.pdf', 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
-      'code' => 400
-    ])->deleteFileAfterSend(true);
-  } catch (\Throwable $th) {
-    var_dump($th);
-    return response()->json([
-      'message' => 'server error'
-    ]);
-  }
+  return response()->download($output . '.pdf', 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
+    'code' => 400
+  ])->deleteFileAfterSend(true);
 });
 
 
