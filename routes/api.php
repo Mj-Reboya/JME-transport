@@ -80,9 +80,9 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   //   throw new ProcessFailedException($process);
   // }
 
-  return response()->json([
-    'message' => ''
-  ]);
+  // return response()->json([
+  //   'message' => ''
+  // ]);
   try {
     $jasper->process(
       $input,
