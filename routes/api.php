@@ -56,7 +56,8 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp/') . "$transaction_id";
   if (!file_exists($output . '/')) {
     echo ($output);
-    mkdir($output . '/', 0777);
+    File::makeDirectory($output, 0777, true);
+    // mkdir($output . '/', 0777);
   }
 
   $options['db_connection'] = $db_conf;
