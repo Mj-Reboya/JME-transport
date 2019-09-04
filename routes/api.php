@@ -55,14 +55,22 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   $options['db_connection'] = $db_conf;
   $options['params'] = $params;
   $jasper = new PHPJasper;
-  $jasper->process(
+  // $jasper->process(
+  //   $input,
+  //   $output,
+  //   $options
+  // )->execute();
+  $out = $jasper->process(
     $input,
     $output,
     $options
   )->execute();
-  return response()->download($output . '.pdf', 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
-    'code' => 400
-  ])->deleteFileAfterSend(true);
+  return response()->json([
+    'message' => $out
+  ]);
+  // return response()->download($output . '.pdf', 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
+  //   'code' => 400
+  // ])->deleteFileAfterSend(true);
 });
 
 
