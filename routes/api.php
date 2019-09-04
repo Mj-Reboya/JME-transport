@@ -50,7 +50,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     'transaction_id' => $transaction_id
   ];
   $input =  __DIR__ . '/../app/Reports/proof-of-delivery.jasper';
-  $output = __DIR__ . '/../app/Reports/temp/' . uniqid('jme_') . $transaction_id;
+  $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp/') . uniqid('jme_') . $transaction_id;
 
   $options['db_connection'] = $db_conf;
   $options['params'] = $params;
