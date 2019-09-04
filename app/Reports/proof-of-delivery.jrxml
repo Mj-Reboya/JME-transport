@@ -279,7 +279,7 @@ where t.id = $P{transaction_id}]]>
 					<reportElement x="51" y="20" width="100" height="20" isPrintWhenDetailOverflows="true" uuid="d797fd99-de91-4c25-bad8-df3ae729c72b"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="8" isBold="true"/>
+						<font fontName="Arial" size="8" isBold="true"/>
 					</textElement>
 					<text><![CDATA[JME Transport]]></text>
 				</staticText>
@@ -287,7 +287,7 @@ where t.id = $P{transaction_id}]]>
 					<reportElement x="0" y="40" width="100" height="31" isPrintWhenDetailOverflows="true" uuid="8c0c7669-7ca8-4b41-8c86-d08088cc4260"/>
 					<box padding="3"/>
 					<textElement verticalAlignment="Top">
-						<font fontName="arial&#xA;" size="7"/>
+						<font fontName="Arial" size="7"/>
 						<paragraph lineSpacingSize="1.0"/>
 					</textElement>
 					<text><![CDATA[ABN 78 130 179 681
@@ -298,7 +298,7 @@ www.jmet.com.au
 					<reportElement x="100" y="40" width="160" height="31" isPrintWhenDetailOverflows="true" uuid="7b8c5d3c-f8e4-436a-abca-128d38e9fa86"/>
 					<box padding="3"/>
 					<textElement verticalAlignment="Top">
-						<font fontName="arial&#xA;" size="7"/>
+						<font fontName="Arial" size="7"/>
 						<paragraph lineSpacingSize="1.0"/>
 					</textElement>
 					<text><![CDATA[Unit 40,191 McCredie Rd Smithfield
@@ -308,7 +308,7 @@ NSW 2164]]></text>
 					<reportElement x="406" y="20" width="44" height="20" isPrintWhenDetailOverflows="true" uuid="a69d1341-5b10-47b6-a22d-d2d67ce61dd5"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="10" isBold="false"/>
+						<font fontName="Arial" size="10" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Service:]]></text>
 				</staticText>
@@ -316,7 +316,7 @@ NSW 2164]]></text>
 					<reportElement x="241" y="0" width="120" height="40" isPrintWhenDetailOverflows="true" uuid="2b0ac8d7-3961-4a0e-af52-74bb10560724"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Bottom">
-						<font fontName="arial&#xA;" size="11" isBold="true"/>
+						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{transaction_id}]]></textFieldExpression>
 				</textField>
@@ -324,7 +324,7 @@ NSW 2164]]></text>
 					<reportElement x="450" y="0" width="105" height="20" isPrintWhenDetailOverflows="true" uuid="dc576190-659a-4f36-a696-0c6843e3bf4e"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Bottom">
-						<font fontName="arial&#xA;" size="11" isBold="true"/>
+						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{pickup_date}]]></textFieldExpression>
 				</textField>
@@ -332,7 +332,7 @@ NSW 2164]]></text>
 					<reportElement x="151" y="20" width="90" height="20" isPrintWhenDetailOverflows="true" uuid="6c8f2dc0-7321-4dfe-828f-383b56da5e17"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="8" isBold="false"/>
+						<font fontName="Arial" size="8" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Consignment No.]]></text>
 				</staticText>
@@ -340,7 +340,7 @@ NSW 2164]]></text>
 					<reportElement x="450" y="20" width="105" height="20" isPrintWhenDetailOverflows="true" uuid="7ac9c927-b4f1-4c5c-ad00-d6ad2ef1979a"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="10" isBold="true"/>
+						<font fontName="Arial" size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["EXPRESS"]]></textFieldExpression>
 				</textField>
@@ -357,7 +357,7 @@ NSW 2164]]></text>
 					<reportElement x="0" y="71" width="555" height="20" isPrintWhenDetailOverflows="true" uuid="6ff5230e-4940-4474-9608-7d042b63fbe8"/>
 					<box padding="2"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="11" isBold="true"/>
+						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Proof Of Delivery Copy]]></text>
 				</staticText>
@@ -367,7 +367,7 @@ NSW 2164]]></text>
 					</reportElement>
 					<box padding="2"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="7" isBold="false"/>
+						<font fontName="Arial" size="7" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Scan Copy - To be retured to JME Transport]]></text>
 				</staticText>
@@ -395,7 +395,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.0"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Sender]]></text>
 						</staticText>
@@ -411,7 +411,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{sender_street_address} + "\n" + $F{sender_state} + "\t" + $F{sender_post_code}]]></textFieldExpression>
 						</textField>
@@ -423,7 +423,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.0"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Receiver]]></text>
 						</staticText>
@@ -439,7 +439,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{receiver_street_address} + "\n" + $F{receiver_state} + "\t" + $F{receiver_post_code}]]></textFieldExpression>
 						</textField>
@@ -455,7 +455,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="7" isBold="true"/>
+								<font fontName="Arial" size="7" isBold="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{receiver_company}]]></textFieldExpression>
 						</textField>
@@ -471,7 +471,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="7" isBold="true"/>
+								<font fontName="Arial" size="7" isBold="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{sender_company}]]></textFieldExpression>
 						</textField>
@@ -493,7 +493,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Charge]]></text>
 						</staticText>
@@ -509,7 +509,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{payor_street_address} + "\n" + $F{payor_state} + "\t" + $F{payor_post_code}]]></textFieldExpression>
 						</textField>
@@ -525,7 +525,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="7" isBold="true"/>
+								<font fontName="Arial" size="7" isBold="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{payor_company}]]></textFieldExpression>
 						</textField>
@@ -549,7 +549,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[slot]]></text>
 						</staticText>
@@ -566,7 +566,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[food]]></text>
 						</staticText>
@@ -582,7 +582,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -599,7 +599,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[DG]]></text>
 						</staticText>
@@ -615,7 +615,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -631,7 +631,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -990,7 +990,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font fontName="arial&#xA;" size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Commodity]]></text>
 						</staticText>
@@ -1007,7 +1007,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-								<font fontName="arial&#xA;" size="7" isItalic="true"/>
+								<font fontName="Arial" size="7" isItalic="true"/>
 							</textElement>
 							<text><![CDATA[DEHIRE/TRANSFER]]></text>
 						</staticText>
@@ -1023,7 +1023,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{pickup_parcel_type}]]></textFieldExpression>
 						</textField>
@@ -1040,7 +1040,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-								<font fontName="arial&#xA;" size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Refs]]></text>
 						</staticText>
@@ -1056,7 +1056,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="9" isBold="false"/>
+								<font fontName="Arial" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -1069,7 +1069,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font fontName="arial&#xA;" size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Driver ID]]></text>
 						</staticText>
@@ -1086,7 +1086,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-								<font fontName="arial&#xA;" size="7" isItalic="true"/>
+								<font fontName="Arial" size="7" isItalic="true"/>
 							</textElement>
 							<text><![CDATA[Delivery]]></text>
 						</staticText>
@@ -1103,7 +1103,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-								<font fontName="arial&#xA;" size="7" isItalic="true"/>
+								<font fontName="Arial" size="7" isItalic="true"/>
 							</textElement>
 							<text><![CDATA[Pick up]]></text>
 						</staticText>
@@ -1120,7 +1120,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0"/>
 							</box>
 							<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-								<font fontName="arial&#xA;" size="7" isBold="false" isItalic="false"/>
+								<font fontName="Arial" size="7" isBold="false" isItalic="false"/>
 							</textElement>
 							<text><![CDATA[JME Transport are NOT COMMON CARRIERS. Insurance is not included unless otherwise stated. Our standard terms & conditions apply as published on our website www.jmet.com.au. Recieved in good order and condition]]></text>
 						</staticText>
@@ -1137,7 +1137,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None">
-								<font fontName="arial&#xA;" size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[     Receiver Surname			Receiver Signature]]></text>
 						</staticText>
@@ -1169,7 +1169,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Name]]></text>
 						</staticText>
@@ -1185,7 +1185,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{sender_name}]]></textFieldExpression>
 						</textField>
@@ -1201,7 +1201,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{sender_phone_number}]]></textFieldExpression>
 						</textField>
@@ -1218,7 +1218,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[PH]]></text>
 						</staticText>
@@ -1234,7 +1234,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{receiver_name}]]></textFieldExpression>
 						</textField>
@@ -1251,7 +1251,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-								<font size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Name]]></text>
 						</staticText>
@@ -1284,7 +1284,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{receiver_phone_number}]]></textFieldExpression>
 						</textField>
@@ -1303,7 +1303,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{pickup_special_instruction}]]></textFieldExpression>
 						</textField>
@@ -1339,7 +1339,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -1355,7 +1355,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -1367,7 +1367,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font size="5"/>
+								<font fontName="Arial" size="5"/>
 							</textElement>
 							<text><![CDATA[Instruction]]></text>
 						</staticText>
@@ -1380,7 +1380,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font size="5"/>
+								<font fontName="Arial" size="5"/>
 							</textElement>
 							<text><![CDATA[Instruction]]></text>
 						</staticText>
@@ -1405,7 +1405,7 @@ NSW 2164]]></text>
 					<reportElement x="51" y="20" width="100" height="20" isPrintWhenDetailOverflows="true" uuid="bfd355a6-9489-4f02-984f-80c0b8a065b8"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="8" isBold="true"/>
+						<font fontName="Arial" size="8" isBold="true"/>
 					</textElement>
 					<text><![CDATA[JME Transport]]></text>
 				</staticText>
@@ -1413,7 +1413,7 @@ NSW 2164]]></text>
 					<reportElement x="0" y="40" width="100" height="31" isPrintWhenDetailOverflows="true" uuid="2468cef7-1537-4159-82d0-c4867f634f4b"/>
 					<box padding="3"/>
 					<textElement verticalAlignment="Top">
-						<font fontName="arial&#xA;" size="7"/>
+						<font fontName="Arial" size="7"/>
 						<paragraph lineSpacingSize="1.0"/>
 					</textElement>
 					<text><![CDATA[ABN 78 130 179 681
@@ -1424,7 +1424,7 @@ www.jmet.com.au
 					<reportElement x="100" y="40" width="160" height="31" isPrintWhenDetailOverflows="true" uuid="9d6ea5de-cd80-4775-bfbc-72d41b6b7b8d"/>
 					<box padding="3"/>
 					<textElement verticalAlignment="Top">
-						<font fontName="arial&#xA;" size="7"/>
+						<font fontName="Arial" size="7"/>
 						<paragraph lineSpacingSize="1.0"/>
 					</textElement>
 					<text><![CDATA[Unit 40,191 McCredie Rd Smithfield
@@ -1434,7 +1434,7 @@ NSW 2164]]></text>
 					<reportElement x="406" y="20" width="44" height="20" isPrintWhenDetailOverflows="true" uuid="0f39059a-b1ef-4bf5-ae44-1719254a8a45"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="10" isBold="false"/>
+						<font fontName="Arial" size="10" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Service:]]></text>
 				</staticText>
@@ -1442,7 +1442,7 @@ NSW 2164]]></text>
 					<reportElement x="241" y="0" width="120" height="40" isPrintWhenDetailOverflows="true" uuid="4551a07d-d9b4-4ebc-9de9-0125b9fa848f"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Bottom">
-						<font fontName="arial&#xA;" size="11" isBold="true"/>
+						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{transaction_id}]]></textFieldExpression>
 				</textField>
@@ -1450,7 +1450,7 @@ NSW 2164]]></text>
 					<reportElement x="450" y="0" width="105" height="20" isPrintWhenDetailOverflows="true" uuid="4230bdc0-f3a6-48c8-b6d8-0b1769956fc6"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Bottom">
-						<font fontName="arial&#xA;" size="11" isBold="true"/>
+						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{pickup_date}]]></textFieldExpression>
 				</textField>
@@ -1458,7 +1458,7 @@ NSW 2164]]></text>
 					<reportElement x="151" y="20" width="90" height="20" isPrintWhenDetailOverflows="true" uuid="f563d9f3-ba29-46a0-b157-fb0388401352"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="8" isBold="false"/>
+						<font fontName="Arial" size="8" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Consignment No.]]></text>
 				</staticText>
@@ -1466,7 +1466,7 @@ NSW 2164]]></text>
 					<reportElement x="450" y="20" width="105" height="20" isPrintWhenDetailOverflows="true" uuid="0b2a849d-8bcb-40ff-93cb-c30c33fb1aed"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="10" isBold="true"/>
+						<font fontName="Arial" size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["EXPRESS"]]></textFieldExpression>
 				</textField>
@@ -1483,7 +1483,7 @@ NSW 2164]]></text>
 					<reportElement x="0" y="71" width="555" height="20" isPrintWhenDetailOverflows="true" uuid="f86644ea-1ee0-4023-9805-c15748240722"/>
 					<box padding="2"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="11" isBold="true"/>
+						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Proof Of Delivery Copy]]></text>
 				</staticText>
@@ -1493,7 +1493,7 @@ NSW 2164]]></text>
 					</reportElement>
 					<box padding="2"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="arial&#xA;" size="7" isBold="false"/>
+						<font fontName="Arial" size="7" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Scan Copy - To be retured to JME Transport]]></text>
 				</staticText>
@@ -1537,7 +1537,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{sender_street_address} + "\n" + $F{sender_state} + "\t" + $F{sender_post_code}]]></textFieldExpression>
 						</textField>
@@ -1565,7 +1565,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{receiver_street_address} + "\n" + $F{receiver_state} + "\t" + $F{receiver_post_code}]]></textFieldExpression>
 						</textField>
@@ -1581,7 +1581,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="7" isBold="true"/>
+								<font fontName="Arial" size="7" isBold="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{receiver_company}]]></textFieldExpression>
 						</textField>
@@ -1597,7 +1597,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="7" isBold="true"/>
+								<font fontName="Arial" size="7" isBold="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{sender_company}]]></textFieldExpression>
 						</textField>
@@ -1635,7 +1635,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{payor_street_address} + "\n" + $F{payor_state} + "\t" + $F{payor_post_code}]]></textFieldExpression>
 						</textField>
@@ -1651,7 +1651,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="7" isBold="true"/>
+								<font fontName="Arial" size="7" isBold="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{payor_company}]]></textFieldExpression>
 						</textField>
@@ -1708,7 +1708,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -1741,7 +1741,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -1757,7 +1757,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Bottom">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -2116,7 +2116,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font fontName="arial&#xA;" size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Commodity]]></text>
 						</staticText>
@@ -2133,7 +2133,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-								<font fontName="arial&#xA;" size="7" isItalic="true"/>
+								<font fontName="Arial" size="7" isItalic="true"/>
 							</textElement>
 							<text><![CDATA[DEHIRE/TRANSFER]]></text>
 						</staticText>
@@ -2149,7 +2149,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{pickup_parcel_type}]]></textFieldExpression>
 						</textField>
@@ -2166,7 +2166,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-								<font fontName="arial&#xA;" size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Refs]]></text>
 						</staticText>
@@ -2182,7 +2182,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="9" isBold="false"/>
+								<font fontName="Arial" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -2195,7 +2195,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-								<font fontName="arial&#xA;" size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[Driver ID]]></text>
 						</staticText>
@@ -2212,7 +2212,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-								<font fontName="arial&#xA;" size="7" isItalic="true"/>
+								<font fontName="Arial" size="7" isItalic="true"/>
 							</textElement>
 							<text><![CDATA[Delivery]]></text>
 						</staticText>
@@ -2229,7 +2229,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-								<font fontName="arial&#xA;" size="7" isItalic="true"/>
+								<font fontName="Arial" size="7" isItalic="true"/>
 							</textElement>
 							<text><![CDATA[Pick up]]></text>
 						</staticText>
@@ -2246,7 +2246,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0"/>
 							</box>
 							<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-								<font fontName="arial&#xA;" size="7" isBold="false" isItalic="false"/>
+								<font fontName="Arial" size="7" isBold="false" isItalic="false"/>
 							</textElement>
 							<text><![CDATA[JME Transport are NOT COMMON CARRIERS. Insurance is not included unless otherwise stated. Our standard terms & conditions apply as published on our website www.jmet.com.au. Recieved in good order and condition]]></text>
 						</staticText>
@@ -2263,7 +2263,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None">
-								<font fontName="arial&#xA;" size="7"/>
+								<font fontName="Arial" size="7"/>
 							</textElement>
 							<text><![CDATA[     Receiver Surname			Receiver Signature]]></text>
 						</staticText>
@@ -2311,7 +2311,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{sender_name}]]></textFieldExpression>
 						</textField>
@@ -2327,7 +2327,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{sender_phone_number}]]></textFieldExpression>
 						</textField>
@@ -2360,7 +2360,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{receiver_name}]]></textFieldExpression>
 						</textField>
@@ -2410,7 +2410,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{receiver_phone_number}]]></textFieldExpression>
 						</textField>
@@ -2429,7 +2429,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="arial&#xA;" size="7" isBold="false"/>
+								<font fontName="Arial" size="7" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{pickup_special_instruction}]]></textFieldExpression>
 						</textField>
@@ -2465,7 +2465,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
@@ -2481,7 +2481,7 @@ NSW 2164]]></text>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement verticalAlignment="Top">
-								<font fontName="arial&#xA;" size="10" isBold="false"/>
+								<font fontName="Arial" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
