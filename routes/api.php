@@ -65,6 +65,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
       'code' => 400
     ])->deleteFileAfterSend(true);
   } catch (\Throwable $th) {
+    var_dump($th);
     return response()->json([
       'message' => 'server error'
     ], 500);
