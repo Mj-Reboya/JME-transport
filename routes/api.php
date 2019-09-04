@@ -64,7 +64,8 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     $input,
     $output,
     $options
-  )->execute();
+  )->output();
+  var_dump($out);
   return response()->json([
     'message' => $out
   ]);
