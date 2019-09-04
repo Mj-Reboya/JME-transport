@@ -38,7 +38,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     'driver' => 'mysql',
     'username' => env('DB_USERNAME', 'root'),
     // enclose password with double quote since it have an illegal character
-    'password' => '"' . env('DB_PASSWORD', '') . '"',
+    'password' =>  env('DB_PASSWORD', '""'),
     'host' => env('DB_HOST', '127.0.0.1'),
     'database' =>  env('DB_DATABASE', 'jme'),
     'port' => env('DB_PORT', '3306'),
@@ -64,6 +64,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
 
   // exec('/var/www/html/jme-terminal-app/vendor/geekcom/phpjasper/bin/jasperstarter/bin/jasperstarter process "/var/www/html/jme-terminal-app/routes/../app/Reports/proof-of-delivery.jasper" -o "/tmp/pdf/jme_5d6f75212c86c1000" -f pdf -P  transaction_id="1000"   -t mysql -u webdev -p "W7u2mW^d8&;jZB2," -H 127.0.0.1 -n jme --db-port 3306
   // ');
+
 
   try {
     $jasper->process(
