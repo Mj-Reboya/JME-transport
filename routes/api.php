@@ -51,8 +51,12 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   $params = [
     'transaction_id' => $transaction_id
   ];
+
   $input =  __DIR__ . '/../app/Reports/proof-of-delivery.jasper';
-  $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp/') . uniqid('jme_') . $transaction_id;
+  $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp') . "/$transaction_id";
+  if (!file_exists($output)) {
+    mkdir($output);
+  }
 
   $options['db_connection'] = $db_conf;
   $options['params'] = $params;
@@ -67,20 +71,21 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   // exec('', $_output, $retval);
   // var_dump($_output);
   // var_dump($retval);
-  $process = new Process('/var/www/html/jme-terminal-app/vendor/geekcom/phpjasper/bin/jasperstarter/bin/jasperstarter process "/var/www/html/jme-terminal-app/routes/../app/Reports/proof-of-delivery.jasper" -o "/tmp/pdf/jme_5d6f75212c86c1000" -f pdf -P  transaction_id="1000" -t mysql -u webdev -p "W7u2mW^d8&;jZB2," -H 127.0.0.1 -n jme --db-port 3306');
-  $process->run();
+  // $process = new Process('/var/www/html/jme-terminal-app/vendor/geekcom/phpjasper/bin/jasperstarter/bin/jasperstarter process "/var/www/html/jme-terminal-app/routes/../app/Reports/proof-of-delivery.jasper" -o "/tmp/pdf/jme_5d6f75212c86c1000" -f pdf -P  transaction_id="1000" -t mysql -u webdev -p "W7u2mW^d8&;jZB2," -H 127.0.0.1 -n jme --db-port 3306');
+  // $process->run();
 
-  if (!$process->isSuccessful()) {
-    throw new ProcessFailedException($process);
-  }
+  // if (!$process->isSuccessful()) {
+  //   throw new ProcessFailedException($process);
+  // }
 
-  // $jasper->process(
-  //   $input,
-  //   $output,
-  //   $options
-  // )->execute();
+
   try {
-    return response()->download($output . '.pdf', 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
+    $jasper->process(
+      $input,
+      $output,
+      $options
+    )->execute();
+    return response()->download($output . "$pdf_name.pdf", 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
       'code' => 400
     ])->deleteFileAfterSend(true);
   } catch (\Throwable $th) {
