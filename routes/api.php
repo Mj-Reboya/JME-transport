@@ -53,7 +53,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   ];
 
   $input =  __DIR__ . '/../app/Reports/proof-of-delivery.jasper';
-  $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp') . "/$transaction_id";
+  $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp') . "/$transaction_id/";
   if (!file_exists($output)) {
     mkdir($output);
   }
