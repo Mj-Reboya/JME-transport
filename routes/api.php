@@ -33,7 +33,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     ], 403);
   }
 
-  $available_pdf = ['proof-of-delivery'];
+  $available_pdf = ['proof-of-delivery', 'pdf-2'];
   if (!in_array($pdf_name, $available_pdf)) {
     return response()->json([
       'message' => "$pdf_name is not available for generating"
@@ -56,15 +56,15 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     'transaction_id' => $transaction_id
   ];
 
-  $input =  __DIR__ . '/../app/Reports/proof-of-delivery.jasper';
-  $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp/') . "$transaction_id";
+  $input =  __DIR__ . "/../app/Reports/$pdf_name.jasper";
+  $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp/') . $transaction_id;
   if (!file_exists($output . '/')) {
-    echo ($output);
+    // echo ($output);
     File::makeDirectory($output, 0777, true);
   }
 
   if (file_exists($output . "/$pdf_name.pdf")) {
-    return response()->download($output . "/$pdf_name.pdf", 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
+    return response()->download($output . "/$pdf_name.pdf", $pdf_name . uniqid('_jme_') . $transaction_id . '.pdf', [
       'code' => 400
     ]);
   }
@@ -78,14 +78,13 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     $output,
     $options
   )->output();
-
   try {
     $jasper->process(
       $input,
       $output,
       $options
     )->execute();
-    return response()->download($output . "/$pdf_name.pdf", 'Proof-of-delivery' . uniqid('_jme_') . $transaction_id . '.pdf', [
+    return response()->download($output . "/$pdf_name.pdf", $pdf_name . uniqid('_jme_') . $transaction_id . '.pdf', [
       'code' => 400
     ]);
   } catch (\Throwable $th) {
