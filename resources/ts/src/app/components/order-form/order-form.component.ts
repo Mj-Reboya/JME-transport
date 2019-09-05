@@ -3,6 +3,9 @@ import { PersonInfoComponent } from '../person-info/person-info.component';
 import { DeliveryInfoComponent } from '../delivery-info/delivery-info.component';
 import { ITransactionSummary } from 'src/app/types/TransactionSummary';
 import { TrasactionApiService } from 'src/app/service/trasaction-api.service';
+import { of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+import { PdfDownloaderService } from 'src/app/service/pdf-downloader.service';
 
 @Component({
   selector: 'app-order-form',
@@ -29,7 +32,10 @@ export class OrderFormComponent implements OnInit {
 
   transactionFetching = true;
 
-  constructor(private trasactionApiService: TrasactionApiService) {}
+  constructor(
+    private trasactionApiService: TrasactionApiService,
+    private pdfDownloaderService: PdfDownloaderService
+  ) {}
 
   ngOnInit() {}
 
@@ -113,20 +119,29 @@ export class OrderFormComponent implements OnInit {
     this.transactionFetching = true;
     this.disableResubmit = true;
 
-    this.trasactionApiService
-      .postTransaction(this.transactionSummary)
-      .subscribe(
-        response => {
-          console.log('transaction post response', response);
-          this.disableResubmit = true;
-        },
-        error => {
-          this.disableReturn = false;
-          this.disableResubmit = false;
-        },
-        () => {
-          this.transactionFetching = false;
-        }
-      );
+    this.fetchPdf(this.transactionSummary).subscribe(
+      (response: { requestId: number }) => {
+        console.log('transaction post response', response);
+        this.disableResubmit = true;
+        this.pdfDownloaderService
+          .downloadPdf('proof-of-delivery', response.requestId.toString())
+          .subscribe(
+            data => {
+              console.log('data', data);
+            },
+            error => {
+              this.disableReturn = false;
+              this.disableResubmit = false;
+            },
+            () => {
+              this.transactionFetching = false;
+            }
+          );
+      }
+    );
+  }
+
+  fetchPdf(trasaction: ITransactionSummary) {
+    return this.trasactionApiService.postTransaction(trasaction);
   }
 }

@@ -67,6 +67,7 @@
           mat-raised-button
           color="primary"
           [disabled]="!this.transactionSummary || this.disableResubmit"
+          (click)="emitResubmit()"
         >
           Resubmit
           <mat-icon>send</mat-icon>

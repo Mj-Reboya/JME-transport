@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ITransactionSummary } from 'src/app/types/TransactionSummary';
 
 @Component({
@@ -16,11 +16,18 @@ export class TransactionSummaryComponent implements OnInit {
   @Input()
   disableResubmit = false;
 
+  @Output()
+  resubmit = new EventEmitter<any>();
+
   constructor() {}
 
   ngOnInit() {}
 
   reloadApp() {
     window.location.reload();
+  }
+
+  emitResubmit() {
+    this.resubmit.emit(this);
   }
 }

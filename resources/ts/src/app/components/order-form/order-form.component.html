@@ -135,6 +135,7 @@
               [transactionSummary]="transactionSummary"
               [transactionFetching]="this.transactionFetching"
               [disableResubmit]="this.disableResubmit"
+              (resubmit)="reviewAndSubmit()"
             ></app-transaction-summary>
           </div>
         </div>
