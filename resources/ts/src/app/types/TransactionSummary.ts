@@ -34,3 +34,8 @@ export interface IDeliveryItem {
   width: number;
   height: number;
 }
+
+export enum IPdfTypes {
+  'proof-of-delivery',
+  'pdf-2'
+}

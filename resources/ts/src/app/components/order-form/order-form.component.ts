@@ -3,8 +3,8 @@ import { PersonInfoComponent } from '../person-info/person-info.component';
 import { DeliveryInfoComponent } from '../delivery-info/delivery-info.component';
 import { ITransactionSummary } from 'src/app/types/TransactionSummary';
 import { TrasactionApiService } from 'src/app/service/trasaction-api.service';
-import { of } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
+import { of, forkJoin, zip } from 'rxjs';
+import { flatMap, map } from 'rxjs/operators';
 import { PdfDownloaderService } from 'src/app/service/pdf-downloader.service';
 
 @Component({
@@ -119,24 +119,32 @@ export class OrderFormComponent implements OnInit {
     this.transactionFetching = true;
     this.disableResubmit = true;
 
+    const pdfNameList = ['proof-of-delivery', 'pdf-2'];
+
     this.fetchPdf(this.transactionSummary).subscribe(
       (response: { requestId: number }) => {
         console.log('transaction post response', response);
         this.disableResubmit = true;
-        this.pdfDownloaderService
-          .downloadPdf('proof-of-delivery', response.requestId.toString())
-          .subscribe(
-            data => {
-              console.log('data', data);
-            },
-            error => {
-              this.disableReturn = false;
-              this.disableResubmit = false;
-            },
-            () => {
-              this.transactionFetching = false;
-            }
-          );
+        // tslint:disable-next-line: deprecation
+        forkJoin(
+          ...pdfNameList.map(pdfName =>
+            this.pdfDownloaderService.downloadPdf(
+              pdfName,
+              response.requestId.toString()
+            )
+          )
+        ).subscribe(
+          data => {
+            console.log('data', data);
+          },
+          error => {
+            this.disableReturn = false;
+            this.disableResubmit = false;
+          },
+          () => {
+            this.transactionFetching = false;
+          }
+        );
       }
     );
   }
