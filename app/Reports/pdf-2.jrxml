@@ -81,9 +81,9 @@ $F{receiver_state}.equalsIgnoreCase( "Victoria" ) ? "Vic" :
 $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></variableExpression>
 	</variable>
 	<detail>
-		<band height="802" splitType="Stretch">
+		<band height="381" splitType="Stretch">
 			<frame>
-				<reportElement x="180" y="100" width="200" height="226" isPrintWhenDetailOverflows="true" uuid="65eb1801-faca-4eb4-a647-a910996a634f">
+				<reportElement x="180" y="10" width="200" height="226" isPrintWhenDetailOverflows="true" uuid="65eb1801-faca-4eb4-a647-a910996a634f">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<box padding="0">
@@ -248,7 +248,7 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 				</frame>
 			</frame>
 			<break>
-				<reportElement x="0" y="800" width="554" height="1" uuid="bdb5931a-9209-4a0a-9e50-9e85ae73fb52"/>
+				<reportElement x="0" y="340" width="551" height="1" uuid="bdb5931a-9209-4a0a-9e50-9e85ae73fb52"/>
 			</break>
 		</band>
 	</detail>
