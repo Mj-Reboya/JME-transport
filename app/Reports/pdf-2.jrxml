@@ -83,7 +83,7 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 	<detail>
 		<band height="802" splitType="Stretch">
 			<frame>
-				<reportElement x="180" y="180" width="200" height="226" isPrintWhenDetailOverflows="true" uuid="65eb1801-faca-4eb4-a647-a910996a634f">
+				<reportElement x="180" y="100" width="200" height="226" isPrintWhenDetailOverflows="true" uuid="65eb1801-faca-4eb4-a647-a910996a634f">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<box padding="0">
