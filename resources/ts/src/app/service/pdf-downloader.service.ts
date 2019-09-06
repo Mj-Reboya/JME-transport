@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class PdfDownloaderService {
   constructor(private http: HttpClient) {}
 
-  downloadPdf(pdfName: string, transactionId: string) {
+  downloadPdf(pdfName: 'proof-of-delivery' | 'pdf1', transactionId: string) {
     console.log(
       '${environment.apiBaseUrl}/generate-pdf/${pdfName}',
       `${environment.apiBaseUrl}/generate-pdf/${pdfName}`
