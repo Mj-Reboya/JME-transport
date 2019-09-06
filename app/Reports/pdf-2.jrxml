@@ -78,13 +78,14 @@ $F{receiver_state}.equalsIgnoreCase( "Queensland" ) ? "QLD" :
 $F{receiver_state}.equalsIgnoreCase( "South Australia" ) ? "SA" : 
 $F{receiver_state}.equalsIgnoreCase( "Tasmania" ) ? "Tas" : 
 $F{receiver_state}.equalsIgnoreCase( "Victoria" ) ? "Vic" : 
-$F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""
-]]></variableExpression>
+$F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></variableExpression>
 	</variable>
 	<detail>
-		<band height="233" splitType="Stretch">
+		<band height="802" splitType="Stretch">
 			<frame>
-				<reportElement x="180" y="0" width="200" height="226" isPrintWhenDetailOverflows="true" uuid="65eb1801-faca-4eb4-a647-a910996a634f"/>
+				<reportElement x="180" y="180" width="200" height="226" isPrintWhenDetailOverflows="true" uuid="65eb1801-faca-4eb4-a647-a910996a634f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<box padding="0">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -93,7 +94,7 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""
 				</box>
 				<frame>
 					<reportElement x="0" y="0" width="200" height="32" uuid="3c5de837-9270-4ef0-bf58-2b5dc47a9fbc">
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					</reportElement>
 					<box>
 						<bottomPen lineWidth="0.5"/>
@@ -247,7 +248,7 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""
 				</frame>
 			</frame>
 			<break>
-				<reportElement x="0" y="232" width="555" height="1" uuid="bdb5931a-9209-4a0a-9e50-9e85ae73fb52"/>
+				<reportElement x="0" y="800" width="554" height="1" uuid="bdb5931a-9209-4a0a-9e50-9e85ae73fb52"/>
 			</break>
 		</band>
 	</detail>
