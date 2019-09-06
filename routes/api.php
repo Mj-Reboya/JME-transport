@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use PHPJasper\PHPJasper as PHPJasper;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
+use App\Transaction;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +32,14 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
       'pdf_name' => $pdf_name,
     ], 403);
   }
+
+  $transction_exist = Transaction::where('id', '=', $transaction_id)->first();
+  if ($transction_exist == null) {
+    return response()->json([
+      'message' => 'cannot generate pdfs for unknown Transaction id'
+    ], 403);
+  }
+
 
   $available_pdf = ['proof-of-delivery', 'pdf-2', 'pickup-manifest'];
   if (!in_array($pdf_name, $available_pdf)) {
