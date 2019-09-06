@@ -133,7 +133,7 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 						<textElement textAlignment="Left" verticalAlignment="Top">
 							<font fontName="Arial" size="7" isBold="true"/>
 						</textElement>
-						<textFieldExpression><![CDATA["Dispatched: "+$F{transaction_id}]]></textFieldExpression>
+						<textFieldExpression><![CDATA["Dispatched: "+DATEFORMAT($F{pickup_date},"MM/dd/yy")]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>

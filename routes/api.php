@@ -33,7 +33,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     ], 403);
   }
 
-  $available_pdf = ['proof-of-delivery', 'pdf-2'];
+  $available_pdf = ['proof-of-delivery', 'pdf-2', 'pickup-manifest'];
   if (!in_array($pdf_name, $available_pdf)) {
     return response()->json([
       'message' => "$pdf_name is not available for generating"
