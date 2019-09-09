@@ -5,40 +5,55 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<parameter name="transaction_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[select
-i.id as item_id,
- t.id as transaction_id, 
- pd.pickup_date as pickup_date,
- s.name as sender_name,
- s.company as sender_company,
- r.name as receiver_name,
- r.company as receiver_company,
- r.street_address as receiver_street_address,
- r.state as receiver_state,
- r.suburd as receiver_suburd,
- r.post_code as receiver_post_code
-from items as i
-inner join pickup_details as pd
-on i.pickup_details_id = pd.id
-inner join transactions as t
-on pd.transaction_id = t.id
-left join senders as s
-on s.transaction_id = t.id
-left join receivers as r
-on r.transaction_id = t.id
+		<![CDATA[select 
+t.id as transaction_id,
+
+s.name as sender_name,
+s.company as sender_company,
+s.street_address as sender_street_address,
+s.suburd as sender_suburd,
+s.state as sender_state,
+s.post_code as sender_post_code,
+s.phone_number as sender_phone_number,
+s.name as sender_name,
+
+r.name as receiver_name,
+r.company as receiver_company,
+r.street_address as receiver_street_address,
+r.suburd as receiver_suburd,
+r.state as receiver_state,
+r.post_code as receiver_post_code,
+r.phone_number as receiver_phone_number,
+r.name as receiver_name,
+
+p.name as payor_name,
+p.company as payor_company,
+p.street_address as payor_street_address,
+p.suburd as payor_suburd,
+p.state as payor_state,
+p.post_code as payor_post_code,
+p.phone_number as payor_phone_number,
+p.name as payor_name,
+
+pd.id as pickup_id,
+pd.parcel_type as pickup_parcel_type,
+pd.special_instruction as pickup_special_instruction,
+pd.option as pickup_option,
+DATE_FORMAT(pd.pickup_date, '%m/%d/%Y') as pickup_date,
+pd.ready_at as pickup_ready_at,
+pd.closing_time as pickup_closing_time
+
+from transactions as t
+left join senders as s on t.id = s.transaction_id
+left join receivers as r on t.id = r.transaction_id
+left join payors as p on t.id = p.transaction_id
+left join pickup_details as pd on t.id = pd.transaction_id
+
 where t.id = $P{transaction_id}]]>
 	</queryString>
-	<field name="item_id" class="java.math.BigInteger">
-		<property name="com.jaspersoft.studio.field.label" value="item_id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="items"/>
-	</field>
 	<field name="transaction_id" class="java.math.BigInteger">
 		<property name="com.jaspersoft.studio.field.label" value="transaction_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="transactions"/>
-	</field>
-	<field name="pickup_date" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.label" value="pickup_date"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="pickup_details"/>
 	</field>
 	<field name="sender_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="sender_name"/>
@@ -46,6 +61,30 @@ where t.id = $P{transaction_id}]]>
 	</field>
 	<field name="sender_company" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="sender_company"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="senders"/>
+	</field>
+	<field name="sender_street_address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sender_street_address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="senders"/>
+	</field>
+	<field name="sender_suburd" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sender_suburd"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="senders"/>
+	</field>
+	<field name="sender_state" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sender_state"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="senders"/>
+	</field>
+	<field name="sender_post_code" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="sender_post_code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="senders"/>
+	</field>
+	<field name="sender_phone_number" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="sender_phone_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="senders"/>
+	</field>
+	<field name="COLUMN_9" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sender_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="senders"/>
 	</field>
 	<field name="receiver_name" class="java.lang.String">
@@ -60,17 +99,85 @@ where t.id = $P{transaction_id}]]>
 		<property name="com.jaspersoft.studio.field.label" value="receiver_street_address"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="receivers"/>
 	</field>
-	<field name="receiver_state" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="receiver_state"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="receivers"/>
-	</field>
 	<field name="receiver_suburd" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="receiver_suburd"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="receivers"/>
+	</field>
+	<field name="receiver_state" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="receiver_state"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="receivers"/>
 	</field>
 	<field name="receiver_post_code" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="receiver_post_code"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="receivers"/>
+	</field>
+	<field name="receiver_phone_number" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="receiver_phone_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="receivers"/>
+	</field>
+	<field name="COLUMN_17" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="receiver_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="receivers"/>
+	</field>
+	<field name="payor_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payor_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payors"/>
+	</field>
+	<field name="payor_company" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payor_company"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payors"/>
+	</field>
+	<field name="payor_street_address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payor_street_address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payors"/>
+	</field>
+	<field name="payor_suburd" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payor_suburd"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payors"/>
+	</field>
+	<field name="payor_state" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payor_state"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payors"/>
+	</field>
+	<field name="payor_post_code" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="payor_post_code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payors"/>
+	</field>
+	<field name="payor_phone_number" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="payor_phone_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payors"/>
+	</field>
+	<field name="COLUMN_25" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payor_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payors"/>
+	</field>
+	<field name="pickup_id" class="java.math.BigInteger">
+		<property name="com.jaspersoft.studio.field.label" value="pickup_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pickup_details"/>
+	</field>
+	<field name="pickup_parcel_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pickup_parcel_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pickup_details"/>
+	</field>
+	<field name="pickup_special_instruction" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pickup_special_instruction"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pickup_details"/>
+	</field>
+	<field name="pickup_option" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pickup_option"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pickup_details"/>
+	</field>
+	<field name="pickup_date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pickup_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pickup_details"/>
+	</field>
+	<field name="pickup_ready_at" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.label" value="pickup_ready_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pickup_details"/>
+	</field>
+	<field name="pickup_closing_time" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.label" value="pickup_closing_time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pickup_details"/>
 	</field>
 	<variable name="state_code" class="java.lang.String">
 		<variableExpression><![CDATA[$F{receiver_state}.equalsIgnoreCase( "'New South Wales" ) ? "NSW" : 
@@ -133,7 +240,7 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 						<textElement textAlignment="Left" verticalAlignment="Top">
 							<font fontName="Arial" size="7" isBold="true"/>
 						</textElement>
-						<textFieldExpression><![CDATA["Dispatched: "+DATEFORMAT($F{pickup_date},"MM/dd/yy")]]></textFieldExpression>
+						<textFieldExpression><![CDATA["Dispatched: "+$F{pickup_date}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>
@@ -162,7 +269,7 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 					<componentElement>
 						<reportElement x="130" y="0" width="59" height="61" uuid="883e57f0-a16c-478d-83c1-bf4fc04b5086"/>
 						<jr:DataMatrix xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-							<jr:codeExpression><![CDATA[$F{transaction_id}+"-JME-"+$F{item_id}]]></jr:codeExpression>
+							<jr:codeExpression><![CDATA[$F{transaction_id}+"-JME"]]></jr:codeExpression>
 						</jr:DataMatrix>
 					</componentElement>
 				</frame>
@@ -247,9 +354,6 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 					</textField>
 				</frame>
 			</frame>
-			<break>
-				<reportElement x="0" y="340" width="551" height="1" uuid="bdb5931a-9209-4a0a-9e50-9e85ae73fb52"/>
-			</break>
 		</band>
 	</detail>
 </jasperReport>

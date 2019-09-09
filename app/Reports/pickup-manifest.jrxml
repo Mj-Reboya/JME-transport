@@ -107,13 +107,13 @@ where t.id = $P{transactionId}]]>
 		<variable name="totalQuantity" class="java.lang.Integer" calculation="Sum">
 			<variableExpression><![CDATA[$F{items}]]></variableExpression>
 		</variable>
-		<variable name="cubic" class="java.lang.Integer">
-			<variableExpression><![CDATA[($F{length} * $F{height} * $F{width}) / 1000000]]></variableExpression>
+		<variable name="cubic" class="java.lang.Float" resetType="Column">
+			<variableExpression><![CDATA[((float)$F{length}/100 ) * ( (float)$F{height}/100) * ( (float)$F{width}/100)]]></variableExpression>
 		</variable>
 		<variable name="totalWeight" class="java.lang.Integer" calculation="Sum">
 			<variableExpression><![CDATA[$F{total_weight}]]></variableExpression>
 		</variable>
-		<variable name="totalCubic" class="java.lang.Integer" calculation="Sum">
+		<variable name="totalCubic" class="java.lang.Float" calculation="Sum">
 			<variableExpression><![CDATA[$V{cubic}]]></variableExpression>
 		</variable>
 		<variable name="totalPlain" class="java.lang.Integer" calculation="Count">
@@ -454,7 +454,7 @@ where t.id = $P{transaction_id}]]>
 									<textElement textAlignment="Right" verticalAlignment="Middle">
 										<font fontName="Arial" size="8"/>
 									</textElement>
-									<textFieldExpression><![CDATA[$V{totalCubic}]]></textFieldExpression>
+									<textFieldExpression><![CDATA[String.format("%.5f",$V{totalCubic})]]></textFieldExpression>
 								</textField>
 							</jr:tableFooter>
 							<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
@@ -474,7 +474,7 @@ where t.id = $P{transaction_id}]]>
 									<textElement textAlignment="Right" verticalAlignment="Middle">
 										<font fontName="Arial" size="8"/>
 									</textElement>
-									<textFieldExpression><![CDATA[$V{cubic}]]></textFieldExpression>
+									<textFieldExpression><![CDATA[String.format("%.5f",$V{cubic})]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
