@@ -84,12 +84,12 @@ where t.id = $P{transactionId}]]>
 		<variable name="total_quantity" class="java.lang.Integer" calculation="Sum">
 			<variableExpression><![CDATA[$F{items}]]></variableExpression>
 		</variable>
-		<variable name="total_volume" class="java.lang.Float" incrementType="Report" calculation="Sum">
-			<variableExpression><![CDATA[$V{cubic}]]></variableExpression>
-		</variable>
-		<variable name="cubic" class="java.lang.Float" resetType="None">
+		<variable name="total_volume" class="java.lang.Float" calculation="Sum">
 			<variableExpression><![CDATA[(float)$F{items}*((float)$F{length}/100 ) * ( (float)$F{height}/100) * ( (float)$F{width}/100)]]></variableExpression>
-			<initialValueExpression><![CDATA[(float)0]]></initialValueExpression>
+			<initialValueExpression><![CDATA[$V{cubic}]]></initialValueExpression>
+		</variable>
+		<variable name="cubic" class="java.lang.Float">
+			<variableExpression><![CDATA[(float)$F{items}*((float)$F{length}/100 ) * ( (float)$F{height}/100) * ( (float)$F{width}/100)]]></variableExpression>
 		</variable>
 	</subDataset>
 	<parameter name="jme_logo_url" class="java.lang.String" evaluationTime="Early">
