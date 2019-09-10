@@ -188,7 +188,7 @@ $F{receiver_state}.equalsIgnoreCase( "Victoria" ) ? "Vic" :
 $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></variableExpression>
 	</variable>
 	<detail>
-		<band height="802" splitType="Stretch">
+		<band height="626" splitType="Stretch">
 			<frame>
 				<reportElement x="90" y="110" width="351" height="414" uuid="fdf576a5-0e1b-428c-874b-acf480568403"/>
 				<box>

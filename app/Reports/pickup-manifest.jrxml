@@ -113,7 +113,7 @@ where t.id = $P{transactionId}]]>
 		<variable name="totalWeight" class="java.lang.Integer" calculation="Sum">
 			<variableExpression><![CDATA[$F{total_weight}]]></variableExpression>
 		</variable>
-		<variable name="totalCubic" class="java.lang.Float" calculation="Sum">
+		<variable name="totalCubic" class="java.lang.Float" resetType="None" calculation="Sum">
 			<variableExpression><![CDATA[$V{cubic}]]></variableExpression>
 		</variable>
 		<variable name="totalPlain" class="java.lang.Integer" calculation="Count">
