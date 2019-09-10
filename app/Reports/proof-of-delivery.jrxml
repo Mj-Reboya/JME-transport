@@ -955,7 +955,7 @@ NSW 2164]]></text>
 											<textElement textAlignment="Left" verticalAlignment="Top">
 												<font size="8"/>
 											</textElement>
-											<textFieldExpression><![CDATA[String.format("%.5f",(float)((float)$F{length}/100) * ((float)$F{height}/100)* ((float)$F{width}/100))]]></textFieldExpression>
+											<textFieldExpression><![CDATA[String.format("%.3f",(float)$F{items}*(float)((float)$F{length}/100) * ((float)$F{height}/100)* ((float)$F{width}/100))]]></textFieldExpression>
 										</textField>
 									</jr:detailCell>
 								</jr:column>

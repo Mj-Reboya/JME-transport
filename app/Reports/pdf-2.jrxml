@@ -188,44 +188,42 @@ $F{receiver_state}.equalsIgnoreCase( "Victoria" ) ? "Vic" :
 $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></variableExpression>
 	</variable>
 	<detail>
-		<band height="381" splitType="Stretch">
+		<band height="802" splitType="Stretch">
 			<frame>
-				<reportElement x="180" y="10" width="200" height="226" isPrintWhenDetailOverflows="true" uuid="65eb1801-faca-4eb4-a647-a910996a634f">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<box padding="0">
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+				<reportElement x="90" y="110" width="351" height="414" uuid="fdf576a5-0e1b-428c-874b-acf480568403"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
 				</box>
 				<frame>
-					<reportElement x="0" y="0" width="200" height="32" uuid="3c5de837-9270-4ef0-bf58-2b5dc47a9fbc">
+					<reportElement x="0" y="0" width="349" height="63" uuid="3c5de837-9270-4ef0-bf58-2b5dc47a9fbc">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					</reportElement>
 					<box>
 						<bottomPen lineWidth="0.5"/>
 					</box>
 					<staticText>
-						<reportElement x="0" y="0" width="15" height="20" uuid="e4d7ac7e-70b8-45f1-95e2-debbb6616de9">
+						<reportElement x="3" y="17" width="20" height="20" uuid="e4d7ac7e-70b8-45f1-95e2-debbb6616de9">
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						</reportElement>
 						<box padding="1"/>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font fontName="Arial" size="4"/>
+							<font fontName="Arial" size="7"/>
 						</textElement>
 						<text><![CDATA[CN: ]]></text>
 					</staticText>
 					<textField isStretchWithOverflow="true">
-						<reportElement x="15" y="0" width="148" height="20" isPrintWhenDetailOverflows="true" uuid="21e00e38-74a5-4bf8-a812-9d6ed0f34551"/>
+						<reportElement x="23" y="10" width="246" height="30" isPrintWhenDetailOverflows="true" uuid="21e00e38-74a5-4bf8-a812-9d6ed0f34551"/>
 						<box padding="3"/>
 						<textElement textAlignment="Left" verticalAlignment="Middle">
-							<font fontName="Arial" size="12" isBold="true"/>
+							<font fontName="Arial" size="14" isBold="true"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{transaction_id}]]></textFieldExpression>
 					</textField>
 					<frame>
-						<reportElement x="163" y="6" width="26" height="26" uuid="80f70e7a-2ef8-47f9-a679-80568430875c">
+						<reportElement x="270" y="7" width="51" height="56" uuid="80f70e7a-2ef8-47f9-a679-80568430875c">
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						</reportElement>
 						<box>
@@ -233,31 +231,31 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 						</box>
 					</frame>
 					<textField isStretchWithOverflow="true">
-						<reportElement x="0" y="20" width="163" height="12" isPrintWhenDetailOverflows="true" uuid="9d19a5c9-b02c-40a5-af8b-2527126b9a41">
+						<reportElement x="0" y="40" width="269" height="20" isPrintWhenDetailOverflows="true" uuid="9d19a5c9-b02c-40a5-af8b-2527126b9a41">
 							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box padding="3"/>
 						<textElement textAlignment="Left" verticalAlignment="Top">
-							<font fontName="Arial" size="7" isBold="true"/>
+							<font fontName="Arial" size="12" isBold="true"/>
 						</textElement>
 						<textFieldExpression><![CDATA["Dispatched: "+$F{pickup_date}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="0" y="59" width="200" height="61" uuid="5d671e40-c8db-4a25-8ec9-f182d2d48613"/>
+					<reportElement x="0" y="110" width="350" height="100" uuid="5d671e40-c8db-4a25-8ec9-f182d2d48613"/>
 					<staticText>
-						<reportElement x="0" y="4" width="14" height="12" uuid="075d1afb-86fd-4797-97c7-f887a453f7a8">
+						<reportElement x="0" y="4" width="40" height="25" uuid="075d1afb-86fd-4797-97c7-f887a453f7a8">
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box padding="2"/>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font fontName="Arial" size="5"/>
+							<font fontName="Arial" size="9"/>
 						</textElement>
 						<text><![CDATA[TO:]]></text>
 					</staticText>
 					<textField isStretchWithOverflow="true">
-						<reportElement positionType="Float" x="14" y="4" width="114" height="56" isPrintWhenDetailOverflows="true" uuid="78ec5a6d-ee52-4b44-9778-802142ee66b6">
+						<reportElement positionType="Float" x="40" y="2" width="165" height="96" isPrintWhenDetailOverflows="true" uuid="78ec5a6d-ee52-4b44-9778-802142ee66b6">
 							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box padding="2"/>
@@ -267,39 +265,39 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 						<textFieldExpression><![CDATA[$V{state_code}]]></textFieldExpression>
 					</textField>
 					<componentElement>
-						<reportElement x="130" y="0" width="59" height="61" uuid="883e57f0-a16c-478d-83c1-bf4fc04b5086"/>
+						<reportElement x="240" y="0" width="99" height="90" uuid="883e57f0-a16c-478d-83c1-bf4fc04b5086"/>
 						<jr:DataMatrix xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 							<jr:codeExpression><![CDATA[$F{transaction_id}+"-JME"]]></jr:codeExpression>
 						</jr:DataMatrix>
 					</componentElement>
 				</frame>
 				<frame>
-					<reportElement x="0" y="32" width="200" height="27" uuid="2eadc61b-b9a3-4a3d-8ba5-13c4eb5b010b"/>
+					<reportElement x="0" y="64" width="350" height="46" uuid="2eadc61b-b9a3-4a3d-8ba5-13c4eb5b010b"/>
 					<textField isStretchWithOverflow="true">
-						<reportElement x="0" y="0" width="200" height="15" isPrintWhenDetailOverflows="true" uuid="1d58e5b6-05d9-49d1-848d-5971bf2bbb61">
+						<reportElement x="0" y="0" width="350" height="25" isPrintWhenDetailOverflows="true" uuid="1d58e5b6-05d9-49d1-848d-5971bf2bbb61">
 							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box padding="2"/>
 						<textElement textAlignment="Left" verticalAlignment="Bottom" markup="html">
-							<font fontName="Arial" size="7" isBold="true" isItalic="false"/>
+							<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
 						</textElement>
 						<textFieldExpression><![CDATA["Sender: <i>"+$F{sender_name}+"</i>"]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="26" y="15" width="174" height="12" uuid="7391fd0b-6105-4e38-943e-c2a258699907">
+						<reportElement x="40" y="25" width="310" height="22" uuid="7391fd0b-6105-4e38-943e-c2a258699907">
 							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box padding="2"/>
 						<textElement textAlignment="Left" verticalAlignment="Top">
-							<font fontName="Arial" size="5" isItalic="false"/>
+							<font fontName="Arial" size="11" isItalic="false"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{sender_name}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="0" y="120" width="200" height="106" uuid="7d8e35c2-6c84-4dd1-888d-5cc59dfe6a1f"/>
+					<reportElement positionType="Float" x="1" y="210" width="350" height="204" uuid="7d8e35c2-6c84-4dd1-888d-5cc59dfe6a1f"/>
 					<textField isStretchWithOverflow="true" evaluationTime="Master">
-						<reportElement positionType="Float" x="0" y="81" width="200" height="25" uuid="9d3a6ba5-bffb-4404-a4cd-d07123fec0fa">
+						<reportElement positionType="Float" x="-1" y="180" width="350" height="25" uuid="9d3a6ba5-bffb-4404-a4cd-d07123fec0fa">
 							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box padding="5"/>
@@ -309,46 +307,46 @@ $F{receiver_state}.equalsIgnoreCase( "Western Australia" ) ? "WA" : ""]]></varia
 						<textFieldExpression><![CDATA["Item "+$V{MASTER_CURRENT_PAGE}+ " of " + $V{MASTER_TOTAL_PAGES}]]></textFieldExpression>
 					</textField>
 					<componentElement>
-						<reportElement positionType="Float" x="0" y="60" width="200" height="21" isPrintWhenDetailOverflows="true" uuid="384d325f-0e2d-48c3-8a66-b87f42b2d3e2">
+						<reportElement positionType="Float" x="0" y="89" width="350" height="91" isPrintWhenDetailOverflows="true" uuid="384d325f-0e2d-48c3-8a66-b87f42b2d3e2">
 							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 							<property name="com.jaspersoft.studio.unit.barHeight" value="px"/>
 							<property name="com.jaspersoft.studio.unit.barWidth" value="px"/>
 						</reportElement>
-						<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="GlobalTradeItemNumber" drawText="false" checksumRequired="false" barHeight="25">
+						<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="GlobalTradeItemNumber" drawText="false" checksumRequired="false" barHeight="32">
 							<jr:codeExpression><![CDATA[$F{transaction_id}]]></jr:codeExpression>
 						</jr:barbecue>
 					</componentElement>
 					<textField isStretchWithOverflow="true">
-						<reportElement positionType="Float" x="0" y="0" width="200" height="20" isPrintWhenDetailOverflows="true" uuid="51192f9f-cd68-453a-a76e-dbda8e2f802c"/>
+						<reportElement positionType="Float" x="-1" y="0" width="350" height="30" isPrintWhenDetailOverflows="true" uuid="51192f9f-cd68-453a-a76e-dbda8e2f802c"/>
 						<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5"/>
 						<textElement textAlignment="Left" verticalAlignment="Top">
-							<font fontName="Arial" size="13" isBold="true"/>
+							<font fontName="Arial" size="18" isBold="true"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{receiver_company}]]></textFieldExpression>
 					</textField>
 					<textField isStretchWithOverflow="true">
-						<reportElement positionType="Float" x="0" y="20" width="200" height="12" isPrintWhenDetailOverflows="true" uuid="a108ff72-59ed-48f2-890b-4b348c3b64d2">
+						<reportElement positionType="Float" x="0" y="30" width="350" height="20" isPrintWhenDetailOverflows="true" uuid="a108ff72-59ed-48f2-890b-4b348c3b64d2">
 							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5"/>
 						<textElement textAlignment="Left" verticalAlignment="Bottom">
-							<font fontName="Arial" size="8" isBold="false" isItalic="false"/>
+							<font fontName="Arial" size="12" isBold="false" isItalic="false"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{receiver_street_address}]]></textFieldExpression>
 					</textField>
 					<textField isStretchWithOverflow="true">
-						<reportElement positionType="Float" x="0" y="40" width="100" height="20" isPrintWhenDetailOverflows="true" uuid="80fdfeef-d932-424e-ac11-3e4508f22ba9"/>
+						<reportElement positionType="Float" x="-1" y="50" width="162" height="39" isPrintWhenDetailOverflows="true" uuid="80fdfeef-d932-424e-ac11-3e4508f22ba9"/>
 						<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
 						<textElement textAlignment="Left" verticalAlignment="Middle">
-							<font fontName="Arial" size="12" isBold="true"/>
+							<font fontName="Arial" size="14" isBold="true"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{receiver_state}]]></textFieldExpression>
 					</textField>
 					<textField isStretchWithOverflow="true">
-						<reportElement positionType="Float" x="100" y="40" width="100" height="20" isPrintWhenDetailOverflows="true" uuid="5f5fc4a5-9bf5-4c88-b0fc-78682d3e7d1d"/>
+						<reportElement positionType="Float" x="162" y="50" width="186" height="39" isPrintWhenDetailOverflows="true" uuid="5f5fc4a5-9bf5-4c88-b0fc-78682d3e7d1d"/>
 						<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
 						<textElement textAlignment="Right" verticalAlignment="Middle">
-							<font fontName="Arial" size="12" isBold="true"/>
+							<font fontName="Arial" size="14" isBold="true"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$V{state_code} + " " + $F{receiver_post_code}]]></textFieldExpression>
 					</textField>

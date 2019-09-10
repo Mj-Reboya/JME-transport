@@ -474,7 +474,7 @@ where t.id = $P{transaction_id}]]>
 									<textElement textAlignment="Right" verticalAlignment="Middle">
 										<font fontName="Arial" size="8"/>
 									</textElement>
-									<textFieldExpression><![CDATA[String.format("%.5f",$V{cubic})]]></textFieldExpression>
+									<textFieldExpression><![CDATA[String.format("%3f",((float)$F{items} * $V{cubic}))]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
