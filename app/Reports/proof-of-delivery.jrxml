@@ -84,8 +84,11 @@ where t.id = $P{transactionId}]]>
 		<variable name="total_quantity" class="java.lang.Integer" calculation="Sum">
 			<variableExpression><![CDATA[$F{items}]]></variableExpression>
 		</variable>
-		<variable name="total_volume" class="java.lang.Integer" calculation="Sum">
-			<variableExpression><![CDATA[($F{length} * $F{height}* $F{width} )/1000000]]></variableExpression>
+		<variable name="total_volume" class="java.lang.Float" calculation="Sum">
+			<variableExpression><![CDATA[$V{cubic}]]></variableExpression>
+		</variable>
+		<variable name="cubic" class="java.lang.Float">
+			<variableExpression><![CDATA[(float)((float)$F{items}*((float)$F{length}/100 ) * ( (float)$F{height}/100) * ( (float)$F{width}/100))]]></variableExpression>
 		</variable>
 	</subDataset>
 	<parameter name="jme_logo_url" class="java.lang.String" evaluationTime="Early">
@@ -930,7 +933,7 @@ NSW 2164]]></text>
 											<textElement textAlignment="Center" verticalAlignment="Top">
 												<font size="8"/>
 											</textElement>
-											<textFieldExpression><![CDATA[$V{total_volume}]]></textFieldExpression>
+											<textFieldExpression><![CDATA[String.format("%.3f",$V{total_volume})]]></textFieldExpression>
 										</textField>
 									</jr:tableFooter>
 									<jr:columnHeader style="Table_CH" height="10" rowSpan="1">
@@ -955,7 +958,7 @@ NSW 2164]]></text>
 											<textElement textAlignment="Left" verticalAlignment="Top">
 												<font size="8"/>
 											</textElement>
-											<textFieldExpression><![CDATA[String.format("%.3f",(float)$F{items}*(float)((float)$F{length}/100) * ((float)$F{height}/100)* ((float)$F{width}/100))]]></textFieldExpression>
+											<textFieldExpression><![CDATA[String.format("%.3f",$V{cubic})]]></textFieldExpression>
 										</textField>
 									</jr:detailCell>
 								</jr:column>
@@ -1396,13 +1399,13 @@ NSW 2164]]></text>
 		</band>
 		<band height="337" splitType="Prevent">
 			<frame>
-				<reportElement positionType="Float" x="0" y="0" width="555" height="337" isPrintWhenDetailOverflows="true" uuid="5dc145b9-ac8f-4397-8f07-6ffee84ca80e"/>
+				<reportElement x="0" y="0" width="555" height="337" isPrintWhenDetailOverflows="true" uuid="90e1fddc-9a79-41ab-bbba-ac3da70f137b"/>
 				<image isLazy="true">
-					<reportElement x="0" y="0" width="51" height="40" uuid="b1d06798-0651-4045-b4f7-38f1efea03e8"/>
+					<reportElement x="0" y="0" width="51" height="40" uuid="4e02ad2a-55ef-498a-9b82-3980c4cc7d71"/>
 					<imageExpression><![CDATA["http://167.71.218.87/assets/jme-logo-header.png"]]></imageExpression>
 				</image>
 				<staticText>
-					<reportElement x="51" y="20" width="100" height="20" isPrintWhenDetailOverflows="true" uuid="06c6c6b5-4c0e-4b0c-9f3e-2aa9577d597a"/>
+					<reportElement x="51" y="20" width="100" height="20" isPrintWhenDetailOverflows="true" uuid="ccd5a0e7-1412-41c4-bc1a-7ceff11e7f8a"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="8" isBold="true"/>
@@ -1410,7 +1413,7 @@ NSW 2164]]></text>
 					<text><![CDATA[JME Transport]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="40" width="100" height="31" isPrintWhenDetailOverflows="true" uuid="15005c44-fce6-4a23-bac0-c6eec8ecce0d"/>
+					<reportElement x="0" y="40" width="100" height="31" isPrintWhenDetailOverflows="true" uuid="08cd6018-726d-4e71-8ecc-7d379856e663"/>
 					<box padding="3"/>
 					<textElement verticalAlignment="Top">
 						<font fontName="Arial" size="7"/>
@@ -1421,7 +1424,7 @@ www.jmet.com.au
 0421817781]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="100" y="40" width="160" height="31" isPrintWhenDetailOverflows="true" uuid="144d9176-c3d6-4761-95f8-401096e9f648"/>
+					<reportElement x="100" y="40" width="160" height="31" isPrintWhenDetailOverflows="true" uuid="4a011395-7c59-4737-b4ba-ecf34a729e1f"/>
 					<box padding="3"/>
 					<textElement verticalAlignment="Top">
 						<font fontName="Arial" size="7"/>
@@ -1431,7 +1434,7 @@ www.jmet.com.au
 NSW 2164]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="406" y="20" width="44" height="20" isPrintWhenDetailOverflows="true" uuid="b506c03c-9910-4659-a67e-7e8a9a844545"/>
+					<reportElement x="406" y="20" width="44" height="20" isPrintWhenDetailOverflows="true" uuid="65dcd346-3b73-4487-81cb-74b2b54a59e3"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="false"/>
@@ -1439,7 +1442,7 @@ NSW 2164]]></text>
 					<text><![CDATA[Service:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="241" y="0" width="120" height="40" isPrintWhenDetailOverflows="true" uuid="469f3111-7298-47dd-bd28-59786fcb3c5f"/>
+					<reportElement x="241" y="0" width="120" height="40" isPrintWhenDetailOverflows="true" uuid="53cdc016-8e56-4508-b016-ccf1b67a6928"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Bottom">
 						<font fontName="Arial" size="11" isBold="true"/>
@@ -1447,7 +1450,7 @@ NSW 2164]]></text>
 					<textFieldExpression><![CDATA[$F{transaction_id}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="450" y="0" width="105" height="20" isPrintWhenDetailOverflows="true" uuid="0c4d6d43-aacf-4955-b569-9d908839841b"/>
+					<reportElement x="450" y="0" width="105" height="20" isPrintWhenDetailOverflows="true" uuid="9933260f-4055-4507-b803-1c57ec818ee1"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Bottom">
 						<font fontName="Arial" size="11" isBold="true"/>
@@ -1455,7 +1458,7 @@ NSW 2164]]></text>
 					<textFieldExpression><![CDATA[$F{pickup_date}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="151" y="20" width="90" height="20" isPrintWhenDetailOverflows="true" uuid="76f6aa51-1db4-416c-924c-ab9cda0dd988"/>
+					<reportElement x="151" y="20" width="90" height="20" isPrintWhenDetailOverflows="true" uuid="0c6f247f-c64f-41d0-a3f7-d82832cfc768"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="8" isBold="false"/>
@@ -1463,7 +1466,7 @@ NSW 2164]]></text>
 					<text><![CDATA[Consignment No.]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="450" y="20" width="105" height="20" isPrintWhenDetailOverflows="true" uuid="efd8d876-a5dd-4034-8fee-720880ef85bf"/>
+					<reportElement x="450" y="20" width="105" height="20" isPrintWhenDetailOverflows="true" uuid="e3c8549e-7291-495d-b82b-3d99ea882172"/>
 					<box padding="2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="true"/>
@@ -1471,7 +1474,7 @@ NSW 2164]]></text>
 					<textFieldExpression><![CDATA["EXPRESS"]]></textFieldExpression>
 				</textField>
 				<componentElement>
-					<reportElement x="340" y="46" width="131" height="25" uuid="37839de3-e506-457e-aa10-a04e1d2fff93">
+					<reportElement x="340" y="46" width="131" height="25" uuid="9316d730-1fa3-4381-b410-e6ad441e9602">
 						<property name="com.jaspersoft.studio.unit.barWidth" value="px"/>
 						<property name="com.jaspersoft.studio.unit.barHeight" value="px"/>
 					</reportElement>
@@ -1480,7 +1483,7 @@ NSW 2164]]></text>
 					</jr:barbecue>
 				</componentElement>
 				<staticText>
-					<reportElement x="0" y="71" width="555" height="20" isPrintWhenDetailOverflows="true" uuid="e57871ba-8c4c-41e1-b514-ee8c4ae77e1f"/>
+					<reportElement x="0" y="71" width="555" height="20" isPrintWhenDetailOverflows="true" uuid="999dd17e-611a-48ce-b845-3885908932b4"/>
 					<box padding="2"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="11" isBold="true"/>
@@ -1488,7 +1491,7 @@ NSW 2164]]></text>
 					<text><![CDATA[Proof Of Delivery Copy]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="91" width="555" height="13" isPrintWhenDetailOverflows="true" uuid="da2c6fc4-7f69-4232-bd48-3f2287ca0f69">
+					<reportElement x="0" y="91" width="555" height="13" isPrintWhenDetailOverflows="true" uuid="f8ef4739-bace-4b15-9b8f-655586802515">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box padding="2"/>
@@ -1498,14 +1501,14 @@ NSW 2164]]></text>
 					<text><![CDATA[Scan Copy - To be retured to JME Transport]]></text>
 				</staticText>
 				<frame>
-					<reportElement x="0" y="105" width="555" height="232" uuid="65757020-93b5-4a4f-b43a-2363a7ab9d84">
+					<reportElement x="0" y="105" width="555" height="232" uuid="474a3bb7-5e51-40a8-a36c-0ff0f0f5d54a">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<box leftPadding="0">
 						<pen lineWidth="0.5"/>
 					</box>
 					<frame>
-						<reportElement positionType="Float" x="0" y="-1" width="381" height="50" uuid="ff0a2b1a-e4dd-4647-80b8-08e33580babe"/>
+						<reportElement positionType="Float" x="0" y="-1" width="381" height="50" uuid="da04e89a-78d0-4698-a272-4acd3dfe27fd"/>
 						<box padding="0">
 							<pen lineWidth="0.5"/>
 							<topPen lineWidth="0.0"/>
@@ -1513,7 +1516,7 @@ NSW 2164]]></text>
 							<rightPen lineWidth="0.0"/>
 						</box>
 						<staticText>
-							<reportElement x="0" y="1" width="21" height="49" uuid="aa7f59c9-786e-4001-8db3-4b7a2abe1779"/>
+							<reportElement x="0" y="1" width="21" height="49" uuid="edb9a8f0-548a-49a6-b7c6-5311dc78c8a7"/>
 							<box>
 								<pen lineWidth="0.5"/>
 								<topPen lineWidth="0.0"/>
@@ -1526,7 +1529,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Sender]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="21" y="12" width="170" height="38" isPrintWhenDetailOverflows="true" uuid="d12bcc60-41bd-4b3d-9d46-62f98ed977de">
+							<reportElement x="21" y="12" width="170" height="38" isPrintWhenDetailOverflows="true" uuid="5d62acac-4a5d-4442-9f07-cc9a6043ba19">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -1542,7 +1545,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{sender_street_address} + "\n" + $F{sender_state} + "\t" + $F{sender_post_code}]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement x="191" y="1" width="21" height="49" uuid="be65064c-23f7-4a11-af04-98edab9272a6"/>
+							<reportElement x="191" y="1" width="21" height="49" uuid="73e01435-3f43-4116-9255-03f42e828226"/>
 							<box>
 								<pen lineWidth="0.5"/>
 								<topPen lineWidth="0.0"/>
@@ -1554,7 +1557,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Receiver]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="212" y="12" width="169" height="38" isPrintWhenDetailOverflows="true" uuid="368e04e1-6be1-4080-8a4f-23e24987f205">
+							<reportElement x="212" y="12" width="169" height="38" isPrintWhenDetailOverflows="true" uuid="e8d94be6-8b07-4729-834c-796c32008e53">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -1570,7 +1573,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{receiver_street_address} + "\n" + $F{receiver_state} + "\t" + $F{receiver_post_code}]]></textFieldExpression>
 						</textField>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="212" y="2" width="169" height="10" isPrintWhenDetailOverflows="true" uuid="db55feff-5644-4083-ae7c-7c3f977260c0">
+							<reportElement x="212" y="2" width="169" height="10" isPrintWhenDetailOverflows="true" uuid="b5eb2b7e-c19b-4f8a-9816-015521884fe5">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
@@ -1586,7 +1589,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{receiver_company}]]></textFieldExpression>
 						</textField>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="21" y="2" width="170" height="10" isPrintWhenDetailOverflows="true" uuid="01d92dc4-05d2-4995-9711-dd1c1dec4ce2">
+							<reportElement x="21" y="2" width="170" height="10" isPrintWhenDetailOverflows="true" uuid="1d9c0ac4-39a3-445b-b928-76fea2f1ecf9">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
@@ -1603,12 +1606,12 @@ NSW 2164]]></text>
 						</textField>
 					</frame>
 					<frame>
-						<reportElement positionType="Float" x="381" y="1" width="174" height="48" uuid="f12fa551-c3e4-49d1-8f13-35e28acc25a6"/>
+						<reportElement positionType="Float" x="381" y="1" width="174" height="48" uuid="f2d42709-7c7f-4a2b-a0f9-c12ce961087c"/>
 						<box>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="0" y="0" width="21" height="49" uuid="3bd054ae-aa4e-4a23-8167-662cec573766">
+							<reportElement x="0" y="0" width="21" height="49" uuid="4f0af95b-84b8-4a0e-ae9b-8ebaf76b8ee7">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 							</reportElement>
 							<box>
@@ -1624,7 +1627,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Charge]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="21" y="10" width="153" height="38" isPrintWhenDetailOverflows="true" uuid="9e75867c-97a9-4ba3-9943-54147258b727">
+							<reportElement x="21" y="10" width="153" height="38" isPrintWhenDetailOverflows="true" uuid="d62e3c90-a030-412f-a65c-d9752b20fb0c">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -1640,7 +1643,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{payor_street_address} + "\n" + $F{payor_state} + "\t" + $F{payor_post_code}]]></textFieldExpression>
 						</textField>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="21" y="0" width="153" height="10" isPrintWhenDetailOverflows="true" uuid="54fe0627-c57e-4ef2-92df-2ef2ba4bc442">
+							<reportElement x="21" y="0" width="153" height="10" isPrintWhenDetailOverflows="true" uuid="71990935-a259-4e4d-baa4-3be5028a706c">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
@@ -1657,13 +1660,13 @@ NSW 2164]]></text>
 						</textField>
 					</frame>
 					<frame>
-						<reportElement positionType="Float" x="381" y="50" width="174" height="47" uuid="1a76b25b-fbcf-4df5-8585-24b7179b9fd3"/>
+						<reportElement positionType="Float" x="381" y="50" width="174" height="47" uuid="16afd830-3c2c-4b94-842d-41cc3e60375b"/>
 						<box>
 							<leftPen lineWidth="0.5"/>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="0" y="0" width="21" height="20" uuid="92e57922-4021-469a-869a-683b038ba5e1">
+							<reportElement x="0" y="0" width="21" height="20" uuid="0eb961c0-9f9c-42b4-80cc-3a4c03db29fe">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -1680,7 +1683,7 @@ NSW 2164]]></text>
 							<text><![CDATA[slot]]></text>
 						</staticText>
 						<staticText>
-							<reportElement stretchType="ContainerHeight" x="0" y="20" width="21" height="27" uuid="54bbfcde-80fc-48eb-bef6-da212feba9fd">
+							<reportElement stretchType="ContainerHeight" x="0" y="20" width="21" height="27" uuid="6a66c56d-5767-4514-924f-6d0a63fd8a67">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -1697,7 +1700,7 @@ NSW 2164]]></text>
 							<text><![CDATA[food]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="21" y="0" width="153" height="20" isPrintWhenDetailOverflows="true" uuid="511bc115-a9f1-49b5-9c53-85f91652a256">
+							<reportElement x="21" y="0" width="153" height="20" isPrintWhenDetailOverflows="true" uuid="ab27bf81-c73b-4e6e-993d-adf50fbeebab">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
@@ -1713,7 +1716,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement stretchType="ContainerHeight" x="69" y="20" width="21" height="27" uuid="385aa3cb-c9e2-4288-95f7-3904bb09998d">
+							<reportElement stretchType="ContainerHeight" x="69" y="20" width="21" height="27" uuid="d40aed05-defa-41ae-9a5e-3df0f2cea8b9">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -1730,7 +1733,7 @@ NSW 2164]]></text>
 							<text><![CDATA[DG]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement stretchType="ContainerHeight" x="21" y="20" width="48" height="27" isPrintWhenDetailOverflows="true" uuid="3af784f4-09ca-4002-a13c-c97a5cd4125b">
+							<reportElement stretchType="ContainerHeight" x="21" y="20" width="48" height="27" isPrintWhenDetailOverflows="true" uuid="390fb0a1-3b85-4478-a659-2d8a4f88219b">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
@@ -1746,7 +1749,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
 						<textField isStretchWithOverflow="true">
-							<reportElement stretchType="ContainerHeight" x="90" y="20" width="84" height="27" isPrintWhenDetailOverflows="true" uuid="8a9123d4-925b-459d-b041-8144bc589b37">
+							<reportElement stretchType="ContainerHeight" x="90" y="20" width="84" height="27" isPrintWhenDetailOverflows="true" uuid="e82e7200-c6b9-4c94-9369-9d3ee0edb268">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
@@ -1763,12 +1766,12 @@ NSW 2164]]></text>
 						</textField>
 					</frame>
 					<frame>
-						<reportElement positionType="Float" x="0" y="116" width="555" height="43" uuid="3f49bc93-4f30-440a-9616-ff1340a9573d"/>
+						<reportElement positionType="Float" x="0" y="116" width="555" height="43" uuid="c2e8ab92-3da7-4382-8fa6-9aa487708be6"/>
 						<box>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<componentElement>
-							<reportElement x="0" y="0" width="489" height="43" uuid="a3d6d4ed-e7c5-40ee-9e67-7f3cee2bc215">
+							<reportElement x="0" y="0" width="489" height="43" uuid="2f562426-2df5-4343-9cab-5c7adb445ccb">
 								<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 								<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 								<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -1776,13 +1779,13 @@ NSW 2164]]></text>
 								<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							</reportElement>
 							<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
-								<datasetRun subDataset="Dataset1" uuid="ffbda181-a0a2-428d-80ba-cad641357c75">
+								<datasetRun subDataset="Dataset1" uuid="773bc7a7-939f-4ea3-b6aa-4ccf5b9380df">
 									<datasetParameter name="transactionId">
 										<datasetParameterExpression><![CDATA[$P{transaction_id}]]></datasetParameterExpression>
 									</datasetParameter>
 									<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 								</datasetRun>
-								<jr:column width="40" uuid="4e8a1e87-4b8f-470b-9536-07c6a39c0bed">
+								<jr:column width="40" uuid="822f1cf4-b444-4a5e-8f0b-f5b53397f2f3">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -1790,7 +1793,7 @@ NSW 2164]]></text>
 											<bottomPen lineWidth="0.5"/>
 										</box>
 										<staticText>
-											<reportElement x="0" y="0" width="40" height="10" uuid="99dc19d8-b132-4c40-a31f-493c17283b7c"/>
+											<reportElement x="0" y="0" width="40" height="10" uuid="fd5dd3de-e84b-4660-bf23-8013b234dbcb"/>
 											<textElement textAlignment="Center" verticalAlignment="Middle">
 												<font size="8"/>
 											</textElement>
@@ -1806,7 +1809,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10"/>
 								</jr:column>
-								<jr:column width="234" uuid="ff02f8b4-fc0f-4641-9fc3-6414e06c2644">
+								<jr:column width="234" uuid="d9d92ce5-d108-4c65-866e-e087d8181622">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -1823,7 +1826,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10"/>
 								</jr:column>
-								<jr:column width="35" uuid="1e84bb46-b0ed-4ed6-9f49-794e9827e466">
+								<jr:column width="35" uuid="9f239878-4b73-4b23-b958-3747368ebb6d">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -1831,7 +1834,7 @@ NSW 2164]]></text>
 											<bottomPen lineWidth="0.5"/>
 										</box>
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="8c5e6ead-84c1-482d-bd3d-2ad74edabe24"/>
+											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="adf7d307-1fc5-4f49-a080-504d3eca9221"/>
 											<box padding="2"/>
 											<textElement textAlignment="Center" verticalAlignment="Top">
 												<font size="8"/>
@@ -1841,7 +1844,7 @@ NSW 2164]]></text>
 									</jr:tableFooter>
 									<jr:columnHeader style="Table_CH" height="10" rowSpan="1">
 										<staticText>
-											<reportElement x="0" y="0" width="35" height="10" uuid="0f73550b-f71d-4a7b-a3ef-3f7019ffa096"/>
+											<reportElement x="0" y="0" width="35" height="10" uuid="ac0e737a-6850-4a00-890d-2c5c6b693625"/>
 											<textElement textAlignment="Center" verticalAlignment="Middle">
 												<font size="8"/>
 											</textElement>
@@ -1856,7 +1859,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10">
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="ea8d1beb-3f3e-4eaa-83b6-d43834c8ac1c"/>
+											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="f7200bb1-97b2-4238-ba16-34d73e1191c3"/>
 											<box padding="2"/>
 											<textElement textAlignment="Left" verticalAlignment="Top">
 												<font size="8"/>
@@ -1865,7 +1868,7 @@ NSW 2164]]></text>
 										</textField>
 									</jr:detailCell>
 								</jr:column>
-								<jr:column width="2" uuid="7c5c1dcd-61f5-47a8-8abd-d8e67c6a2cf4">
+								<jr:column width="2" uuid="f402077a-3fa4-49c5-b137-82409b3074a3">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -1882,7 +1885,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10"/>
 								</jr:column>
-								<jr:column width="35" uuid="2e394e4d-0d35-46ec-ba4c-156381e4dae4">
+								<jr:column width="35" uuid="09c6b89e-2891-4004-bd33-617f00b6f575">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -1890,7 +1893,7 @@ NSW 2164]]></text>
 											<bottomPen lineWidth="0.5"/>
 										</box>
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="76b6ca77-e7b9-443b-b880-15b601c6397b"/>
+											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="03677a4e-54e2-4b64-9f5c-5fd4caec03d2"/>
 											<box padding="2"/>
 											<textElement textAlignment="Center" verticalAlignment="Top">
 												<font size="8"/>
@@ -1900,7 +1903,7 @@ NSW 2164]]></text>
 									</jr:tableFooter>
 									<jr:columnHeader style="Table_CH" height="10" rowSpan="1">
 										<staticText>
-											<reportElement x="0" y="0" width="35" height="10" uuid="ab3fa08c-0637-4c11-8e12-4f8b50262ae3"/>
+											<reportElement x="0" y="0" width="35" height="10" uuid="9f724888-9c7a-4101-974c-94eb58c9ad73"/>
 											<textElement textAlignment="Center" verticalAlignment="Middle">
 												<font size="8"/>
 											</textElement>
@@ -1915,7 +1918,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10">
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="fb7ebdcf-9c1e-4668-9d23-6b17c7f41f23"/>
+											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="f554260b-1c81-47f1-b64d-d86bb9a8aaf5"/>
 											<box padding="2"/>
 											<textElement textAlignment="Left" verticalAlignment="Top">
 												<font size="8"/>
@@ -1924,7 +1927,7 @@ NSW 2164]]></text>
 										</textField>
 									</jr:detailCell>
 								</jr:column>
-								<jr:column width="35" uuid="dd7e664f-ff4e-4aa2-8636-d0c7ae1edea5">
+								<jr:column width="35" uuid="ce8e2f3f-cc28-4ad8-87e3-333c553fe4d2">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -1934,7 +1937,7 @@ NSW 2164]]></text>
 									</jr:tableFooter>
 									<jr:columnHeader style="Table_CH" height="10" rowSpan="1">
 										<staticText>
-											<reportElement x="0" y="0" width="35" height="10" uuid="c75f0cb8-d546-45a8-a134-49d1619f605e"/>
+											<reportElement x="0" y="0" width="35" height="10" uuid="e7b6e184-66d8-4945-aa6e-1451d35a570d"/>
 											<textElement textAlignment="Center" verticalAlignment="Middle">
 												<font size="8"/>
 											</textElement>
@@ -1949,7 +1952,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10">
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="6177260a-5ceb-4edb-ba4e-417ad6954558"/>
+											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="076560e2-978a-4af9-9a05-c924dd3eacb6"/>
 											<box padding="2"/>
 											<textElement textAlignment="Left" verticalAlignment="Top">
 												<font size="8"/>
@@ -1958,7 +1961,7 @@ NSW 2164]]></text>
 										</textField>
 									</jr:detailCell>
 								</jr:column>
-								<jr:column width="36" uuid="701e0beb-69b4-47ee-b8f7-12d528409d0b">
+								<jr:column width="36" uuid="6f6ba418-5b60-4052-aff4-a7d05e826381">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -1968,7 +1971,7 @@ NSW 2164]]></text>
 									</jr:tableFooter>
 									<jr:columnHeader style="Table_CH" height="10" rowSpan="1">
 										<staticText>
-											<reportElement x="0" y="0" width="36" height="10" uuid="d7d57693-f50f-422f-9562-4693d3f98563"/>
+											<reportElement x="0" y="0" width="36" height="10" uuid="8dad1986-cc05-42a4-b147-cd7131510747"/>
 											<textElement textAlignment="Center" verticalAlignment="Middle">
 												<font size="8"/>
 											</textElement>
@@ -1983,7 +1986,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10">
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="36" height="10" isPrintWhenDetailOverflows="true" uuid="c8995fb8-3aa3-4474-b346-7cb0dfe29441"/>
+											<reportElement x="0" y="0" width="36" height="10" isPrintWhenDetailOverflows="true" uuid="117b028e-e277-4259-a143-cbc94489d3f5"/>
 											<box padding="2"/>
 											<textElement textAlignment="Left" verticalAlignment="Top">
 												<font size="8"/>
@@ -1992,7 +1995,7 @@ NSW 2164]]></text>
 										</textField>
 									</jr:detailCell>
 								</jr:column>
-								<jr:column width="35" uuid="d907cc67-70bb-430b-a942-437b9a1491e1">
+								<jr:column width="35" uuid="9b590d09-b62d-4ffe-b3f6-6da2d9b354c6">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column8"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -2002,7 +2005,7 @@ NSW 2164]]></text>
 									</jr:tableFooter>
 									<jr:columnHeader style="Table_CH" height="10" rowSpan="1">
 										<staticText>
-											<reportElement x="0" y="0" width="35" height="10" uuid="f3962f8f-e644-4b41-ba5c-ad89c49c1ecc"/>
+											<reportElement x="0" y="0" width="35" height="10" uuid="e2deeafb-d2fd-4f18-bb99-01185960be23"/>
 											<textElement textAlignment="Center" verticalAlignment="Middle">
 												<font size="8"/>
 											</textElement>
@@ -2017,7 +2020,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10">
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="8e6f55fc-a600-46db-89f2-22bba3544a15"/>
+											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="699b6c04-58b9-45a2-825e-28e5d54c5f2c"/>
 											<box padding="2"/>
 											<textElement textAlignment="Left" verticalAlignment="Top">
 												<font size="8"/>
@@ -2026,7 +2029,7 @@ NSW 2164]]></text>
 										</textField>
 									</jr:detailCell>
 								</jr:column>
-								<jr:column width="2" uuid="82b4ef99-d70b-4e5f-b588-c1d2e2888163">
+								<jr:column width="2" uuid="b5c92442-1201-44b4-8c85-63180a2554ba">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column9"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -2043,7 +2046,7 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10"/>
 								</jr:column>
-								<jr:column width="35" uuid="97b99088-d53b-4eac-8834-1b967f9ef787">
+								<jr:column width="35" uuid="3ac21636-2db8-4833-889d-ee80d871441b">
 									<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column10"/>
 									<jr:tableFooter style="Table_TH" height="10" rowSpan="1">
 										<box>
@@ -2051,17 +2054,17 @@ NSW 2164]]></text>
 											<bottomPen lineWidth="0.5"/>
 										</box>
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="5bf6ef13-bb3e-4e62-b9cb-48449c98ef65"/>
+											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="93c2cb9c-6f83-49e7-9507-24e2d4418b8d"/>
 											<box padding="2"/>
 											<textElement textAlignment="Center" verticalAlignment="Top">
 												<font size="8"/>
 											</textElement>
-											<textFieldExpression><![CDATA[$V{total_volume}]]></textFieldExpression>
+											<textFieldExpression><![CDATA[String.format("%.3f",$V{total_volume})]]></textFieldExpression>
 										</textField>
 									</jr:tableFooter>
 									<jr:columnHeader style="Table_CH" height="10" rowSpan="1">
 										<staticText>
-											<reportElement x="0" y="0" width="35" height="10" uuid="3217f76a-d957-48e2-ac96-85946744805f"/>
+											<reportElement x="0" y="0" width="35" height="10" uuid="e6597b4d-0e07-49b4-8640-65a600ba6c3b"/>
 											<textElement textAlignment="Center" verticalAlignment="Middle">
 												<font size="8"/>
 											</textElement>
@@ -2076,19 +2079,19 @@ NSW 2164]]></text>
 									</jr:columnFooter>
 									<jr:detailCell style="Table_TD" height="10">
 										<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="83be013c-2be5-4d47-b41a-109576c1e423"/>
+											<reportElement x="0" y="0" width="35" height="10" isPrintWhenDetailOverflows="true" uuid="401c3e65-4ae4-4d5f-8c2d-982cd43c5e6a"/>
 											<box padding="2"/>
 											<textElement textAlignment="Left" verticalAlignment="Top">
 												<font size="8"/>
 											</textElement>
-											<textFieldExpression><![CDATA[String.format("%.5f",(float)((float)$F{length}/100) * ((float)$F{height}/100)* ((float)$F{width}/100))]]></textFieldExpression>
+											<textFieldExpression><![CDATA[String.format("%.3f",$V{cubic})]]></textFieldExpression>
 										</textField>
 									</jr:detailCell>
 								</jr:column>
 							</jr:table>
 						</componentElement>
 						<frame>
-							<reportElement stretchType="ContainerHeight" x="490" y="0" width="65" height="43" isPrintWhenDetailOverflows="true" uuid="22ef882d-02bf-4f2d-8b3f-25d41341ba80">
+							<reportElement stretchType="ContainerHeight" x="490" y="0" width="65" height="43" isPrintWhenDetailOverflows="true" uuid="4bb86b3d-e6b1-4695-a932-092cee194fdc">
 								<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2097,7 +2100,7 @@ NSW 2164]]></text>
 								<bottomPen lineWidth="0.5"/>
 							</box>
 							<staticText>
-								<reportElement x="0" y="0" width="65" height="10" uuid="179ff894-4089-426f-ae7e-1d72c5816b01"/>
+								<reportElement x="0" y="0" width="65" height="10" uuid="e84b4ffa-8c8c-4ae9-9435-601fff0e1387"/>
 								<textElement textAlignment="Center">
 									<font size="8"/>
 								</textElement>
@@ -2106,9 +2109,9 @@ NSW 2164]]></text>
 						</frame>
 					</frame>
 					<frame>
-						<reportElement positionType="Float" x="0" y="159" width="555" height="72" uuid="6d7c8f27-8891-43c7-848a-7aa9cd7595ad"/>
+						<reportElement positionType="Float" x="0" y="159" width="555" height="72" uuid="190ed9a0-107d-48db-9fd0-9d40f551706c"/>
 						<staticText>
-							<reportElement x="0" y="0" width="10" height="73" uuid="24b24005-43e0-4c67-b9d4-4b958dace136"/>
+							<reportElement x="0" y="0" width="10" height="73" uuid="f040b0be-1b7c-4e34-a250-117cb4c770b8"/>
 							<box>
 								<pen lineWidth="0.5"/>
 								<topPen lineWidth="0.0"/>
@@ -2121,7 +2124,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Commodity]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="10" y="40" width="110" height="33" uuid="973e3a1c-a611-4aea-beb4-271a8c5a69be">
+							<reportElement x="10" y="40" width="110" height="33" uuid="77efe3fa-2efe-43c5-a820-5cedc461c403">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2138,7 +2141,7 @@ NSW 2164]]></text>
 							<text><![CDATA[DEHIRE/TRANSFER]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="10" y="0" width="110" height="40" isPrintWhenDetailOverflows="true" uuid="046aa173-82be-4c98-aa53-6b0105e611cf">
+							<reportElement x="10" y="0" width="110" height="40" isPrintWhenDetailOverflows="true" uuid="a129e66c-d455-41b7-bf24-6a10cad2f701">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2154,7 +2157,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{pickup_parcel_type}]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement x="120" y="1" width="30" height="10" uuid="fa9aedf3-9b80-4173-8354-ca7f8e30b216">
+							<reportElement x="120" y="1" width="30" height="10" uuid="c4c46dda-e3e8-452e-8b62-34be544581a8">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2171,7 +2174,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Refs]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="150" y="1" width="309" height="10" isPrintWhenDetailOverflows="true" uuid="c48baf09-2f67-4051-8f7d-daaef4610f7c">
+							<reportElement x="150" y="1" width="309" height="10" isPrintWhenDetailOverflows="true" uuid="05dfdbb7-83d2-4fff-95bd-6accd558fbf8">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2187,7 +2190,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement x="459" y="0" width="12" height="73" uuid="ad08c9e6-d95f-47f9-9b89-6efe5ff3ac21"/>
+							<reportElement x="459" y="0" width="12" height="73" uuid="caed0913-6437-4661-b447-ece15551b56a"/>
 							<box>
 								<pen lineWidth="0.5"/>
 								<topPen lineWidth="0.5"/>
@@ -2200,7 +2203,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Driver ID]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="471" y="33" width="84" height="40" uuid="5945a05c-2935-46aa-ae72-847cb5cd324d">
+							<reportElement x="471" y="33" width="84" height="40" uuid="46a22eba-d3e7-4121-bc37-be3614805c77">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2217,7 +2220,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Delivery]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="471" y="1" width="84" height="32" uuid="5afb84c9-074b-45a9-aef8-bab75ad0b0d5">
+							<reportElement x="471" y="1" width="84" height="32" uuid="ec2ea3ed-439f-4929-9bc4-27dc001cc261">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2234,7 +2237,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Pick up]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="120" y="41" width="339" height="32" uuid="c897fc81-b483-427c-a928-250b6ddd73cd">
+							<reportElement x="120" y="41" width="339" height="32" uuid="7f10f2e6-e922-4b30-8841-d266d51edb47">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2251,7 +2254,7 @@ NSW 2164]]></text>
 							<text><![CDATA[JME Transport are NOT COMMON CARRIERS. Insurance is not included unless otherwise stated. Our standard terms & conditions apply as published on our website www.jmet.com.au. Recieved in good order and condition]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="131" y="29" width="319" height="10" uuid="127be35b-7127-4887-811a-ff1457740b1c">
+							<reportElement x="131" y="29" width="319" height="10" uuid="d3b1ea3b-cc2b-4c24-9036-9343b4c34622">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2268,14 +2271,14 @@ NSW 2164]]></text>
 							<text><![CDATA[     Receiver Surname			Receiver Signature]]></text>
 						</staticText>
 						<line direction="BottomUp">
-							<reportElement x="380" y="17" width="11" height="11" uuid="535c2909-6475-4048-ac9e-2b53d7f055e5"/>
+							<reportElement x="380" y="17" width="11" height="11" uuid="b41dddf3-18c4-47fa-b3e2-b0f018e47e6a"/>
 						</line>
 						<line direction="BottomUp">
-							<reportElement x="424" y="17" width="11" height="11" uuid="2a0faec7-a0b3-4fd9-8a1d-c7ce71e4fab9"/>
+							<reportElement x="424" y="17" width="11" height="11" uuid="89a0d64e-cba9-4eaa-92f5-8de080b05733"/>
 						</line>
 					</frame>
 					<frame>
-						<reportElement positionType="Float" x="0" y="80" width="381" height="17" uuid="3ce213a7-679f-42c2-9d71-18154af6ca5e"/>
+						<reportElement positionType="Float" x="0" y="80" width="381" height="17" uuid="a229664f-ce16-4e36-bacd-2b8bb052e543"/>
 						<box>
 							<topPen lineWidth="0.5"/>
 							<leftPen lineWidth="0.5"/>
@@ -2283,7 +2286,7 @@ NSW 2164]]></text>
 							<rightPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement stretchType="ContainerHeight" x="0" y="0" width="31" height="17" uuid="1eb838a5-1921-4317-ad54-75baefad4cbf">
+							<reportElement stretchType="ContainerHeight" x="0" y="0" width="31" height="17" uuid="d80e4b92-e2b0-48c4-b495-1d732faebdc0">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2300,7 +2303,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Name]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="31" y="0" width="71" height="17" isPrintWhenDetailOverflows="true" uuid="f74913f6-5bf6-4cf6-8b59-92c9f6ded6ae">
+							<reportElement x="31" y="0" width="71" height="17" isPrintWhenDetailOverflows="true" uuid="586b7982-c498-4f05-bbb7-9177b926e236">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2316,7 +2319,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{sender_name}]]></textFieldExpression>
 						</textField>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="121" y="0" width="70" height="17" isPrintWhenDetailOverflows="true" uuid="2953bf81-554f-467a-84ee-7bf5029c5af0">
+							<reportElement x="121" y="0" width="70" height="17" isPrintWhenDetailOverflows="true" uuid="3ad66109-168b-462f-afaf-177c3eeb16cd">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2332,7 +2335,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{sender_phone_number}]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement x="102" y="0" width="19" height="17" uuid="779b7f2d-f38d-40fb-b76e-fafb7f0361c6">
+							<reportElement x="102" y="0" width="19" height="17" uuid="3db8316d-4323-4805-adb6-f7c026636b12">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2349,7 +2352,7 @@ NSW 2164]]></text>
 							<text><![CDATA[PH]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="222" y="0" width="70" height="17" isPrintWhenDetailOverflows="true" uuid="15e1cf33-082a-4c5d-a023-7dfd2e585b6e">
+							<reportElement x="222" y="0" width="70" height="17" isPrintWhenDetailOverflows="true" uuid="a3623e12-cb9e-45bc-9698-542a602bd8ed">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2365,7 +2368,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{receiver_name}]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement stretchType="ContainerHeight" x="191" y="0" width="31" height="17" uuid="6861d639-9b8d-462f-a628-47a808d04a31">
+							<reportElement stretchType="ContainerHeight" x="191" y="0" width="31" height="17" uuid="e85c34a0-b7a5-4b5f-ac89-0d83c4c97d14">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2382,7 +2385,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Name]]></text>
 						</staticText>
 						<staticText>
-							<reportElement stretchType="ContainerHeight" x="292" y="0" width="19" height="17" uuid="25ff9302-f4ac-465b-9cc3-ff9a512327fe">
+							<reportElement stretchType="ContainerHeight" x="292" y="0" width="19" height="17" uuid="92e2885f-9048-4a4a-bdd1-77e58e67f50a">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2399,7 +2402,7 @@ NSW 2164]]></text>
 							<text><![CDATA[PH]]></text>
 						</staticText>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="311" y="0" width="70" height="17" isPrintWhenDetailOverflows="true" uuid="a1282fcb-8d32-4640-b95e-84f64e16ca60">
+							<reportElement x="311" y="0" width="70" height="17" isPrintWhenDetailOverflows="true" uuid="874a2986-d588-4c01-9476-1ad46a623ed6">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2416,9 +2419,9 @@ NSW 2164]]></text>
 						</textField>
 					</frame>
 					<frame>
-						<reportElement positionType="Float" x="0" y="97" width="554" height="19" uuid="ed8318f2-0409-4d4c-87bf-682c941cafc6"/>
+						<reportElement positionType="Float" x="0" y="97" width="554" height="19" uuid="c67b45f9-5edc-48b7-ab3b-f1b1402785b4"/>
 						<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-							<reportElement x="51" y="0" width="503" height="19" isPrintWhenDetailOverflows="true" uuid="ed27dab8-5007-4c7c-bc35-fbb5c4fa4570">
+							<reportElement x="51" y="0" width="503" height="19" isPrintWhenDetailOverflows="true" uuid="74010b91-f23d-4883-81d4-d9fa73ba0172">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2434,7 +2437,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[$F{pickup_special_instruction}]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement x="0" y="0" width="51" height="19" uuid="0fd5273e-a0a9-4d63-ae3c-6ace28efe131">
+							<reportElement x="0" y="0" width="51" height="19" uuid="d449cac5-6c9d-46e5-8b39-5d0a3c0a7c32">
 								<property name="com.jaspersoft.studio.unit.x" value="px"/>
 								<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							</reportElement>
@@ -2452,9 +2455,9 @@ NSW 2164]]></text>
 						</staticText>
 					</frame>
 					<frame>
-						<reportElement positionType="Float" x="0" y="49" width="381" height="31" uuid="501b6b93-394e-4c05-a279-41437e69d36b"/>
+						<reportElement positionType="Float" x="0" y="49" width="381" height="31" uuid="ee9b7239-f5ad-4ea3-9444-504c7c9a3849"/>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="21" y="0" width="170" height="31" isPrintWhenDetailOverflows="true" uuid="6fae55a1-3f48-4cc9-9375-517628df4a6a">
+							<reportElement x="21" y="0" width="170" height="31" isPrintWhenDetailOverflows="true" uuid="b1ea817b-8a8f-41f6-ad65-38c280c7b64b">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2470,7 +2473,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
 						<textField isStretchWithOverflow="true">
-							<reportElement x="212" y="0" width="169" height="31" isPrintWhenDetailOverflows="true" uuid="a016acc4-164e-45a8-959c-8fcb1ccb8774">
+							<reportElement x="212" y="0" width="169" height="31" isPrintWhenDetailOverflows="true" uuid="3f62f249-b8e9-4326-8bfa-2dc33d2463e8">
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
 							<box padding="5">
@@ -2486,7 +2489,7 @@ NSW 2164]]></text>
 							<textFieldExpression><![CDATA[""]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement x="191" y="0" width="21" height="31" uuid="73119ddb-3c4d-4a27-8b10-2930707ab865"/>
+							<reportElement x="191" y="0" width="21" height="31" uuid="8b0b877a-8422-4265-99d0-ddd4732b9332"/>
 							<box>
 								<pen lineWidth="0.5"/>
 								<topPen lineWidth="0.0"/>
@@ -2498,7 +2501,7 @@ NSW 2164]]></text>
 							<text><![CDATA[Instruction]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="0" y="0" width="21" height="31" uuid="5aa5db62-f8b8-47f0-8eeb-10c0f2cf668c"/>
+							<reportElement x="0" y="0" width="21" height="31" uuid="892b69a3-7633-43a7-bb41-68efa94de98a"/>
 							<box>
 								<pen lineWidth="0.5"/>
 								<topPen lineWidth="0.0"/>
