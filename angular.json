@@ -1,126 +1,128 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "jmet-forms": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "",
-      "sourceRoot": "./resources/ts/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "./angular-build",
-            "index": "./resources/ts/src/index.html",
-            "main": "./resources/ts/src/main.ts",
-            "polyfills": "./resources/ts/src/polyfills.ts",
-            "tsConfig": "./resources/ts/tsconfig.app.json",
-            "aot": false,
-            "assets": [
-              "./resources/ts/src/favicon.ico",
-              "./resources/ts/src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "./resources/ts/src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "./resources/ts/src/environments/environment.ts",
-                  "with": "./resources/ts/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "jmet-forms:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "jmet-forms:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "jmet-forms:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "./resources/ts/src/test.ts",
-            "polyfills": "./resources/ts/src/polyfills.ts",
-            "tsConfig": "./resources/ts/tsconfig.spec.json",
-            "karmaConfig": "./karma.conf.js",
-            "assets": [
-              "./resources/ts/src/favicon.ico",
-              "./resources/ts/src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "./resources/ts/src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "./resources/ts/tsconfig.app.json",
-              "./resources/ts/tsconfig.spec.json",
-              "./resources/ts/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./resources/ts/e2e/protractor.conf.js",
-            "devServerTarget": "jmet-forms:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "jmet-forms:serve:production"
-            }
-          }
-        }
-      }
-    }
-  },
-  "defaultProject": "jmet-forms",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "scss"
-    }
-  }
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"jmet-forms": {
+			"projectType": "application",
+			"schematics": {},
+			"root": "",
+			"sourceRoot": "./resources/ts/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "./angular-build",
+						"index": "./resources/ts/src/index.html",
+						"main": "./resources/ts/src/main.ts",
+						"polyfills": "./resources/ts/src/polyfills.ts",
+						"tsConfig": "./resources/ts/tsconfig.app.json",
+						"aot": false,
+						"assets": [
+							"./resources/ts/src/favicon.ico",
+							"./resources/ts/src/assets"
+						],
+						"styles": [
+							"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+							"./resources/ts/src/styles.scss"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "./resources/ts/src/environments/environment.ts",
+									"with": "./resources/ts/src/environments/environment.prod.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": true,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "jmet-forms:build"
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "jmet-forms:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "jmet-forms:build"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "./resources/ts/src/test.ts",
+						"polyfills": "./resources/ts/src/polyfills.ts",
+						"tsConfig": "./resources/ts/tsconfig.spec.json",
+						"karmaConfig": "./karma.conf.js",
+						"assets": [
+							"./resources/ts/src/favicon.ico",
+							"./resources/ts/src/assets"
+						],
+						"styles": [
+							"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+							"./resources/ts/src/styles.scss"
+						],
+						"scripts": []
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"./resources/ts/tsconfig.app.json",
+							"./resources/ts/tsconfig.spec.json",
+							"./resources/ts/e2e/tsconfig.json"
+						],
+						"exclude": [
+							"**/node_modules/**"
+						]
+					}
+				},
+				"e2e": {
+					"builder": "@angular-devkit/build-angular:protractor",
+					"options": {
+						"protractorConfig": "./resources/ts/e2e/protractor.conf.js",
+						"devServerTarget": "jmet-forms:serve"
+					},
+					"configurations": {
+						"production": {
+							"devServerTarget": "jmet-forms:serve:production"
+						}
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "jmet-forms",
+	"schematics": {
+		"@schematics/angular:component": {
+			"styleext": "scss"
+		}
+	}
 }

@@ -2,32 +2,31 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ITransactionSummary } from 'src/app/types/TransactionSummary';
 
 @Component({
-  selector: 'app-transaction-summary',
-  templateUrl: './transaction-summary.component.html',
-  styleUrls: ['./transaction-summary.component.scss']
+	selector: 'app-transaction-summary',
+	templateUrl: './transaction-summary.component.html',
+	styleUrls:
+		[
+			'./transaction-summary.component.scss',
+		],
 })
 export class TransactionSummaryComponent implements OnInit {
-  @Input()
-  transactionSummary: ITransactionSummary;
+	@Input() transactionSummary: ITransactionSummary;
 
-  @Input()
-  transactionFetching = true;
+	@Input() transactionFetching = true;
 
-  @Input()
-  disableResubmit = false;
+	@Input() disableResubmit = false;
 
-  @Output()
-  resubmit = new EventEmitter<any>();
+	@Output() resubmit = new EventEmitter<any>();
 
-  constructor() {}
+	constructor () {}
 
-  ngOnInit() {}
+	ngOnInit () {}
 
-  reloadApp() {
-    window.location.reload();
-  }
+	reloadApp () {
+		window.location.reload();
+	}
 
-  emitResubmit() {
-    this.resubmit.emit(this);
-  }
+	emitResubmit () {
+		this.resubmit.emit(this);
+	}
 }

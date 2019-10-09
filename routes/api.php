@@ -23,6 +23,17 @@ Route::resources([
   'transaction' => 'TransactionCreatorController'
 ]);
 
+Route::resources([
+  'commonUser' => 'CommonUserController'
+]);
+
+// revokeToken
+
+Route::post('commonUserSession/revoke', 'CommonUserSessionsController@revokeToken');
+Route::resources([
+  'commonUserSession' => 'CommonUserSessionsController'
+]);
+
 Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   $transaction_id = $request->query('transaction_id');
   if (!isset($transaction_id)) {

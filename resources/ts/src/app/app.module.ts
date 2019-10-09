@@ -18,61 +18,73 @@ import { DeliveryTableComponent } from './components/delivery-table/delivery-tab
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { TransactionSummaryComponent } from './components/transaction-summary/transaction-summary.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
 
 const APP_ROUTES: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'sign-up', component: SignUpComponent },
-  { path: 'orderForm', component: OrderFormComponent },
-  { path: 'admin', component: AdminDashboardComponent },
-  // always put this on the end of the route
-  { path: '**', pathMatch: 'full', redirectTo: 'login' }
+	{ path: 'login', component: LoginComponent },
+	{ path: 'sign-up', component: SignUpComponent },
+	{
+		path: 'orderForm',
+		component: OrderFormComponent,
+		canActivate:
+			[
+				AuthGuard,
+			],
+	},
+	{ path: 'admin', component: AdminDashboardComponent },
+	// always put this on the end of the route
+	{ path: '**', pathMatch: 'full', redirectTo: 'login' },
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    OrderFormComponent,
-    DeliveryInfoComponent,
-    PersonInfoComponent,
-    AvoidPasteForNonNumericDirective,
-    AdminDashboardComponent,
-    DeliveryTableComponent,
-    SignUpComponent,
-    TransactionSummaryComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AngularMaterialModules,
-    RouterModule.forRoot(APP_ROUTES, { useHash: true }),
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [AppComponent]
+	declarations:
+		[
+			AppComponent,
+			LoginComponent,
+			OrderFormComponent,
+			DeliveryInfoComponent,
+			PersonInfoComponent,
+			AvoidPasteForNonNumericDirective,
+			AdminDashboardComponent,
+			DeliveryTableComponent,
+			SignUpComponent,
+			TransactionSummaryComponent,
+		],
+	imports:
+		[
+			BrowserModule,
+			BrowserAnimationsModule,
+			HttpClientModule,
+			AngularMaterialModules,
+			RouterModule.forRoot(APP_ROUTES, { useHash: true }),
+			FormsModule,
+			ReactiveFormsModule,
+		],
+	providers: [],
+	bootstrap:
+		[
+			AppComponent,
+		],
+	entryComponents:
+		[
+			AppComponent,
+		],
 })
 export class AppModule {
-  constructor(
-    private injector: Injector,
-    private location: Location,
-    private router: Router
-  ) {
-    // const appComponentElement = createCustomElement(AppComponent, { injector });
-    // customElements.define('app-root', appComponentElement);
-    // // on every route change tell router to navigate to defined route
-    // this.location.subscribe(data => {
-    //   console.log('Data subscribe', data);
-    //   this.router.navigateByUrl(data.url);
-    // });
-    // // using this router outlet is loaded normaly on init
-    // this.router.navigateByUrl(this.location.path(true));
-    // // event subscribe to detect route change inside angular
-    // this.router.events.subscribe(data => {
-    //   // console.log(data);
-    // });
-  }
-  ngDoBootstrap() {}
+	constructor (private injector: Injector, private location: Location, private router: Router) {
+		// const appComponentElement = createCustomElement(AppComponent, { injector });
+		// customElements.define('app-root', appComponentElement);
+		// // on every route change tell router to navigate to defined route
+		// this.location.subscribe(data => {
+		//   console.log('Data subscribe', data);
+		//   this.router.navigateByUrl(data.url);
+		// });
+		// // using this router outlet is loaded normaly on init
+		// this.router.navigateByUrl(this.location.path(true));
+		// // event subscribe to detect route change inside angular
+		// this.router.events.subscribe(data => {
+		//   // console.log(data);
+		// });
+	}
+	ngDoBootstrap () {}
 }

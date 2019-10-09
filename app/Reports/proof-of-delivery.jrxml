@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e6b53c67-71e1-4741-8efa-a6603938ad74">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -11,7 +11,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter1.xml"/>
 	<style name="Table_TH" mode="Opaque" backcolor="rgba(240, 248, 255, 0.0)">
 		<box>
 			<topPen lineWidth="0.0" lineColor="#000000"/>
@@ -275,7 +275,7 @@ where t.id = $P{transaction_id}]]>
 		<band height="357" splitType="Prevent">
 			<frame>
 				<reportElement x="0" y="0" width="555" height="337" isPrintWhenDetailOverflows="true" uuid="d8af2be3-0508-4226-9ab7-a1e2af9e7be6"/>
-				<image isLazy="true">
+				<image isLazy="true" onErrorType="Blank">
 					<reportElement x="0" y="0" width="51" height="40" uuid="2dbcc9a4-9bc0-4baf-bdfe-b1a79c5d03b5"/>
 					<imageExpression><![CDATA["http://167.71.218.87/assets/jme-logo-header.png"]]></imageExpression>
 				</image>
@@ -1401,7 +1401,7 @@ NSW 2164]]></text>
 		<band height="337" splitType="Prevent">
 			<frame>
 				<reportElement x="0" y="0" width="555" height="337" isPrintWhenDetailOverflows="true" uuid="7a77095d-4ee2-4687-bfdb-4c142f4dd7fa"/>
-				<image isLazy="true">
+				<image isLazy="true" onErrorType="Blank">
 					<reportElement x="0" y="0" width="51" height="40" uuid="ebfcadea-0924-4e5c-ae86-ec2398556703"/>
 					<imageExpression><![CDATA["http://167.71.218.87/assets/jme-logo-header.png"]]></imageExpression>
 				</image>

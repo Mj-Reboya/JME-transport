@@ -1,20 +1,17 @@
 <form
   class="ui centered grid"
   style="margin: 0 auto"
-  [formGroup]="newAccountInfo"
-  #newAccount
->
+  #newAccount>
   <mat-card class="rouded-all" style="padding-top: 0px">
     <mat-card-header
       class="ui centered grid header-col rounded-top"
-      style="margin-bottom: 10px"
-    >
+      style="margin-bottom: 10px">
       <mat-card-title>
         <!-- <div class="ui huge header white">JME</div> -->
         <img
           class="ui centered image disable-selection"
           src="../../../assets/jme-logo-header.png"
-        />
+          />
       </mat-card-title>
       <mat-card-subtitle>
         <header class="ui medium header white">
@@ -24,7 +21,7 @@
     </mat-card-header>
     <mat-card-content>
       <mat-horizontal-stepper [linear]="true">
-        <mat-step>
+        <mat-step [formGroup]="userBasicInfo">
           <div class="ui horizontal divider">
             <div class="jme-col">
               Personal Information
@@ -33,25 +30,65 @@
           <div class="ui grid stackable" style="margin: 0px; max-width: 400px;">
             <div class="row equal width grid low-padding">
               <mat-form-field appearance="outline" class="column">
-                <mat-label>Lastname</mat-label>
-                <input matInput placeholder="Lastname" />
+                <mat-label>FirstName</mat-label>
+                <input
+                  matInput
+                  placeholder="FirstName"
+                  [value]="userBasicInfo.controls['firstname'].value"
+                  [formControl]="userBasicInfo.controls['firstname']"
+                  />
+                <mat-error
+                  *ngIf="userBasicInfo.controls['firstname'].errors?.required">
+                  FirstName is <strong>required</strong>
+                </mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="column">
-                <mat-label>Middlename</mat-label>
-                <input matInput placeholder="Middlename" />
+                <mat-label>Lastname</mat-label>
+                <input
+                  matInput
+                  placeholder="Lastname"
+                  [value]="userBasicInfo.controls['lastname'].value"
+                  [formControl]="userBasicInfo.controls['lastname']"
+                  />
+                <mat-error
+                  *ngIf="userBasicInfo.controls['lastname'].errors?.required">
+                  Lastname is <strong>required</strong>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="row low-padding">
               <mat-form-field appearance="outline" class="column">
                 <mat-label>Company</mat-label>
-                <input matInput placeholder="Company" />
+                <input
+                  matInput
+                  placeholder="Company"
+                  [value]="userBasicInfo.controls['company'].value"
+                  [formControl]="userBasicInfo.controls['company']"
+                  />
+                <mat-error
+                  *ngIf="userBasicInfo.controls['company'].errors?.required">
+                  Company is <strong>required</strong>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="row low-padding">
               <mat-form-field appearance="outline" class="column">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" />
+                <input
+                  matInput
+                  placeholder="Email"
+                  [value]="userBasicInfo.controls['email'].value"
+                  [formControl]="userBasicInfo.controls['email']" />
+                <mat-error
+                  *ngIf="userBasicInfo.controls['email'].errors?.email">
+                  Must be a valid email address
+                </mat-error>
+                <mat-error
+                  *ngIf="userBasicInfo.controls['company'].errors?.required">
+                  Email is <strong>required</strong>
+                </mat-error>
               </mat-form-field>
+
             </div>
             <div class="row low-padding">
               <div class="middle aligned column">
@@ -59,13 +96,14 @@
                   <button
                     [routerLink]="['/login']"
                     mat-stroked-button
-                    color="primary"
-                  >
+                    color="primary">
                     Return to Login
                   </button>
                 </div>
                 <div style="float: right">
-                  <button matStepperNext mat-raised-button color="primary">
+                  <button
+                    [disabled]="!enableUserBasicInfoNextButton()"
+                    matStepperNext mat-raised-button color="primary">
                     Next
                     <mat-icon>navigate_next</mat-icon>
                   </button>
@@ -74,7 +112,7 @@
             </div>
           </div>
         </mat-step>
-        <mat-step>
+        <mat-step [formGroup]="newAccountInfo">
           <div class="ui horizontal divider">
             <div class="jme-col">
               Account Information
@@ -84,7 +122,17 @@
             <div class="row low-padding">
               <mat-form-field appearance="outline" class="column">
                 <mat-label>Username</mat-label>
-                <input matInput placeholder="Username" />
+                <input
+                  matInput
+                  placeholder="Username"
+                  [value]="newAccountInfo.controls['username'].value"
+                  [formControl]="newAccountInfo.controls['username']"
+                  />
+                <mat-error
+                  *ngIf="newAccountInfo.controls['username'].errors?.minlength
+                  || newAccountInfo.controls['username'].errors?.maxlenght">
+                  Username Must be <strong>6 to 16 characters in lenght</strong>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="row equal width grid low-padding">
@@ -95,7 +143,14 @@
                   type="{{ showPass ? '' : 'password' }}"
                   placeholder="Password"
                   [formControl]="newAccountInfo.controls['password']"
-                />
+                  minlength="5"
+                  maxlength="16"
+                  />
+                <mat-error
+                  *ngIf="newAccountInfo.controls['password'].errors?.minlength
+                  || newAccountInfo.controls['password'].errors?.maxlenght">
+                  Password Must be <strong>6 to 16 characters in lenght</strong>
+                </mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="column">
                 <mat-label>Re-Type Password</mat-label>
@@ -104,15 +159,12 @@
                   type="{{ showPass ? '' : 'password' }}"
                   placeholder="Re-Type Password"
                   [formControl]="newAccountInfo.controls['passwordReType']"
-                />
+                  />
                 <mat-error
-                  *ngIf="
-                    newAccountInfo.controls['passwordReType'].hasError(
-                      'notMatch'
-                    )
-                  "
-                >
-                  Password did not Matched
+                  *ngIf="newAccountInfo.controls['passwordReType'].hasError(
+                  'notMatch'
+                  )">
+                  Password did not <strong>Matched</strong>
                 </mat-error>
 
                 <button
@@ -121,8 +173,7 @@
                   aria-label="Unhide"
                   (mousedown)="visibiltyOn()"
                   (mouseup)="visibilityOff()"
-                  (mouseleave)="visibilityOff()"
-                >
+                  (mouseleave)="visibilityOff()">
                   <mat-icon color="primary">
                     {{ showPass ? 'visibility' : 'visibility_off' }}
                   </mat-icon>
@@ -138,7 +189,8 @@
                   </button>
                 </div>
                 <div style="float: right">
-                  <button matStepperNext mat-raised-button color="primary">
+                  <button matStepperNext mat-raised-button color="primary"
+                    (click)="signUp()">
                     Create Account
                     <mat-icon>navigate_next</mat-icon>
                   </button>

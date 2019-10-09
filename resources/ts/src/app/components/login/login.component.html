@@ -2,19 +2,19 @@
   class="ui centered grid"
   style="margin: 0 auto"
   (submit)="login()"
-  #userLogin
->
+  [formGroup]="loginAccountForm"
+  action="#"
+  #userLogin>
   <mat-card class="rouded-all" style="padding-top: 0px">
     <mat-card-header
       class="ui centered grid header-col rounded-top"
-      style="margin-bottom: 10px"
-    >
+      style="margin-bottom: 10px">
       <mat-card-title>
         <!-- <div class="ui huge header white">JME</div> -->
         <img
           class="ui centered image disable-selection"
           src="../../../assets/jme-logo-header.png"
-        />
+          />
       </mat-card-title>
       <mat-card-subtitle>
         <header class="ui huge header white">
@@ -26,14 +26,25 @@
       <div class="row" style="padding: 0px">
         <mat-form-field class="centered seven wide column center aligned">
           <mat-icon color="primary" matPrefix>account_box&nbsp;</mat-icon>
-          <input matInput placeholder="Username" />
+          <input
+            matInput
+            placeholder="Username"
+            [formControl]="loginAccountForm.controls['username']"
+            [value]="loginAccountForm.controls['username'].value"
+            />
           <mat-icon color="primary" matSuffix></mat-icon>
         </mat-form-field>
       </div>
       <div class="row" style="padding: 0px">
         <mat-form-field class="centered seven wide column center aligned">
           <mat-icon color="primary" matPrefix>lock&nbsp;</mat-icon>
-          <input matInput placeholder="Password" />
+          <input
+            matInput
+            placeholder="Password"
+            type="password"
+            [formControl]="loginAccountForm.controls['password']"
+            [value]="loginAccountForm.controls['password'].value"
+            />
           <mat-icon color="primary" matSuffix></mat-icon>
         </mat-form-field>
       </div>
@@ -44,13 +55,19 @@
     <mat-card-actions>
       <div class="ui grid full-width" style="margin:0px">
         <div class="middle aligned column">
-          <div style="float: right">
-            <button (click)="signUp()" mat-stroked-button color="primary">
-              Sign Up
-            </button>
-            <button type="submit" mat-raised-button color="primary">
+          <div style="float: right;
+            display: flex; flex-direction: row-reverse;">
+            <button type="submit"
+              mat-raised-button
+              color="primary">
               Login
               <mat-icon>arrow_forward</mat-icon>
+            </button>
+            &nbsp;
+            &nbsp;
+            <button (click)="signUp()" mat-stroked-button
+              color="primary">
+              Sign Up
             </button>
           </div>
         </div>

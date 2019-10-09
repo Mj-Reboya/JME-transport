@@ -9,6 +9,8 @@ use App\PickupDetails;
 use App\Receiver;
 use App\Sender;
 use App\Transaction;
+use App\CommonUserSessions;
+use App\TransactionByUser;
 use Illuminate\Http\Request;
 
 class TransactionCreatorController extends Controller
@@ -49,7 +51,15 @@ class TransactionCreatorController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $header = $request->header('Authorization');
+    $session = CommonUserSessions::getUserBySession($header);
+    if (!isset($session)) {
+      return response()->json([
+        'message' => 'invalid Session token',
+        'usedToken' => $header
+      ], 404);
+    }
+
     if (!$request->isJson()) {
       return response()->json([
         'message' => 'only accepts JSON Request type'
@@ -106,6 +116,14 @@ class TransactionCreatorController extends Controller
     $transaction->receiver()->save($senderCust);
     $transaction->payor()->save($senderCust);
     $transaction->pickupDetails()->save($senderCust);
+
+    $user = $session->common_user();
+
+    $transactionByUser = new TransactionByUser([
+      'transaction_id' => $transaction->id, 'common_user_id' => $user->id
+    ]);
+
+    $transactionByUser->save();
 
     return response()->json([
       'requestId' => $transaction->id
