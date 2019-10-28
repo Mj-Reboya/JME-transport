@@ -78,7 +78,7 @@ class TransactionCreatorController extends Controller
     $pickupDetails = new PickupDetails([
       'parcel_type'         => $pickupDetailsReq['parcelType'],
       'special_instruction' => isset($pickupDetailsReq['specialInstruction']) ? $pickupDetailsReq['specialInstruction'] : '',
-      'option'              => $pickupDetailsReq['pickUpOption'],
+      'option'              => 'by',
       'pickup_date'         => date('Y-m-d', strtotime($pickupDetailsReq['pickUpDate'])),
       'ready_at'            => date('H:i:s', strtotime($pickupDetailsReq['pickUpReadyAt'])),
       'closing_time'        => date('H:i:s', strtotime($pickupDetailsReq['closingTime']))

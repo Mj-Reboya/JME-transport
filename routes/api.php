@@ -82,8 +82,13 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     File::makeDirectory($output, 0777, true);
   }
 
+  $out_name = $pdf_name;
+  if ($pdf_name == 'pdf-2') {
+    $out_name = 'barcode';
+  }
+
   if (file_exists($output . "/$pdf_name.pdf")) {
-    return response()->download($output . "/$pdf_name.pdf", $pdf_name . uniqid('_jme_') . $transaction_id . '.pdf', [
+    return response()->download($output . "/$pdf_name.pdf", $out_name . uniqid('_jme_') . $transaction_id . '.pdf', [
       'code' => 400
     ]);
   }
@@ -103,7 +108,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
       $output,
       $options
     )->execute();
-    return response()->download($output . "/$pdf_name.pdf", $pdf_name . uniqid('_jme_') . $transaction_id . '.pdf', [
+    return response()->download($output . "/$pdf_name.pdf", $out_name . uniqid('_jme_') . $transaction_id . '.pdf', [
       'code' => 400
     ]);
   } catch (\Throwable $th) {

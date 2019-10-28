@@ -1,28 +1,48 @@
 <div fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutGap="1em">
   <div fxFlex="100%" fxFlexFill>
-    <div class="ui small header ">
+    <div class="ui small header">
       ITEM Description
     </div>
   </div>
+
+  <div fxFlex="100%" fxFlexFill>
+    <div class="ui horizontal divider">Item List</div>
+    <ng-container *ngIf="deliveryItems.length === 0; else hasItems">
+      <div
+        class="ui huge disabled header"
+        [ngStyle]="{ 'text-align': 'center' }">
+        <div class="content">
+          Currently No Items on the List
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #hasItems>
+      <div style="justify-content: left">
+        <app-delivery-table
+          (itemSelected)="selectUpdateItem($event)"
+          (itemDeleted)="deleteItem($event)"
+          [deliveryItems]="deliveryItems"></app-delivery-table>
+      </div>
+    </ng-template>
+
+  </div>
   <form
+    *ngIf="itemFormShow"
     [formGroup]="deliveryItemForm"
     name="itemForm"
     fxFlex="90%"
     fxFlexAlign="center"
-    fxFlexFill
-  >
+    fxFlexFill>
     <div
       fxLayout="row"
       fxLayout.lt-sm="column"
       fxLayoutAlign="space-between center"
-      fxLayoutGap="1em"
-    >
+      fxLayoutGap="1em">
       <mat-form-field
         fxFlex="50%"
         fxFlexFill
         fxFlexAlign="start"
-        appearance="outline"
-      >
+        appearance="outline">
         <mat-label>Description</mat-label>
         <input
           matInput
@@ -33,10 +53,9 @@
           style="text-align: unset !important;"
           #descriptionField
           required
-        />
+          />
         <mat-error
-          *ngIf="deliveryItemForm.controls['description'].hasError('required')"
-        >
+          *ngIf="deliveryItemForm.controls['description'].hasError('required')">
           Description is <strong>required</strong>
         </mat-error>
       </mat-form-field>
@@ -44,17 +63,16 @@
         fxFlex="50%"
         fxFlexFill
         fxFlexAlign="start"
-        appearance="outline"
-      >
+        appearance="outline">
         <mat-label>Commodity</mat-label>
         <mat-select [formControl]="deliveryItemForm.controls['commodity']">
-          <mat-option *ngFor="let commodity of commodities" [value]="commodity">
+          <mat-option *ngFor="let commodity of commodities"
+            [value]="commodity">
             {{ commodity }}
           </mat-option>
         </mat-select>
         <mat-error
-          *ngIf="deliveryItemForm.controls['commodity'].hasError('required')"
-        >
+          *ngIf="deliveryItemForm.controls['commodity'].hasError('required')">
           Commodity is <strong>required</strong>
         </mat-error>
       </mat-form-field>
@@ -63,28 +81,26 @@
       fxLayout="row"
       fxLayout.lt-sm="column"
       fxLayoutAlign="space-between strech"
-      fxLayoutGap="1em"
-    >
+      fxLayoutGap="1em">
       <mat-form-field
         fxFlex="15%"
         fxFlexFill
         fxFlexAlign="start"
-        appearance="outline"
-      >
+        appearance="outline">
         <mat-label>Items</mat-label>
         <input
           matInput
           [formControl]="deliveryItemForm.controls['items']"
           [value]="deliveryItemForm.controls['items'].value"
+          (keypress)="numOnly($event)"
+          (onblur)="sanitizeItems()"
           placeholder="Items"
           class="non-semantic"
           style="text-align: unset !important;"
-          type="number"
           required
-        />
+          />
         <mat-error
-          *ngIf="deliveryItemForm.controls['items'].hasError('required')"
-        >
+          *ngIf="deliveryItemForm.controls['items'].hasError('required')">
           Items is <strong>required</strong>
         </mat-error>
       </mat-form-field>
@@ -92,22 +108,20 @@
         fxFlex="20%"
         fxFlexFill
         fxFlexAlign="start"
-        appearance="outline"
-      >
+        appearance="outline">
         <mat-label>Total Weight</mat-label>
         <input
           matInput
           [formControl]="deliveryItemForm.controls['totalWeight']"
           [value]="deliveryItemForm.controls['totalWeight'].value"
+          (keypress)="numOnly($event)"
           placeholder="Total Weight"
           class="non-semantic"
           style="text-align: unset !important;"
-          type="number"
           required
-        />
+          />
         <mat-error
-          *ngIf="deliveryItemForm.controls['totalWeight'].hasError('required')"
-        >
+          *ngIf="deliveryItemForm.controls['totalWeight'].hasError('required')">
           Total Weight is <strong>required</strong>
         </mat-error>
         <div class="sub header jme-col" matSuffix style="top: 0px">
@@ -118,22 +132,20 @@
         fxFlex="20%"
         fxFlexFill
         fxFlexAlign="start"
-        appearance="outline"
-      >
+        appearance="outline">
         <mat-label>Length</mat-label>
         <input
           matInput
           [formControl]="deliveryItemForm.controls['length']"
           [value]="deliveryItemForm.controls['length'].value"
+          (keypress)="numOnly($event)"
           placeholder="Length"
           class="non-semantic"
           style="text-align: unset !important;"
-          type="number"
           required
-        />
+          />
         <mat-error
-          *ngIf="deliveryItemForm.controls['length'].hasError('required')"
-        >
+          *ngIf="deliveryItemForm.controls['length'].hasError('required')">
           Length is <strong>required</strong>
         </mat-error>
         <div class="sub header jme-col" matSuffix style="top: 0px">
@@ -144,22 +156,20 @@
         fxFlex="20%"
         fxFlexFill
         fxFlexAlign="start"
-        appearance="outline"
-      >
+        appearance="outline">
         <mat-label>Width</mat-label>
         <input
           matInput
           [formControl]="deliveryItemForm.controls['width']"
           [value]="deliveryItemForm.controls['width'].value"
+          (keypress)="numOnly($event)"
           placeholder="Width"
           class="non-semantic"
           style="text-align: unset !important;"
-          type="number"
           required
-        />
+          />
         <mat-error
-          *ngIf="deliveryItemForm.controls['width'].hasError('required')"
-        >
+          *ngIf="deliveryItemForm.controls['width'].hasError('required')">
           Width is <strong>required</strong>
         </mat-error>
         <div class="sub header jme-col" matSuffix style="top: 0px">
@@ -170,22 +180,20 @@
         fxFlex="20%"
         fxFlexFill
         fxFlexAlign="start"
-        appearance="outline"
-      >
+        appearance="outline">
         <mat-label>Height</mat-label>
         <input
           matInput
           [formControl]="deliveryItemForm.controls['height']"
           [value]="deliveryItemForm.controls['height'].value"
+          (keypress)="numOnly($event)"
           placeholder="Height"
           class="non-semantic"
           style="text-align: unset !important;"
-          type="number"
           required
-        />
+          />
         <mat-error
-          *ngIf="deliveryItemForm.controls['height'].hasError('required')"
-        >
+          *ngIf="deliveryItemForm.controls['height'].hasError('required')">
           Height is <strong>required</strong>
         </mat-error>
         <div class="sub header jme-col" matSuffix style="top: 0px">
@@ -197,8 +205,7 @@
       fxLayout="row"
       fxLayoutAlign="center center"
       fxLayoutGap="1em"
-      [ngStyle]="{ 'text-align': 'center' }"
-    >
+      [ngStyle]="{ 'text-align': 'center' }">
       <button (click)="addItem()" mat-raised-button color="primary">
         {{ toUpdateIndex !== undefined ? 'Update' : 'Add Item' }}
       </button>
@@ -206,55 +213,30 @@
         *ngIf="toUpdateIndex !== undefined"
         (click)="deleteToEdit()"
         mat-stroked-button
-        color="primary"
-      >
+        color="primary">
         Delete
       </button>
     </div>
   </form>
-  <div fxFlex="100%" fxFlexFill>
-    <div class="ui horizontal divider">Item List</div>
-    <ng-container *ngIf="deliveryItems.length === 0; else hasItems">
-      <div
-        class="ui huge disabled header"
-        [ngStyle]="{ 'text-align': 'center' }"
-      >
-        <div class="content">
-          Currently No Items on the List
-        </div>
-      </div>
-    </ng-container>
-    <ng-template #hasItems>
-      <div style="justify-content: left">
-        <app-delivery-table
-          (itemSelected)="selectUpdateItem($event)"
-          (itemDeleted)="deleteItem($event)"
-          [deliveryItems]="deliveryItems"
-        ></app-delivery-table>
-      </div>
-    </ng-template>
-  </div>
+
   <div fxFlex="100%" fxFlexFill>
     <form
-      [formGroup]="deliveryItemForm"
+      [formGroup]="deliveryInfoGroup"
       fxFlex="100%"
       fxFlexAlign="center"
       fxFlexFill
-      name="itemForm"
-    >
+      name="itemForm">
       <div fxLayout="row" class="ui horizontal divider">Pick Up Details</div>
       <div
         fxLayout="row"
         fxLayout.lt-sm="column"
         fxLayoutAlign="space-between center"
-        fxLayoutGap="1em"
-      >
+        fxLayoutGap="1em">
         <mat-form-field
           fxFlex="20%"
           fxFlexFill
           fxFlexAlign="start"
-          appearance="outline"
-        >
+          appearance="outline">
           <mat-label>Parcel Type</mat-label>
           <mat-select [formControl]="deliveryInfoGroup.controls['parcelType']">
             <mat-option *ngFor="let type of parcelType" [value]="type">
@@ -262,37 +244,30 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field
+        <!-- <mat-form-field
           fxFlex="10%"
           fxFlexFill
           fxFlexAlign="start"
-          appearance="outline"
-        >
+          appearance="outline">
           <mat-label>Option</mat-label>
           <mat-select
-            [formControl]="deliveryInfoGroup.controls['pickUpOption']"
-          >
+            [formControl]="deliveryInfoGroup.controls['pickUpOption']">
             <mat-option
               *ngFor="let option of pickupOptionType"
-              [value]="option"
-            >
+              [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
           <mat-error
-            *ngIf="
-              deliveryInfoGroup.controls['pickUpOption'].hasError('required')
-            "
-          >
+            *ngIf="deliveryInfoGroup.controls['pickUpOption'].hasError('required')">
             Pickup Option is <strong>required</strong>
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-form-field
           fxFlex="20%"
           fxFlexFill
           fxFlexAlign="start"
-          appearance="outline"
-        >
+          appearance="outline">
           <mat-label>Pickup Date</mat-label>
           <input
             matInput
@@ -303,7 +278,7 @@
             class="non-semantic"
             style="text-align: unset !important;"
             required
-          />
+            />
           <mat-datepicker-toggle matSuffix [for]="pickupDate">
             <mat-icon matDatepickerToggleIcon color="primary">
               date_range
@@ -311,10 +286,7 @@
           </mat-datepicker-toggle>
           <mat-datepicker #pickupDate></mat-datepicker>
           <mat-error
-            *ngIf="
-              deliveryInfoGroup.controls['pickUpDate'].hasError('required')
-            "
-          >
+            *ngIf="deliveryInfoGroup.controls['pickUpDate'].hasError('required')">
             Pickup Date is <strong>required</strong>
           </mat-error>
         </mat-form-field>
@@ -322,8 +294,7 @@
           fxFlex="20%"
           fxFlexFill
           fxFlexAlign="center"
-          appearance="outline"
-        >
+          appearance="outline">
           <mat-label>Ready At</mat-label>
           <input
             matInput
@@ -334,134 +305,118 @@
             [formControl]="deliveryInfoGroup.controls['pickUpReadyAt']"
             readonly
             required
-          />
+            />
           <ngx-material-timepicker-toggle
             class="time-picker-toggle"
             matSuffix
-            [for]="readyAt"
-          >
+            [for]="readyAt">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              style="fill: #760f29"
-            >
+              style="fill: #760f29">
               <path
-                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52
+                22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8
+                3.58 8 8-3.58 8-8 8z"
+                />
+              </svg>
+            </ngx-material-timepicker-toggle>
+            <ngx-material-timepicker
+              [ngxMaterialTimepickerTheme]="pickerStyle"
+              #readyAt></ngx-material-timepicker>
+            <mat-error
+              *ngIf="deliveryInfoGroup.controls['pickUpReadyAt'].hasError('required')">
+              Ready At is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field
+            fxFlex="20%"
+            fxFlexFill
+            fxFlexAlign="center"
+            appearance="outline">
+            <mat-label>Closing Time</mat-label>
+            <input
+              matInput
+              placeholder="Closing Time"
+              class="non-semantic"
+              style="text-align: unset !important;"
+              [ngxTimepicker]="pickerClosingTime"
+              [formControl]="deliveryInfoGroup.controls['closingTime']"
+              readonly
+              required
               />
-            </svg>
-          </ngx-material-timepicker-toggle>
+            <ngx-material-timepicker-toggle
+              class="time-picker-toggle"
+              matSuffix
+              [for]="pickerClosingTime">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="fill: #760f29">
+                <path
+                  d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22
+                  17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8
+                  8-8 8 3.58 8 8-3.58 8-8 8z"
+                  />
+                </svg>
+              </ngx-material-timepicker-toggle>
+              <ngx-material-timepicker
+                [ngxMaterialTimepickerTheme]="pickerStyle"
+                #pickerClosingTime></ngx-material-timepicker>
+              <mat-error
+                *ngIf="deliveryInfoGroup.controls['closingTime'].hasError('required')">
+                Closing Time is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-          <ngx-material-timepicker
-            [ngxMaterialTimepickerTheme]="pickerStyle"
-            #readyAt
-          ></ngx-material-timepicker>
-          <mat-error
-            *ngIf="
-              deliveryInfoGroup.controls['pickUpReadyAt'].hasError('required')
-            "
-          >
-            Ready At is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field
-          fxFlex="20%"
-          fxFlexFill
-          fxFlexAlign="center"
-          appearance="outline"
-        >
-          <mat-label>Closing Time</mat-label>
-          <input
-            matInput
-            placeholder="Closing Time"
-            class="non-semantic"
-            style="text-align: unset !important;"
-            [ngxTimepicker]="pickerClosingTime"
-            [formControl]="deliveryInfoGroup.controls['closingTime']"
-            readonly
-            required
-          />
-          <ngx-material-timepicker-toggle
-            class="time-picker-toggle"
-            matSuffix
-            [for]="pickerClosingTime"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              style="fill: #760f29"
-            >
-              <path
-                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
-              />
-            </svg>
-          </ngx-material-timepicker-toggle>
-          <ngx-material-timepicker
-            [ngxMaterialTimepickerTheme]="pickerStyle"
-            #pickerClosingTime
-          ></ngx-material-timepicker>
-          <mat-error
-            *ngIf="
-              deliveryInfoGroup.controls['closingTime'].hasError('required')
-            "
-          >
-            Closing Time is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div
-        fxLayout="row"
-        fxLayout.lt-sm="column"
-        fxLayoutAlign="space-between center"
-        fxLayoutGap="1em"
-        *ngIf="
-          deliveryInfoGroup.controls['parcelType'].value === 'Dangerous Goods'
-        "
-      >
-        <mat-form-field
-          fxFlex="100%"
-          fxFlexFill
-          fxFlexAlign="center"
-          appearance="outline"
-        >
-          <mat-label>Special Instructions</mat-label>
-          <textarea
-            matInput
-            [formControl]="deliveryInfoGroup.controls['specialInstruction']"
-            [value]="deliveryInfoGroup.controls['specialInstruction'].value"
-            placeholder="Special Instructions"
-            class="non-semantic"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          ></textarea>
-          <mat-error
-            *ngIf="
-              deliveryInfoGroup.controls['specialInstruction'].hasError(
+          <div
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="1em"
+            *ngIf="deliveryInfoGroup
+            .controls['parcelType'].value === 'Dangerous Goods'">
+            <mat-form-field
+              fxFlex="100%"
+              fxFlexFill
+              fxFlexAlign="center"
+              appearance="outline">
+              <mat-label>Special Instructions</mat-label>
+              <textarea
+                matInput
+                [formControl]="deliveryInfoGroup.controls['specialInstruction']"
+                [value]="deliveryInfoGroup.controls['specialInstruction'].value"
+                placeholder="Special Instructions"
+                class="non-semantic"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+              <mat-error
+                *ngIf="deliveryInfoGroup.controls['specialInstruction'].hasError(
                 'required'
-              )
-            "
-          >
-            Special Instructions is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
+                )">
+                Special Instructions is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </form>
       </div>
-      <!-- <div
+    </div>
+    <!-- <div
         fxLayout="row"
         fxLayout.lt-sm="column"
         fxLayoutAlign="space-between center"
         fxLayoutGap="1em"
       ></div> -->
-      <!-- <div
+    <!-- <div
         fxLayout="row"
         fxLayout.lt-sm="column"
         fxLayoutAlign="space-between center"
         fxLayoutGap="1em"
       ></div> -->
-    </form>
-  </div>
-</div>

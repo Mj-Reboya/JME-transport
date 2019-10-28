@@ -27,9 +27,17 @@ class CommonUserSessionsController extends Controller
         'usedToken' => $header
       ], 404);
     }
+    $user = $session->common_user();
     return response()->json([
       'message' => 'session exist',
-      'usedToken' => $header
+      'usedToken' => $header,
+      'user' => [
+        'firstname' => ucwords($user->firstname),
+        'lastname' => ucwords($user->lastname),
+        'company' => ucwords($user->company),
+        'email' => $user->email,
+        'type' => $user->role
+      ]
     ], 200);
   }
 
@@ -92,7 +100,14 @@ class CommonUserSessionsController extends Controller
 
       return response()->json([
         'message' => 'new session token generated',
-        'session_token' => $userSession->session_hash
+        'session_token' => $userSession->session_hash,
+        'user' => [
+          'firstname' => ucwords($search_result->firstname),
+          'lastname' => ucwords($search_result->lastname),
+          'company' => ucwords($search_result->company),
+          'email' => $search_result->email,
+          'type' => $search_result->role
+        ]
       ]);
     } catch (\Throwable $th) {
       return response()->json([

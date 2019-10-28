@@ -10,7 +10,7 @@ class CommonUser extends Model
   public $timestamps = false;
   //
   protected $fillable = [
-    'firstname', 'lastname', 'company', 'email', 'username', 'password'
+    'firstname', 'lastname', 'company', 'email', 'username', 'password', 'role'
   ];
 
   public static function searchUser(string $u, string $pass)

@@ -1,81 +1,163 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {
-  FormGroup,
-  Validators,
-  FormBuilder,
-  AbstractControl
-} from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl, FormGroupDirective } from '@angular/forms';
 import { RouterLink, Route, Router } from '@angular/router';
 import { MatInput } from '@angular/material/input';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { IDeliveryItem } from 'src/app/types/TransactionSummary';
+import { numOnly } from 'src/app/util/input';
+
+function realNumberValidator(control: FormControl) {
+  if (control.value && control.value.length > 0) {
+
+    // match the control value against the regular expression
+    const matches = control.value.match('-');
+
+    // if there are matches return an object, else return null.
+    return matches && matches.length ? { real_number_error: matches } : null;
+  } else {
+    return null;
+  }
+}
 
 @Component({
   selector: 'app-delivery-info',
   templateUrl: './delivery-info.component.html',
-  styleUrls: ['./delivery-info.component.scss']
+  styleUrls:
+    [
+      './delivery-info.component.scss',
+    ],
 })
 export class DeliveryInfoComponent implements OnInit {
+
+  numOnly = numOnly;
+
+  itemFormShow = true;
+
   get isDangerousSelected() {
-    return (
-      this.deliveryInfoGroup &&
-      this.deliveryInfoGroup.get('parcelType').value === 'Dangerous Goods'
-    );
+    return this.deliveryInfoGroup && this.deliveryInfoGroup.get('parcelType').value === 'Dangerous Goods';
   }
 
-  constructor(private fb: FormBuilder) {}
+
+
+  constructor(private fb: FormBuilder) { }
   selectedServiceType = '';
   selectedItemType = '';
   selectedPallet = '';
 
-  parcelType = ['Dangerous Goods', 'Hand Unload', 'Tail Lift'];
-  pickupOptionType = ['By', 'On'];
+  parcelType = [
+    'Dangerous Goods',
+    'Hand Unload',
+    'Tail Lift',
+  ];
+  pickupOptionType = [
+    'By',
+    'On',
+  ];
 
-  commodities = ['Pallet', 'Carton'];
+  commodities = [
+    'Pallet',
+    'Carton',
+  ];
   deliveryItems: IDeliveryItem[] = [];
 
   deliveryItemForm: FormGroup = this.fb.group({
-    description: ['', Validators.required],
-    commodity: ['', Validators.required],
-    items: [0, Validators.required],
-    totalWeight: ['', Validators.required],
-    length: ['', Validators.required],
-    width: ['', Validators.required],
-    height: ['', Validators.required]
+    description:
+      [
+        '',
+        Validators.required,
+      ],
+    commodity:
+      [
+        '',
+        Validators.required,
+      ],
+    items:
+      [
+        '',
+        [Validators.required, realNumberValidator],
+      ],
+    totalWeight:
+      [
+        '',
+        [Validators.required, realNumberValidator],
+      ],
+    length:
+      [
+        '',
+        [Validators.required, realNumberValidator],
+      ],
+    width:
+      [
+        '',
+        [Validators.required, realNumberValidator],
+      ],
+    height:
+      [
+        '',
+        [Validators.required, realNumberValidator],
+      ],
   });
 
   deliveryInfoGroup: FormGroup = this.fb.group({
-    parcelType: ['', Validators.required],
-    specialInstruction: [''],
-    pickUpOption: ['', Validators.required],
-    pickUpDate: [new Date(), Validators.required],
-    pickUpReadyAt: ['', Validators.required],
-    closingTime: ['', Validators.required],
-    deliveryItems: [
-      [],
+    parcelType:
       [
+        '',
         Validators.required,
-        (control: AbstractControl) =>
-          control.value.length > 0 ? null : { itemLenght: true }
-      ]
-    ]
+      ],
+    specialInstruction:
+      [
+        '',
+      ],
+    pickUpOption:
+      [
+        '',
+      ],
+    pickUpDate:
+      [
+        new Date(),
+        Validators.required,
+      ],
+    pickUpReadyAt:
+      [
+        '',
+        Validators.required,
+      ],
+    closingTime:
+      [
+        '',
+        Validators.required,
+      ],
+    deliveryItems:
+      [
+        [],
+        [
+          Validators.required,
+          (control: AbstractControl) =>
+
+            control.value.length > 0 ? null :
+              { itemLenght: true },
+        ],
+      ],
   });
 
   toUpdateIndex: number;
 
-  @ViewChild('descriptionField', { static: true })
-  descriptionField: ElementRef;
+  @ViewChildren('descriptionField')
+  descriptionField: QueryList<ElementRef>;
 
   pickerStyle: NgxMaterialTimepickerTheme = {
-    dial: {
-      dialBackgroundColor: '#760f29'
+    dial:
+    {
+      dialBackgroundColor: '#760f29',
     },
-    clockFace: {
-      clockHandColor: '#760f29'
+    clockFace:
+    {
+      clockHandColor: '#760f29',
     },
-    container: {
-      buttonColor: '#760f29'
-    }
+    container:
+    {
+      buttonColor: '#760f29',
+    },
   };
 
   public static itemIsDangerous(val: string): boolean {
@@ -83,17 +165,32 @@ export class DeliveryInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.deliveryInfoGroup.get('parcelType').valueChanges.subscribe(val => {
+    this.deliveryInfoGroup.get('parcelType').valueChanges.subscribe((val) => {
       this.deliveryInfoGroup.get('specialInstruction').clearValidators();
-      this.deliveryInfoGroup
-        .get('specialInstruction')
-        .setValidators(
-          DeliveryInfoComponent.itemIsDangerous(val)
-            ? [Validators.required]
-            : []
-        );
+      this.deliveryInfoGroup.get('specialInstruction').setValidators(
+
+        DeliveryInfoComponent.itemIsDangerous(val) ? [
+          Validators.required,
+        ] :
+          [],
+      );
       this.deliveryInfoGroup.get('specialInstruction').setValue('');
       this.deliveryInfoGroup.get('specialInstruction').updateValueAndValidity();
+    });
+  }
+
+
+  sanitizeItems() {
+    const rawValue: string = this.deliveryItemForm.get('items').value;
+    let sanitizedValue = rawValue;
+    while (sanitizedValue.charAt(0) === '-') {
+      sanitizedValue = sanitizedValue.substr(1);
+    }
+    while (sanitizedValue.endsWith('-')) {
+      sanitizedValue = sanitizedValue.slice(0, -1);
+    }
+    this.deliveryItemForm.patchValue({
+      phone: sanitizedValue,
     });
   }
 
@@ -109,11 +206,12 @@ export class DeliveryInfoComponent implements OnInit {
           totalWeight: itemForm.get('totalWeight').value,
           length: itemForm.get('length').value,
           width: itemForm.get('width').value,
-          height: itemForm.get('height').value
+          height: itemForm.get('height').value,
         });
         // this.deliveryItems[this.toUpdateIndex] = ;
         this.toUpdateIndex = undefined;
-      } else {
+      }
+      else {
         this.deliveryItems.unshift({
           description: itemForm.get('description').value,
           commodity: itemForm.get('commodity').value,
@@ -121,30 +219,41 @@ export class DeliveryInfoComponent implements OnInit {
           totalWeight: itemForm.get('totalWeight').value,
           length: itemForm.get('length').value,
           width: itemForm.get('width').value,
-          height: itemForm.get('height').value
+          height: itemForm.get('height').value,
         });
       }
       this.deliveryItemForm.reset();
       this.deliveryInfoGroup.get('deliveryItems').setValue(this.deliveryItems);
+      // hide and show the form for item form reseting validators
+      this.itemFormShow = false;
+      setTimeout(() => { this.itemFormShow = true });
+      // hide and show the form for item form reseting validators
+      this.itemFormShow = false;
+      setTimeout(() => { this.itemFormShow = true });
     }
+
   }
 
   selectUpdateItem(item: { item: IDeliveryItem; index: number }) {
-    const descInput = this.descriptionField.nativeElement as MatInput;
-    descInput.focus();
-    this.deliveryItemForm.reset();
-    const itemForm = this.deliveryItemForm;
-    const items = item.item;
-    for (const key in items) {
-      if (items.hasOwnProperty(key)) {
-        const element = items[key];
-        const formItem = itemForm.get(key);
-        if (formItem) {
-          formItem.setValue(element);
+    for (const element of this.descriptionField.toArray()) {
+      // focus on the from element
+      const descInput = element.nativeElement as MatInput;
+      descInput.focus();
+      this.deliveryItemForm.reset();
+      const itemForm = this.deliveryItemForm;
+      const items = item.item;
+      for (const key in items) {
+        if (items.hasOwnProperty(key)) {
+          const element = items[key];
+          const formItem = itemForm.get(key);
+          if (formItem) {
+            formItem.setValue(element);
+          }
         }
       }
+      this.toUpdateIndex = item.index;
     }
-    this.toUpdateIndex = item.index;
+
   }
 
   deleteItem(item: { item: IDeliveryItem; index: number }) {
@@ -152,7 +261,8 @@ export class DeliveryInfoComponent implements OnInit {
     if (this.toUpdateIndex !== undefined) {
       if (this.toUpdateIndex === item.index) {
         this.resetForm();
-      } else if (this.toUpdateIndex > item.index) {
+      }
+      else if (this.toUpdateIndex > item.index) {
         this.toUpdateIndex -= 1;
       }
     }

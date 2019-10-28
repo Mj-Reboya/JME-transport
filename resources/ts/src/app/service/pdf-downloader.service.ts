@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PdfDownloaderService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   downloadPdf(pdfName: string, transactionId: string) {
     console.log(
@@ -25,6 +25,13 @@ export class PdfDownloaderService {
       .pipe(
         map(data => {
           console.log(data);
+          const pdfAlias = {
+            'pdf-2': 'barcode'
+          }
+          const newPdfName = pdfAlias[pdfName];
+          if (newPdfName) {
+            pdfName = newPdfName;
+          }
           this.dlFile(data, `${pdfName}-${transactionId}`);
           return data;
         })
