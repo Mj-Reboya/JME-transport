@@ -19,11 +19,11 @@
     <link rel="stylesheet" href="css/styles.css"></head>
   <body>
     <app-root></app-root>
-  <script src="js/runtime-es2015.js" type="module"></script>
-  <script src="js/polyfills-es2015.js" type="module"></script>
-  <script src="js/runtime-es5.js" nomodule></script>
-  <script src="js/polyfills-es5.js" nomodule></script>
-  <script src="js/main-es2015.js" type="module"></script>
-  <script src="js/main-es5.js" nomodule></script>
+  <script src="{{ mix('/js/runtime-es2015.js') }}" type="module"></script>
+  <script src="{{ mix('/js/polyfills-es2015.js') }}" type="module"></script>
+  <script src="{{ mix('js/runtime-es5.js') }}" nomodule></script>
+  <script src="{{ mix('js/polyfills-es5.js') }}" nomodule></script>
+  <script src="{{ mix('js/main-es2015.js') }}" type="module"></script>
+  <script src="{{ mix('js/main-es5.js') }}" nomodule></script>
 </body>
 </html>
