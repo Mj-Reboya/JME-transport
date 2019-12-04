@@ -1,17 +1,15 @@
-<form
-  class="ui centered grid"
-  style="margin: 0 auto"
-  #newAccount>
+<form class="ui centered grid" style="margin: 0 auto" #newAccount>
   <mat-card class="rouded-all" style="padding-top: 0px">
     <mat-card-header
       class="ui centered grid header-col rounded-top"
-      style="margin-bottom: 10px">
+      style="margin-bottom: 10px"
+    >
       <mat-card-title>
         <!-- <div class="ui huge header white">JME</div> -->
         <img
           class="ui centered image disable-selection"
           src="../../../assets/jme-logo-header.png"
-          />
+        />
       </mat-card-title>
       <mat-card-subtitle>
         <header class="ui medium header white">
@@ -36,9 +34,10 @@
                   placeholder="FirstName"
                   [value]="userBasicInfo.controls['firstname'].value"
                   [formControl]="userBasicInfo.controls['firstname']"
-                  />
+                />
                 <mat-error
-                  *ngIf="userBasicInfo.controls['firstname'].errors?.required">
+                  *ngIf="userBasicInfo.controls['firstname'].errors?.required"
+                >
                   FirstName is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
@@ -49,9 +48,10 @@
                   placeholder="Lastname"
                   [value]="userBasicInfo.controls['lastname'].value"
                   [formControl]="userBasicInfo.controls['lastname']"
-                  />
+                />
                 <mat-error
-                  *ngIf="userBasicInfo.controls['lastname'].errors?.required">
+                  *ngIf="userBasicInfo.controls['lastname'].errors?.required"
+                >
                   Lastname is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
@@ -64,9 +64,10 @@
                   placeholder="Company"
                   [value]="userBasicInfo.controls['company'].value"
                   [formControl]="userBasicInfo.controls['company']"
-                  />
+                />
                 <mat-error
-                  *ngIf="userBasicInfo.controls['company'].errors?.required">
+                  *ngIf="userBasicInfo.controls['company'].errors?.required"
+                >
                   Company is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
@@ -78,17 +79,19 @@
                   matInput
                   placeholder="Email"
                   [value]="userBasicInfo.controls['email'].value"
-                  [formControl]="userBasicInfo.controls['email']" />
+                  [formControl]="userBasicInfo.controls['email']"
+                />
                 <mat-error
-                  *ngIf="userBasicInfo.controls['email'].errors?.email">
+                  *ngIf="userBasicInfo.controls['email'].errors?.email"
+                >
                   Must be a valid email address
                 </mat-error>
                 <mat-error
-                  *ngIf="userBasicInfo.controls['company'].errors?.required">
+                  *ngIf="userBasicInfo.controls['company'].errors?.required"
+                >
                   Email is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
-
             </div>
             <div class="row low-padding">
               <div class="middle aligned column">
@@ -96,14 +99,18 @@
                   <button
                     [routerLink]="['/login']"
                     mat-stroked-button
-                    color="primary">
+                    color="primary"
+                  >
                     Return to Login
                   </button>
                 </div>
                 <div style="float: right">
                   <button
                     [disabled]="!enableUserBasicInfoNextButton()"
-                    matStepperNext mat-raised-button color="primary">
+                    matStepperNext
+                    mat-raised-button
+                    color="primary"
+                  >
                     Next
                     <mat-icon>navigate_next</mat-icon>
                   </button>
@@ -127,10 +134,13 @@
                   placeholder="Username"
                   [value]="newAccountInfo.controls['username'].value"
                   [formControl]="newAccountInfo.controls['username']"
-                  />
+                />
                 <mat-error
-                  *ngIf="newAccountInfo.controls['username'].errors?.minlength
-                  || newAccountInfo.controls['username'].errors?.maxlenght">
+                  *ngIf="
+                    newAccountInfo.controls['username'].errors?.minlength ||
+                    newAccountInfo.controls['username'].errors?.maxlenght
+                  "
+                >
                   Username Must be <strong>6 to 16 characters in lenght</strong>
                 </mat-error>
               </mat-form-field>
@@ -145,10 +155,13 @@
                   [formControl]="newAccountInfo.controls['password']"
                   minlength="5"
                   maxlength="16"
-                  />
+                />
                 <mat-error
-                  *ngIf="newAccountInfo.controls['password'].errors?.minlength
-                  || newAccountInfo.controls['password'].errors?.maxlenght">
+                  *ngIf="
+                    newAccountInfo.controls['password'].errors?.minlength ||
+                    newAccountInfo.controls['password'].errors?.maxlenght
+                  "
+                >
                   Password Must be <strong>6 to 16 characters in lenght</strong>
                 </mat-error>
               </mat-form-field>
@@ -159,11 +172,14 @@
                   type="{{ showPass ? '' : 'password' }}"
                   placeholder="Re-Type Password"
                   [formControl]="newAccountInfo.controls['passwordReType']"
-                  />
+                />
                 <mat-error
-                  *ngIf="newAccountInfo.controls['passwordReType'].hasError(
-                  'notMatch'
-                  )">
+                  *ngIf="
+                    newAccountInfo.controls['passwordReType'].hasError(
+                      'notMatch'
+                    )
+                  "
+                >
                   Password did not <strong>Matched</strong>
                 </mat-error>
 
@@ -173,12 +189,33 @@
                   aria-label="Unhide"
                   (mousedown)="visibiltyOn()"
                   (mouseup)="visibilityOff()"
-                  (mouseleave)="visibilityOff()">
+                  (mouseleave)="visibilityOff()"
+                >
                   <mat-icon color="primary">
-                    {{ showPass ? 'visibility' : 'visibility_off' }}
+                    {{ showPass ? "visibility" : "visibility_off" }}
                   </mat-icon>
                 </button>
               </mat-form-field>
+            </div>
+            <div class="row equal width grid low-padding">
+              <div class="middle aligned column">
+                <mat-checkbox
+                  (change)="termsChages($event)"
+                  class="terms-and-condition"
+                >
+                  <p class="text">
+                    I <strong>ACCEPT</strong> the terms and conditions stated
+                    here:
+                    <br />
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://jmet.com.au/terms-and-conditions/"
+                      >https://jmet.com.au/terms-and-conditions/</a
+                    >
+                  </p>
+                </mat-checkbox>
+              </div>
             </div>
             <div class="row low-padding">
               <div class="middle aligned column">
@@ -189,8 +226,13 @@
                   </button>
                 </div>
                 <div style="float: right">
-                  <button matStepperNext mat-raised-button color="primary"
-                    (click)="signUp()">
+                  <button
+                    matStepperNext
+                    mat-raised-button
+                    color="primary"
+                    (click)="signUp()"
+                    [disabled]="!this.acceptTermsAndCondition"
+                  >
                     Create Account
                     <mat-icon>navigate_next</mat-icon>
                   </button>
