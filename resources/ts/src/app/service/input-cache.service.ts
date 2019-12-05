@@ -32,6 +32,6 @@ export class InputCacheService {
     // console.log('this.getCache()', this.getCache());
     const cached = this.getCache();
     // console.log(`cached[${key}]`, cached[key]);
-    return cached[key];
+    return cached[key] || '';
   }
 }
