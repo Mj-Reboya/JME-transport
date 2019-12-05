@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { PersonInfoComponent } from '../person-info/person-info.component';
 import { DeliveryInfoComponent } from '../delivery-info/delivery-info.component';
 import { ITransactionSummary } from 'src/app/types/TransactionSummary';
@@ -17,7 +17,17 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
       './order-form.component.scss',
     ],
 })
-export class OrderFormComponent implements OnInit {
+export class OrderFormComponent implements OnInit, AfterViewInit {
+
+  get currentUserInfo(): IUser {
+    return User.storedUser;
+  }
+
+  constructor(
+    private trasactionApiService: TrasactionApiService,
+    private pdfDownloaderService: PdfDownloaderService,
+    private cdref: ChangeDetectorRef
+  ) { }
   @ViewChild('senderInfo', { static: true })
   senderInfo: PersonInfoComponent;
 
@@ -38,20 +48,21 @@ export class OrderFormComponent implements OnInit {
   transactionFetching = true;
   termsAndConditionAccepted = false;
 
-  get currentUserInfo(): IUser {
-    return User.storedUser;
+  ngAfterViewInit(): void {
+    this.fillSenderInfo();
+    this.cdref.detectChanges();
   }
 
-  constructor(
-    private trasactionApiService: TrasactionApiService,
-    private pdfDownloaderService: PdfDownloaderService,
-  ) { }
-
   ngOnInit() {
-    this.fillSenderInfo();
+    // this.senderInfo.updateInputUsingCached();
+    // this.recieverInfo.updateInputUsingCached();
+    // this.payorInfo.updateInputUsingCached();
+    // this.fillSenderInfo();
   }
 
   fillSenderInfo() {
+    // console.log('this.senderInfo.personInfoGroup', this.senderInfo.personInfoGroup);
+    this.senderInfo.updateInputUsingCached();
     const currentUser = this.currentUserInfo;
     const senderControls = this.senderInfo.personInfoGroup;
     const company = senderControls.get('company');

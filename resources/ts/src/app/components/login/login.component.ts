@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoginService } from 'src/app/service/login.service';
+import { LoginService, TOKEN_STORAGE_KEY } from 'src/app/service/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {
-    localStorage.clear();
+    localStorage.removeItem(TOKEN_STORAGE_KEY);
   }
 
   login() {

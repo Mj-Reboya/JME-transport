@@ -37,8 +37,6 @@ export class DeliveryInfoComponent implements OnInit {
     return this.deliveryInfoGroup && this.deliveryInfoGroup.get('parcelType').value === 'Dangerous Goods';
   }
 
-
-
   constructor(private fb: FormBuilder) { }
   selectedServiceType = '';
   selectedItemType = '';
@@ -179,7 +177,6 @@ export class DeliveryInfoComponent implements OnInit {
     });
   }
 
-
   sanitizeItems() {
     const rawValue: string = this.deliveryItemForm.get('items').value;
     let sanitizedValue = rawValue;
@@ -210,8 +207,7 @@ export class DeliveryInfoComponent implements OnInit {
         });
         // this.deliveryItems[this.toUpdateIndex] = ;
         this.toUpdateIndex = undefined;
-      }
-      else {
+      } else {
         this.deliveryItems.unshift({
           description: itemForm.get('description').value,
           commodity: itemForm.get('commodity').value,
@@ -226,10 +222,10 @@ export class DeliveryInfoComponent implements OnInit {
       this.deliveryInfoGroup.get('deliveryItems').setValue(this.deliveryItems);
       // hide and show the form for item form reseting validators
       this.itemFormShow = false;
-      setTimeout(() => { this.itemFormShow = true });
-      // hide and show the form for item form reseting validators
-      this.itemFormShow = false;
-      setTimeout(() => { this.itemFormShow = true });
+      setTimeout(() => { this.itemFormShow = true; });
+      // // hide and show the form for item form reseting validators
+      // this.itemFormShow = false;
+      // setTimeout(() => { this.itemFormShow = true; });
     }
 
   }
@@ -244,10 +240,10 @@ export class DeliveryInfoComponent implements OnInit {
       const items = item.item;
       for (const key in items) {
         if (items.hasOwnProperty(key)) {
-          const element = items[key];
+          const el = items[key];
           const formItem = itemForm.get(key);
           if (formItem) {
-            formItem.setValue(element);
+            formItem.setValue(el);
           }
         }
       }
@@ -261,8 +257,7 @@ export class DeliveryInfoComponent implements OnInit {
     if (this.toUpdateIndex !== undefined) {
       if (this.toUpdateIndex === item.index) {
         this.resetForm();
-      }
-      else if (this.toUpdateIndex > item.index) {
+      } else if (this.toUpdateIndex > item.index) {
         this.toUpdateIndex -= 1;
       }
     }
@@ -277,5 +272,8 @@ export class DeliveryInfoComponent implements OnInit {
   resetForm() {
     this.deliveryItemForm.reset();
     this.toUpdateIndex = undefined;
+    // hide and show the form for item form reseting validators
+    this.itemFormShow = false;
+    setTimeout(() => { this.itemFormShow = true; });
   }
 }

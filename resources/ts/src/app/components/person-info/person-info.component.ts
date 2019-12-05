@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { numOnly } from '../../util/input';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { InputCacheService } from 'src/app/service/input-cache.service';
+import { debounce, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-person-info',
@@ -47,45 +49,93 @@ export class PersonInfoComponent implements OnInit {
       ],
     streetAddress:
       [
-        '',
+        this.getInputCached('streetAddress'),
         Validators.required,
       ],
     suburd:
       [
-        '',
+        this.getInputCached('suburd'),
         Validators.required,
       ],
     state:
       [
-        '',
+        this.getInputCached('state'),
         Validators.required,
       ],
     postalCode:
       [
-        '',
+        this.getInputCached('postalCode'),
         Validators.required,
       ],
     phone:
       [
-        '',
+        this.getInputCached('phone'),
         Validators.required,
       ],
     email:
       [
-        '',
+        this.getInputCached('email'),
         Validators.required,
       ],
   });
 
-  get sameAsSenderValue () {
+  get sameAsSenderValue() {
     return this.sameAsSender.value;
   }
 
-  constructor (private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private inputCacheService: InputCacheService
+  ) {
+  }
 
-  ngOnInit () {}
+  ngOnInit() {
+    this.personInfoGroup.valueChanges
+      .pipe(debounceTime(500)).subscribe(data => {
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            const value = data[key];
+            this.saveInputCached(key, value);
+          }
+        }
+        return data;
+      });
+  }
 
-  sanitizePhone () {
+  updateInputUsingCached() {
+    const cachedDefault = {
+      name: '',
+      bookingDate: new Date(),
+      company: '',
+      streetAddress: this.getInputCached('streetAddress'),
+      suburd: this.getInputCached('suburd'),
+      state: this.getInputCached('state'),
+      postalCode: this.getInputCached('postalCode'),
+      phone: this.getInputCached('phone'),
+      email: this.getInputCached('email'),
+    };
+
+    for (const key in cachedDefault) {
+      if (cachedDefault.hasOwnProperty(key)) {
+        const value = cachedDefault[key];
+        const control = this.personInfoGroup.get(key);
+        if (control) {
+          control.setValue(value);
+        }
+      }
+    }
+
+  }
+
+  saveInputCached(key: string, value: string) {
+    this.inputCacheService.updateItem(`${this.title}_${key}`, value);
+  }
+
+  getInputCached(key: string) {
+    return this.inputCacheService.getItem(`${this.title}_${key}`);
+  }
+
+  sanitizePhone() {
     const rawValue: string = this.personInfoGroup.get('phone').value;
     let sanitizedValue = rawValue;
     while (sanitizedValue.charAt(0) === '-') {
@@ -99,13 +149,12 @@ export class PersonInfoComponent implements OnInit {
     });
   }
 
-  sameAsSenderChanged (event: boolean) {
-    console.log('sameAsSenderChanged', event);
+  sameAsSenderChanged(event: boolean) {
+    // console.log('sameAsSenderChanged', event);
     this.sameAsSenderClicked.emit(event);
     if (event) {
       this.personInfoGroup.disable();
-    }
-    else {
+    } else {
       this.personInfoGroup.enable();
     }
   }
