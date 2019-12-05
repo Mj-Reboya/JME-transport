@@ -90,6 +90,9 @@ export class OrderFormComponent implements OnInit, AfterViewInit {
   stepperChange(event) {
     console.log('stepperChange', event);
     if (event.selectedIndex && event.selectedIndex === 4) {
+      if (this.deliveryInfo.deliveryInfoGroup.valid) {
+        this.deliveryInfo.itemForm.resetForm();
+      }
       this.reviewAndSubmit();
     }
   }

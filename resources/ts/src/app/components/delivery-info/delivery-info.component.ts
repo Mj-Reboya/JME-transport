@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl, FormGroupDirective } from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { RouterLink, Route, Router } from '@angular/router';
 import { MatInput } from '@angular/material/input';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
@@ -27,17 +27,23 @@ function realNumberValidator(control: FormControl) {
       './delivery-info.component.scss',
     ],
 })
-export class DeliveryInfoComponent implements OnInit {
-
-  numOnly = numOnly;
-
-  itemFormShow = true;
+export class DeliveryInfoComponent implements OnInit, AfterViewInit {
 
   get isDangerousSelected() {
     return this.deliveryInfoGroup && this.deliveryInfoGroup.get('parcelType').value === 'Dangerous Goods';
   }
 
   constructor(private fb: FormBuilder) { }
+
+  numOnly = numOnly;
+
+  itemFormShow = true;
+
+  @ViewChild('itemForm', { static: false })
+  itemForm: FormGroupDirective;
+
+  @ViewChild('infoForm', { static: false })
+  infoForm: FormGroupDirective;
   selectedServiceType = '';
   selectedItemType = '';
   selectedPallet = '';
@@ -62,37 +68,35 @@ export class DeliveryInfoComponent implements OnInit {
     description:
       [
         '',
-        Validators.required,
       ],
     commodity:
       [
         '',
-        Validators.required,
       ],
     items:
       [
         '',
-        [Validators.required, realNumberValidator],
+        [realNumberValidator],
       ],
     totalWeight:
       [
         '',
-        [Validators.required, realNumberValidator],
+        [realNumberValidator],
       ],
     length:
       [
         '',
-        [Validators.required, realNumberValidator],
+        [realNumberValidator],
       ],
     width:
       [
         '',
-        [Validators.required, realNumberValidator],
+        [realNumberValidator],
       ],
     height:
       [
         '',
-        [Validators.required, realNumberValidator],
+        [realNumberValidator],
       ],
   });
 
@@ -162,6 +166,12 @@ export class DeliveryInfoComponent implements OnInit {
     return val === 'Dangerous Goods';
   }
 
+  ngAfterViewInit(): void {
+    this.infoForm.ngSubmit.subscribe(() => {
+      this.resetForm();
+    });
+  }
+
   ngOnInit() {
     this.deliveryInfoGroup.get('parcelType').valueChanges.subscribe((val) => {
       this.deliveryInfoGroup.get('specialInstruction').clearValidators();
@@ -175,6 +185,7 @@ export class DeliveryInfoComponent implements OnInit {
       this.deliveryInfoGroup.get('specialInstruction').setValue('');
       this.deliveryInfoGroup.get('specialInstruction').updateValueAndValidity();
     });
+
   }
 
   sanitizeItems() {
@@ -194,6 +205,14 @@ export class DeliveryInfoComponent implements OnInit {
   addItem() {
     const itemForm = this.deliveryItemForm;
     console.log('this.toUpdateIndex', this.toUpdateIndex);
+    for (const key in itemForm.value) {
+      if (itemForm.value.hasOwnProperty(key)) {
+        const val = itemForm.value[key];
+        if (!val || val.lenght === 0) {
+          return;
+        }
+      }
+    }
     if (itemForm.valid) {
       if (this.toUpdateIndex !== undefined) {
         this.deliveryItems.splice(this.toUpdateIndex, 1, {
@@ -218,11 +237,12 @@ export class DeliveryInfoComponent implements OnInit {
           height: itemForm.get('height').value,
         });
       }
-      this.deliveryItemForm.reset();
+      // this.deliveryItemForm.reset();
+      this.resetForm();
       this.deliveryInfoGroup.get('deliveryItems').setValue(this.deliveryItems);
       // hide and show the form for item form reseting validators
-      this.itemFormShow = false;
-      setTimeout(() => { this.itemFormShow = true; });
+      // this.itemFormShow = false;
+      // setTimeout(() => { this.itemFormShow = true; });
       // // hide and show the form for item form reseting validators
       // this.itemFormShow = false;
       // setTimeout(() => { this.itemFormShow = true; });
@@ -270,10 +290,14 @@ export class DeliveryInfoComponent implements OnInit {
   }
 
   resetForm() {
+    // this.deliveryItemForm.reset
+    this.deliveryItemForm.markAsPristine();
+    this.deliveryItemForm.markAsUntouched();
+    this.itemForm.resetForm();
     this.deliveryItemForm.reset();
     this.toUpdateIndex = undefined;
     // hide and show the form for item form reseting validators
-    this.itemFormShow = false;
-    setTimeout(() => { this.itemFormShow = true; });
+    // this.itemFormShow = false;
+    // setTimeout(() => { this.itemFormShow = true; });
   }
 }
