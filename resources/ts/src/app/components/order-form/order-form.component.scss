@@ -5,16 +5,29 @@
 //     padding-right: 30px;
 //     background: white;
 // }
-:host ::ng-deep .mat-horizontal-stepper-header{
+:host ::ng-deep .mat-horizontal-stepper-header {
   pointer-events: none !important;
 }
 
-.button-spacing{
-    margin-left: 10px;
+.button-spacing {
+  margin-left: 10px;
 }
 
- @media screen and (max-width: 599px){   
-    :host ::ng-deep .mat-horizontal-stepper-header-container {
-        display: none !important;
-    }
+@media screen and (max-width: 599px) {
+  :host ::ng-deep .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }
+}
+
+.terms-and-condition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 14px;
+
+  .text {
+    font-size: 13px;
+    font-style: italic;
+  }
 }

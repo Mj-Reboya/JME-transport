@@ -14,7 +14,7 @@ import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 })
 export class SignUpComponent implements OnInit {
   showPass = false;
-  acceptTermsAndCondition = false;
+  // acceptTermsAndCondition = false;
 
   userBasicInfo: FormGroup = this.fb.group({
     firstname:
@@ -95,10 +95,10 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    if (!this.acceptTermsAndCondition) {
-      alert('please accept the terms and condition');
-      return;
-    }
+    // if (!this.acceptTermsAndCondition) {
+    //   alert('please accept the terms and condition');
+    //   return;
+    // }
     console.log(`passwordNotMatch`, this.passwordNotMatch());
     if (!this.passwordNotMatch() && this.userBasicInfo.valid && this.newAccountInfo.valid) {
       console.log('this.newAccountInfo', this.newAccountInfo);
@@ -129,8 +129,8 @@ export class SignUpComponent implements OnInit {
     return this.userBasicInfo.valid;
   }
 
-  termsChages(event: MatCheckboxChange) {
-    this.acceptTermsAndCondition = event.checked;
-    // console.log('event', event.checked);
-  }
+  // termsChages(event: MatCheckboxChange) {
+  //   this.acceptTermsAndCondition = event.checked;
+  //   // console.log('event', event.checked);
+  // }
 }

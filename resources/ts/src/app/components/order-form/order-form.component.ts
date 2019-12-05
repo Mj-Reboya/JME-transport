@@ -7,6 +7,7 @@ import { of, forkJoin } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { PdfDownloaderService } from 'src/app/service/pdf-downloader.service';
 import { User, IUser } from 'src/app/models/user.model';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-order-form',
@@ -35,6 +36,7 @@ export class OrderFormComponent implements OnInit {
   disableResubmit = false;
 
   transactionFetching = true;
+  termsAndConditionAccepted = false;
 
   get currentUserInfo(): IUser {
     return User.storedUser;
@@ -67,8 +69,7 @@ export class OrderFormComponent implements OnInit {
         if (sameAsSender) {
           const senderData = this.senderInfo.personInfoGroup.controls[key];
           payorData.setValue(senderData.value);
-        }
-        else {
+        } else {
           payorData.setValue('');
         }
       }
@@ -188,5 +189,9 @@ export class OrderFormComponent implements OnInit {
     //       );
     //   }
     // );
+  }
+
+  termsChages(event: MatCheckboxChange) {
+    this.termsAndConditionAccepted = event.checked;
   }
 }

@@ -1,14 +1,3 @@
 :host ::ng-deep .mat-horizontal-stepper-header-container {
   display: none !important;
 }
-
-.terms-and-condition {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .text {
-    font-size: 10px;
-    font-style: italic;
-  }
-}

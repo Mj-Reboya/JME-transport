@@ -102,6 +102,25 @@
         [stepControl]="deliveryInfo.deliveryInfoGroup"
       >
         <app-delivery-info #deliveryInfo></app-delivery-info>
+        <div class="row equal width grid low-padding">
+          <div class="middle aligned column">
+            <mat-checkbox
+              (change)="termsChages($event)"
+              class="terms-and-condition"
+            >
+              <p class="text">
+                I <strong>ACCEPT</strong> the terms and conditions stated
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://jmet.com.au/terms-and-conditions/"
+                  >HERE </a
+                >.
+                <br />
+              </p>
+            </mat-checkbox>
+          </div>
+        </div>
         <div [ngStyle]="{ 'text-align': 'center' }">
           <button
             mat-stroked-button
@@ -116,6 +135,7 @@
             class="button-spacing"
             color="primary"
             matStepperNext
+            [disabled]="!termsAndConditionAccepted"
           >
             Next
           </button>

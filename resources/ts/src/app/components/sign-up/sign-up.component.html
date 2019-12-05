@@ -197,25 +197,7 @@
                 </button>
               </mat-form-field>
             </div>
-            <div class="row equal width grid low-padding">
-              <div class="middle aligned column">
-                <mat-checkbox
-                  (change)="termsChages($event)"
-                  class="terms-and-condition"
-                >
-                  <p class="text">
-                    I <strong>ACCEPT</strong> the terms and conditions stated
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://jmet.com.au/terms-and-conditions/"
-                      >HERE </a
-                    >.
-                    <br />
-                  </p>
-                </mat-checkbox>
-              </div>
-            </div>
+
             <div class="row low-padding">
               <div class="middle aligned column">
                 <div style="float: left">
@@ -230,7 +212,6 @@
                     mat-raised-button
                     color="primary"
                     (click)="signUp()"
-                    [disabled]="!this.acceptTermsAndCondition"
                   >
                     Create Account
                     <mat-icon>navigate_next</mat-icon>
