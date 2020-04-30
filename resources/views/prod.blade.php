@@ -11,12 +11,12 @@
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
       rel="stylesheet"
       />
-      <link
-      href="static/icon.css"
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined"
       rel="stylesheet"
       />
     <link href="assets/semantic.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styles.css"></head>
+  <link rel="stylesheet" href="/css/styles.css"></head>
   <body>
     <app-root></app-root>
   <script src="/js/runtime-es2015.js" type="module"></script>
