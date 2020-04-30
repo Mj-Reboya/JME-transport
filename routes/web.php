@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-  return view('dev');
-  // $env = env('APP_ENV', 'production');
-  // if ($env != 'production') {
-  //   return view('dev');
-  // }
-  // return view('prod');
+  // return view('dev');
+  $env = env('APP_ENV');
+  if ($env === 'local') {
+    return view('dev');
+  }
+  return view('prod');
 });
 
 Route::redirect('/login', '/#/login');
