@@ -64,3 +64,5 @@ yarn-error.log
 /app/Reports/temp/*
 
 .env
+
+/.vscode
