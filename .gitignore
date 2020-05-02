@@ -66,3 +66,6 @@ yarn-error.log
 .env
 
 .vscode
+/public/js
+/public/css
+/public/mix-manifest.json
