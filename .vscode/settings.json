@@ -1,8 +1,0 @@
-{
-    "intelephense.diagnostics.undefinedTypes": false,
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#1f273ef5",
-        "titleBar.activeBackground": "#1f273ef5",
-        "titleBar.activeForeground": "#b8b1b3",
-    }
-}
