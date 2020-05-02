@@ -25,6 +25,7 @@ const targetFolder = 'public/front-end';
 // .copy(buildFolder + '/index.html', 'resources/views/dev.blade.php')
 
 mix
+	.disableSuccessNotifications()
 	.copy(buildFolder + '/*.js', 'public/js')
 	.copy(buildFolder + '/*.css', 'public/css')
 	.copy(buildFolder + '/assets/*', 'public/assets')

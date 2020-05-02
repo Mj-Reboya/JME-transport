@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +17,10 @@
 
 Route::get('/', function () {
   // return view('dev');
-  // $env = env('APP_ENV', 'production');
-  // if ($env != 'production') {
-  //   return view('dev');
-  // }
+  $env = env('APP_ENV');
+  if ($env === 'local') {
+    return view('dev');
+  }
   return view('prod');
 });
 
