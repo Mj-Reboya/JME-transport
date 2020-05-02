@@ -121,6 +121,30 @@
             </mat-checkbox>
           </div>
         </div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="1em"
+          [ngStyle]="{ 'text-align': 'center', 'margin-bottom': '1em' }"
+        >
+          <button
+            (click)="deliveryInfo.addItem()"
+            mat-raised-button
+            color="primary"
+            type="reset"
+          >
+            {{ itemFormIsUpdate ? "Update" : "Add Item" }}
+          </button>
+          <button
+            *ngIf="itemFormIsUpdate"
+            (click)="deliveryInfo.deleteToEdit()"
+            mat-stroked-button
+            color="primary"
+            type="reset"
+          >
+            Delete
+          </button>
+        </div>
         <div [ngStyle]="{ 'text-align': 'center' }">
           <button
             mat-stroked-button
