@@ -1,8 +1,10 @@
 <?php
 
+use App\Providers\PdfStorageService;
 use Illuminate\Http\Request;
 use PHPJasper\PHPJasper as PHPJasper;
 use App\Transaction;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,8 +89,12 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
     $out_name = 'barcode';
   }
 
-  if (file_exists($output . "/$pdf_name.pdf")) {
-    return response()->download($output . "/$pdf_name.pdf", $out_name . uniqid('_jme_') . $transaction_id . '.pdf', [
+  $pdf_storage_service = new PdfStorageService();
+  $pdf_filename = $output . "/$pdf_name.pdf";
+  $pdf_download_filename = $out_name . uniqid('_jme_') . $transaction_id . '.pdf';
+
+  if (file_exists($pdf_filename)) {
+    return response()->download($pdf_filename, $pdf_download_filename, [
       'code' => 400
     ]);
   }
@@ -108,10 +114,12 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
       $output,
       $options
     )->execute();
-    return response()->download($output . "/$pdf_name.pdf", $out_name . uniqid('_jme_') . $transaction_id . '.pdf', [
+    $pdf_storage_service->savePdfToStorage($pdf_filename, "$transaction_id/$pdf_name.pdf");
+    return response()->download($pdf_filename, $pdf_download_filename, [
       'code' => 400
     ]);
   } catch (\Throwable $th) {
+    Log::error("Generating pdf for Transaction #$transaction_id error" . $th->getMessage(), ['output' => $output]);
     return response()->json([
       'message' => $out,
       'output' => $output
