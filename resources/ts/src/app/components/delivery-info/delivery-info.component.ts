@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { RouterLink, Route, Router } from '@angular/router';
 import { MatInput } from '@angular/material/input';
@@ -142,7 +142,19 @@ export class DeliveryInfoComponent implements OnInit, AfterViewInit {
       ],
   });
 
-  toUpdateIndex: number;
+  @Output() formModeChanged = new EventEmitter<'add' | 'update'>();
+
+  private toUpdateIndexVal: number;
+
+  set toUpdateIndex(value: number) {
+    this.toUpdateIndexVal = value;
+    this.formModeChanged.emit(this.toUpdateIndexVal !== undefined ? 'update' : 'add');
+  }
+
+  get toUpdateIndex(): number {
+    return this.toUpdateIndexVal;
+  }
+
 
   @ViewChildren('descriptionField')
   descriptionField: QueryList<ElementRef>;

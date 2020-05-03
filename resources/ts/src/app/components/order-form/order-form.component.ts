@@ -48,9 +48,12 @@ export class OrderFormComponent implements OnInit, AfterViewInit {
   transactionFetching = true;
   termsAndConditionAccepted = false;
 
+  itemFormIsUpdate = false;
+
   ngAfterViewInit(): void {
     this.fillSenderInfo();
     this.cdref.detectChanges();
+    this.listenToDeliveryInfoEvents();
   }
 
   ngOnInit() {
@@ -58,6 +61,16 @@ export class OrderFormComponent implements OnInit, AfterViewInit {
     // this.recieverInfo.updateInputUsingCached();
     // this.payorInfo.updateInputUsingCached();
     // this.fillSenderInfo();
+  }
+
+  listenToDeliveryInfoEvents(): void {
+    this.deliveryInfo.formModeChanged.subscribe((val) => {
+      if (val === 'add') {
+        this.itemFormIsUpdate = false;
+      } else {
+        this.itemFormIsUpdate = true;
+      }
+    });
   }
 
   fillSenderInfo() {
