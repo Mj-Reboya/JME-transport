@@ -32,7 +32,7 @@ export class PdfDownloaderService {
           if (newPdfName) {
             pdfName = newPdfName;
           }
-          this.dlFile(data, `${pdfName}-${transactionId}`);
+          this.dlFile(data, `${pdfName}-${transactionId}.pdf`);
           return data;
         })
       );
