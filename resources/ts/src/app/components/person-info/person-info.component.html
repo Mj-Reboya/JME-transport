@@ -205,7 +205,8 @@
           matInput
           [formControl]="personInfoGroup.controls['postalCode']"
           (keypress)="numOnly($event)"
-          type="number"
+          type="tel"
+          maxlength="5"
           placeholder="Post code"
           />
       </mat-form-field>
