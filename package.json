@@ -10,7 +10,7 @@
 		"e2e": "ng e2e",
 		"el-build": "npm run el-build-task && npm run el-run-mix",
 		"el-build-task": "ng build --prod --output-hashing=none jmet-forms",
-		"el-run-mix": "node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+		"el-run-mix": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --inline --config=node_modules/laravel-mix/setup/webpack.config.js",
 		"mix:hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --watch --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
 		"mix:watch": "npm run mix:hot -- --watch",
 		"mix:watch-poll": "npm run mix:watch -- --watch-poll",
@@ -18,7 +18,7 @@
 		"build:removeOld": "rm -rf ./public/css/* && rm -rf ./public/js/*",
 		"build:prod": "npm run build -- --prod --output-hashing=none",
 		"prebuild": "npm run build:removeOld",
-		"postbuild": "npm run mix:hot"
+		"postbuild": "npm run el-run-mix"
 	},
 	"private": true,
 	"dependencies": {
