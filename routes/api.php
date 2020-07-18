@@ -114,7 +114,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
       $output,
       $options
     )->execute();
-    $pdf_storage_service->savePdfToStorage($pdf_filename, "$transaction_id/$pdf_name.pdf");
+    $pdf_storage_service->savePdfToStorage($pdf_filename, "$transaction_id-$pdf_name.pdf");
     return response()->download($pdf_filename, $pdf_download_filename, [
       'code' => 400
     ]);
