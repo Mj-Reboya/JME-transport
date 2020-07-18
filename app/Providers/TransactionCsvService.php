@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 
 class TransactionCsvService
 {
+    const CSV_ROOT_DIR = '/CSV';
+
     public function createCsvFromTransaction(int $transaction_id)
     {
         $transaction = Transaction::find($transaction_id);
@@ -52,7 +54,7 @@ class TransactionCsvService
             );
             $csv_data .= "\n" . $this->commaSeperateString($row);
         }
-        Storage::put('/public/transactions/' . $transaction_id . '.csv', $csv_data);
+        Storage::disk('ftp')->put( SELF::CSV_ROOT_DIR . '/' . $transaction_id . '.csv', $csv_data);
     }
 
     public function commaSeperateString(array $arr): string
