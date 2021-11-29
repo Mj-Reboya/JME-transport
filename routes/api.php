@@ -81,6 +81,7 @@ Route::get('/generate-pdf/{pdf_name}', function ($pdf_name, Request $request) {
   $output = env('PDF_TMP_FOLDER', __DIR__ . '/../app/Reports/temp/') . $transaction_id;
   if (!file_exists($output . '/')) {
     // echo ($output);
+    return response()->json([$output]);
     File::makeDirectory($output, 0777, true);
   }
 
